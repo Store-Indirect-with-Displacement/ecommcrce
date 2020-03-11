@@ -171,5 +171,6 @@ return [
     "Avg Sessions"=>"Avg Sessions",
     "vs last"=>"Last",
     "days"=>"days",
+    "from"=>"From",
   
 ];

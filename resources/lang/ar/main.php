@@ -171,5 +171,6 @@ return [
     "Avg Sessions"=>"متوسط الجلسات",
     "vs last"=>"أخر",
     "days"=>"أيام",
+    "from"=>"من",
     
 ];
