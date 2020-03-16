@@ -30,8 +30,20 @@ class CategoriesController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function storeSub_SubCategories(Request $request) {
-        
+    public function storeSub_SubCategories(Request $request, $id) {
+        $rules = [
+            'name_en' => 'required|string|max:255',
+            'name_ar' => 'required|string|max:255',
+        ];
+
+        $request->validate($rules);
+        $subcategory = SubCategory::where('id', $id)->first();
+        $sub_subCategory = new Sub_SubCategory;
+        $sub_subCategory->translateOrNew('en')->name = $request->input('name_en');
+        $sub_subCategory->translateOrNew('ar')->name = $request->input('name_ar');
+        $sub_subCategory->subCategry()->associate($subcategory);
+        $sub_subCategory->save();
+        return response()->json($sub_subCategory);
     }
 
     /**
@@ -116,6 +128,12 @@ class CategoriesController extends Controller {
 
             $category->delete();
         }
+    }
+
+    public function getSubSubCategoey($id) {
+        $subCategory = SubCategory::where('id', $id)->first();
+        $sub_subCategories = $subCategory->sub_subCategories;
+        return response()->json($sub_subCategories);
     }
 
 }

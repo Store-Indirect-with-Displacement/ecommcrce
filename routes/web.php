@@ -41,6 +41,8 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::get('productList', 'Ecommerce\ProductController@index')->name('productList');
                     Route::get('categorieslist', 'Ecommerce\CategoriesController@index')->name('categorieslist');
                     Route::post('categoryStore', 'Ecommerce\CategoriesController@store')->name('cat_store');
+                    Route::post('subsubcategorystore/{id}','Ecommerce\CategoriesController@storeSub_SubCategories')->name('sub_cat_store');
+                    
                 });
             });
         });

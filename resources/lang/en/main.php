@@ -173,6 +173,7 @@ return [
     "vs last"=>"Last",
     "days"=>"days",
     "from"=>"From",
-    "cat"=>"Categories"
+    "cat"=>"Categories",
+    "Details"=>"Details",
   
 ];

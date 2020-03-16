@@ -7,7 +7,13 @@ and open the template in the editor.
     Created on : Mar 16, 2020, 6:21:52 PM
     Author     : hassa
 */
-
+.table-wrapper {
+    width: 700px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;	
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
 .table-title {
     padding-bottom: 10px;
     margin: 0 0 10px;
@@ -29,55 +35,54 @@ and open the template in the editor.
 .table-title .add-new i {
     margin-right: 4px;
 }
-table .table2 {
+table2.table {
     table-layout: fixed;
 }
-table.table2 tr th, table.table tr td {
+table2.table tr th, table.table tr td {
     border-color: #e9e9e9;
-    width: 100px;
 }
-table.table2 th i {
+table2.table th i {
     font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
 }
-table.table2 th:last-child {
+table2.table th:last-child {
     width: 100px;
 }
-table.table2 td a {
+table2.table td a {
     cursor: pointer;
     display: inline-block;
     margin: 0 5px;
     min-width: 24px;
 }    
-table.table2 td a.add {
+table2.table td a.add {
     color: #27C46B;
 }
-table.table2 td a.edit {
+table2.table td a.edit {
     color: #FFC107;
 }
-table.table2 td a.delete {
+table2.table td a.delete {
     color: #E34724;
 }
-table.table2 td i {
+table2.table td i {
     font-size: 19px;
 }
-table.table2 td a.add i {
+table2.table td a.add i {
     font-size: 24px;
     margin-right: -1px;
     position: relative;
     top: 3px;
 }    
-table.table2 .form-control {
+table2.table .form-control {
     height: 32px;
     line-height: 32px;
     box-shadow: none;
     border-radius: 2px;
 }
-table.table2 .form-control.error {
+table2.table .form-control.error {
     border-color: #f50000;
 }
-table.table2 td .add {
+table.table td .add {
     display: none;
 }
 

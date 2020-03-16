@@ -160,11 +160,83 @@ $(document).ready(function () {
 $(document).on('click', '#subcategories #subcategory_item', function (event) {
     var item = $(event.currentTarget).parents("#list_item");
     var name = item.find("#sub_name").text();
-    var id  = item.find("#sub_id").text();
+    var id = item.find("#sub_id").text();
     $("#exampleModalCenterTitle").text(name);
     $("#model_id").text(id);
 
 });
+$(document).ready(function () {
+    var local = window.Laravel.local;
 
+    $('[data-toggle="tooltip"]').tooltip();
+    var actions = $("#subsubcat td:last-child").html();
+    // Append table with add row form on add new button click
+    $(".add-new").click(function () {
+        $(this).attr("disabled", "disabled");
+        var index = $("#subsubcat tbody tr:last-child").index();
+        if (local == "en") {
+            var row = '<tr>' +
+                    '<td><input type="text" class="form-control" name="name_en" id="name" placeholder="English Name"></td>' +
+                    '<td><input type="text" class="form-control" name="name_ar" id="name"placeholder="Arabic Name"></td>' +
+                    '<td>' + actions + '</td>' +
+                    '</tr>';
+        } else if (local = "ar") {
+            var row = '<tr>' +
+                    '<td><input type="text" class="form-control" name="name_en" id="name" placeholder="الاسم بالانجليزية"></td>' +
+                    '<td><input type="text" class="form-control" name="name_ar" id="name"placeholder="الاسم بالعربية"></td>' +
+                    '<td>' + actions + '</td>' +
+                    '</tr>';
+        }
+        $("#subsubcat").append(row);
+        $("#subsubcat tbody tr").eq(index + 1).find(".add, .edit").toggle();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    // Add row on add button click
+    $(document).on("click", ".add", function () {
+        var id = $("#model_id").text();
+        var url = window.Laravel.sub_cat_store.replace(':id', id);
+        window.console.log('url:' + url);
+        var empty = false;
+        var input = $(this).parents("tr").find('input[type="text"]');
+        $.post(url, {
+            name_en: input.attr('name', 'name_en'),
+            name_ar: input.attr('name', 'name_ar')
+        }, function (data) {
+            window.console.log('data:' + data);
+        });
+        input.each(function () {
+            if (!$(this).val()) {
+                $(this).addClass("error");
+                empty = true;
+            } else {
+                $(this).removeClass("error");
+            }
+        });
+        $(this).parents("tr").find(".error").first().focus();
+        if (!empty) {
+            input.each(function () {
+                $(this).parent("td").html($(this).val());
+
+            });
+            $(this).parents("tr").find(".add, .edit").toggle();
+            $(".add-new").removeAttr("disabled");
+        }
+    });
+
+    // Edit row on edit button click
+    $(document).on("click", ".edit", function () {
+        $(this).parents("tr").find("td:not(:last-child)").each(function () {
+            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+        });
+        $(this).parents("tr").find(".add, .edit").toggle();
+        $(".add-new").attr("disabled", "disabled");
+    });
+    // Delete row on delete button click
+    $(document).on("click", ".delete", function () {
+        $(this).parents("tr").remove();
+        $(".add-new").removeAttr("disabled");
+    });
+}
+);
 
 

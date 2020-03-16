@@ -8,7 +8,17 @@
 <link rel="stylesheet" href="{{ asset('vendors/css/tables/datatable/datatables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('vendors/css/file-uploaders/dropzone.min.css') }}">
 <link rel="stylesheet" href="{{ asset('vendors/css/tables/datatable/extensions/dataTables.checkboxes.css') }}">
-<link rel="stylesheet" href="{{ asset('css/pages/table.css')}}">
+
+<script>
+    window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
+
+</script>
+<?php if (!auth()->guest()): ?>
+    <script type="text/javascript">
+        window.Laravel.local = "<?= App::getLocale(); ?>";
+        window.Laravel.sub_cat_store = '<?= route('sub_cat_store', ':id') ?>';
+    </script>
+<?php endif; ?>
 
 
 @endsection
@@ -22,6 +32,7 @@
     <link rel="stylesheet" href="{{ asset('css/plugins/file-uploaders/dropzone.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pages/data-list-view.css')}}">
     <link rel="stylesheet" href="{{ asset('css/plugins/forms/wizard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/table.css')}}">
 
 
 
@@ -33,6 +44,7 @@
     <link rel="stylesheet" href="{{ asset('css-rtl/plugins/file-uploaders/dropzone.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/pages/data-list-view.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/plugins/forms/wizard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/table.css')}}">
 
 <?php endif; ?>
 @endsection
@@ -227,36 +239,42 @@
                     <div class="tab-content pt-1">
                         <div class="tab-pane" id="home-just" role="tabpanel" aria-labelledby="home-tab-justified">
 
-                            
-                                <div class="table-title">
-                                    <div class="row">
-                                        <div class="col-sm-8"><h2>{{__('main.Categories')}} <b>Details</b></h2></div>
-                                        <div class="col-sm-4">
-                                            <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>{{__('main.Add Item')}}</button>
-                                        </div>
+
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <?php if (App::getLocale() == "en"): ?>
+                                            <h2>{{__('main.Categories')}} <b>{{__('main.Details')}}</b></h2>
+                                        <?php elseif (App::getLocale() == "ar"): ?>
+                                            <h2> {{__('main.Details')}}  <b>{{__('main.Categories')}}</b></h2>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i>{{__('main.Add Item')}}</button>
                                     </div>
                                 </div>
-                            <table id="subsubcat"class="table2 table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>{{__('main.Name')}}</th>
-                                            <th>{{__('main.Actions')}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <a class="add" title="{{__('main.ADD')}}" data-toggle="tooltip"><i class="fa fa-plus"></i></a>
-                                                <a class="edit" title="{{__('main.Edit')}}" data-toggle="tooltip"><i class="feather icon-edit"></i></a>
-                                                <a class="delete" title="{{__('main.Delete')}}" data-toggle="tooltip"><i class="feather icon-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                              
-                           
-                                    </tbody>
-                                </table>
-                            
+                            </div>
+                            <table id="subsubcat"class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>{{__('main.Name')}}</th>
+                                        <th>{{__('main.Actions')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>John Doe</td>
+                                        <td>
+                                            <a class="add" title="{{__('main.ADD')}}" data-toggle="tooltip"><i class="fa fa-plus"></i></a>
+                                            <a class="edit" title="{{__('main.Edit')}}" data-toggle="tooltip"><i class="feather icon-edit"></i></a>
+                                            <a class="delete" title="{{__('main.Delete')}}" data-toggle="tooltip"><i class="feather icon-trash"></i></a>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
                         </div>
 
                         <div class="tab-pane" id="messages-just" role="tabpanel" aria-labelledby="messages-tab-justified">
@@ -304,80 +322,30 @@
 <script src="{{ asset('js/scripts/modal/components-modal.js') }}"></script>
 <script>
 // Pricing add
-var i = 0;
-function newMenuItem(i) {
-    var newElem = $('tr.list-item').first().clone();
-    newElem.find('input').val('');
-    newElem.appendTo('table#item-add');
-    newElem.find('input').attr('name', function (index, name) {
-        var newname = name.replace('branchs[0]', 'branchs[' + i + ']');
-        $(this).attr('name', newname);
-        console.log('name' + index + ':' + newname);
-    });
-}
-if ($("table#item-add").is('*')) {
-    $('.add-item').on('click', function (e) {
-        e.preventDefault();
-        i++;
-        newMenuItem(i);
-    });
-    $(document).on("click", "#item-add .delete", function (e) {
-        e.preventDefault();
-        $(this).parent().parent().parent().parent().remove();
-        i--;
-    });
-}
+    var i = 0;
+    function newMenuItem(i) {
+        var newElem = $('tr.list-item').first().clone();
+        newElem.find('input').val('');
+        newElem.appendTo('table#item-add');
+        newElem.find('input').attr('name', function (index, name) {
+            var newname = name.replace('branchs[0]', 'branchs[' + i + ']');
+            $(this).attr('name', newname);
+            console.log('name' + index + ':' + newname);
+        });
+    }
+    if ($("table#item-add").is('*')) {
+        $('.add-item').on('click', function (e) {
+            e.preventDefault();
+            i++;
+            newMenuItem(i);
+        });
+        $(document).on("click", "#item-add .delete", function (e) {
+            e.preventDefault();
+            $(this).parent().parent().parent().parent().remove();
+            i--;
+        });
+    }
 </script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-        var actions = $("#subsubcat td:last-child").html();
-        // Append table with add row form on add new button click
-        $(".add-new").click(function () {
-            $(this).attr("disabled", "disabled");
-            var index = $("#subsubcat tbody tr:last-child").index();
-            var row = '<tr>' +
-                    '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-                    '<td>' + actions + '</td>' +
-                    '</tr>';
-            $("#subsubcat").append(row);
-            $("#subsubcat tbody tr").eq(index + 1).find(".add, .edit").toggle();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-        // Add row on add button click
-        $(document).on("click", ".add", function () {
-            var empty = false;
-            var input = $(this).parents("tr").find('input[type="text"]');
-            input.each(function () {
-                if (!$(this).val()) {
-                    $(this).addClass("error");
-                    empty = true;
-                } else {
-                    $(this).removeClass("error");
-                }
-            });
-            $(this).parents("tr").find(".error").first().focus();
-            if (!empty) {
-                input.each(function () {
-                    $(this).parent("td").html($(this).val());
-                });
-                $(this).parents("tr").find(".add, .edit").toggle();
-                $(".add-new").removeAttr("disabled");
-            }
-        });
-        // Edit row on edit button click
-        $(document).on("click", ".edit", function () {
-            $(this).parents("tr").find("td:not(:last-child)").each(function () {
-                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-            });
-            $(this).parents("tr").find(".add, .edit").toggle();
-            $(".add-new").attr("disabled", "disabled");
-        });
-        // Delete row on delete button click
-        $(document).on("click", ".delete", function () {
-            $(this).parents("tr").remove();
-            $(".add-new").removeAttr("disabled");
-        });
-    });
-</script>
+
+
 @endsection
