@@ -10,7 +10,7 @@
 $(document).ready(function () {
     "use strict"
     // init list view datatable
-    var dataListView = $(".data-list-view").DataTable({
+    var dataListView = $('.data-list-view').DataTable({
         responsive: false,
         columnDefs: [
             {
@@ -36,10 +36,10 @@ $(document).ready(function () {
             {
                 text: "<i class='feather icon-plus'></i> Add New",
                 action: function () {
-                    $(this).removeClass("btn-secondary")
-                    $(".add-new-data").addClass("show")
-                    $(".overlay-bg").addClass("show")
-                    $("#data-name, #data-price").val("")
+                    $(this).removeClass("btn-secondary");
+                    $(".add-new-data").addClass("show");
+                    $(".overlay-bg").addClass("show");
+                    $("#data-name, #data-price").val("");
                     $("#data-category, #data-status").prop("selectedIndex", 0)
                 },
                 className: "btn-outline-primary"
@@ -49,7 +49,6 @@ $(document).ready(function () {
             $(".dt-buttons .btn").removeClass("btn-secondary")
         }
     });
-
     dataListView.on('draw.dt', function () {
         setTimeout(function () {
             if (navigator.userAgent.indexOf("Mac OS X") != -1) {
@@ -57,7 +56,6 @@ $(document).ready(function () {
             }
         }, 50);
     });
-
     // init thumb view datatable
     var dataThumbView = $(".data-thumb-view").DataTable({
         responsive: false,
@@ -104,7 +102,6 @@ $(document).ready(function () {
             }
         }, 50);
     });
-
     // To append actions dropdown before add new button
     var actionDropdown = $(".actions-dropodown")
     actionDropdown.insertBefore($(".top .actions .dt-buttons"))
@@ -115,7 +112,7 @@ $(document).ready(function () {
         new PerfectScrollbar(".data-items", {wheelPropagation: false})
     }
 
-    // Close sidebar
+// Close sidebar
     $(".hide-data-sidebar, .cancel-data-btn, .overlay-bg").on("click", function () {
         $(".add-new-data").removeClass("show")
         $(".overlay-bg").removeClass("show")
@@ -131,13 +128,11 @@ $(document).ready(function () {
         $(".add-new-data").addClass("show");
         $(".overlay-bg").addClass("show");
     });
-
     // On Delete
     $('.action-delete').on("click", function (e) {
         e.stopPropagation();
         $(this).closest('td').parent('tr').fadeOut();
     });
-
     // dropzone init
     Dropzone.options.dataListUpload = {
         complete: function (files) {
@@ -161,15 +156,15 @@ $(document).ready(function () {
         $(".dt-checkboxes-cell input, .dt-checkboxes").addClass("mac-checkbox")
     }
 });
-var name  ;
-$(document).on('click', ".product-category .dropdown #subcat", function () {
-    var subcatname = $(this).text();
-    window.console.log('sub name:' + subcatname);
-    name = subcatname;
+
+$(document).on('click', '#subcategories #subcategory_item', function (event) {
+    var item = $(event.currentTarget).parents("#list_item");
+    var name = item.find("#sub_name").text();
+    var id  = item.find("#sub_id").text();
+    $("#exampleModalCenterTitle").text(name);
+    $("#model_id").text(id);
+
 });
- $(document).on('click' ,"#createSubCategory" , function(){
-     var lable  = $("#myModalLabel33").text().replace('name' , name);
-     window.console.log('lable:'+lable);
-     $("#myModalLabel33").text(lable);
- });
+
+
 

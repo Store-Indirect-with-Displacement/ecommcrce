@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Project/laravel/E-commerce/public/data/locales/ar.json</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/Dashborad/pages/categories-list-view.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/js/scripts/ui/data-list-view.js</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/lang/en/main.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/panels/scripts.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/js/bootstrap.js</file>
         </group>
     </open-files>
 </project-private>

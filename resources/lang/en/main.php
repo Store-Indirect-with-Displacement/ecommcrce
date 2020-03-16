@@ -155,6 +155,7 @@ return [
     "Close"=>"Remove",
     "Save"=>"Save",
     "Add Item" => "ADD Item",
+    "ADD"=>"ADD",
     "Create SubCategory"=>"Create SubCategory",
     "Edit" =>"Edit",
     "Show" =>"Show",
@@ -172,5 +173,6 @@ return [
     "vs last"=>"Last",
     "days"=>"days",
     "from"=>"From",
+    "cat"=>"Categories"
   
 ];
