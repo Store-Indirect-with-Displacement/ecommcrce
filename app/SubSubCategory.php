@@ -1,26 +1,22 @@
 <?php
 
 namespace App;
-
-use Illuminate\Database\Eloquent\Model;
 use App\Product;
 use App\SubCategory;
+use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
-
-class Sub_SubCategory extends Model {
-
-    use Translatable;
+class SubSubCategory extends Model
+{
+      use Translatable;
 
     public $translatedAttributes = ['name'];
     public $fillable = ['subcategory_id'];
-
-    public function products() {
+    public $table = "sub_sub_categories";
+    public function products(){
         return $this->hasMany(Product::class);
     }
-
-    public function subCategry() {
-        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    public function subCategory(){
+        return $this->belongsTo(SubCategory::class , 'subcategory_id');
     }
-
 }

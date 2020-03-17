@@ -8,7 +8,40 @@
 <link rel="stylesheet" href="{{ asset('vendors/css/tables/datatable/datatables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('vendors/css/file-uploaders/dropzone.min.css') }}">
 <link rel="stylesheet" href="{{ asset('vendors/css/tables/datatable/extensions/dataTables.checkboxes.css') }}">
+<style>
+    .scrollbar
+    {
+        margin-left: 0px;
+        float: left;
+        height: 100%;
+        width:  28.57rem;;
+        background: white;
+        overflow-y: scroll;
+        margin-bottom: 25px;
+    }
+    .force-overflow
+    {
+        min-height: 100%;
+    }
 
+    #style-8::-webkit-scrollbar-track
+    {
+        border: .5px solid #FFF;
+        background-color: #FFF;
+    }
+
+    #style-8::-webkit-scrollbar
+    {
+        width: 1px;
+        background-color: #FFF;
+    }
+
+    #style-8::-webkit-scrollbar-thumb
+    {
+        background-color: #000000;	
+    }
+
+</style>
 <script>
     window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
 
@@ -134,82 +167,90 @@
 
 
     {{-- add new sidebar starts --}}
-    <div class="add-new-data-sidebar scrollable-container">
+
+    <div class="add-new-data-sidebar  ">
+
         <div class="overlay-bg"></div>
-        <div class="add-new-data">
-            <div id="app">
-                @include('layouts.session')
-            </div>
-            <form class="edit-profile m-b30"  action="<?= route('cat_store') ?>" method="POST" >
-                @csrf
-                <div class="row">
-                    <div class="col-12 m-t20">
-                        <div class="ml-auto">
-                            <h3 class="m-form__section">{{__('main.CreatenewCategory')}}</h3>
-                        </div>
+
+
+        <div class="add-new-data " >
+            <div class="scrollbar" id="style-8">
+                    <div id="app">
+                        @include('layouts.session')
                     </div>
-                    <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
-                        <div class="form-group col-6">
-                            <?php if ($local == "ar"): ?>
-                                <label class="col-form-label">{{__('main.CatNameAr')}}</label>
-                            <?php elseif ($local == "en"): ?>
-                                <label class="col-form-label">{{__('main.CatNameEn')}}</label>
-                            <?php endif; ?>
-                            <div>
-                                <input class="form-control"  name="name_<?= $local ?>" required=""  type="text" value="">
+                    <form class="edit-profile m-b30"  action="<?= route('cat_store') ?>" method="POST" >
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 m-t20">
+                                <div class="ml-auto">
+                                    <h3 class="m-form__section">{{__('main.CreatenewCategory')}}</h3>
+                                </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                            <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
+                                <div class="form-group col-6">
+                                    <?php if ($local == "ar"): ?>
+                                        <label class="col-form-label">{{__('main.CatNameAr')}}</label>
+                                    <?php elseif ($local == "en"): ?>
+                                        <label class="col-form-label">{{__('main.CatNameEn')}}</label>
+                                    <?php endif; ?>
+                                    <div>
+                                        <input class="form-control"  name="name_<?= $local ?>" required=""  type="text" value="">
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
 
-                    <div class="col-12 m-t20">
-                        <div class="ml-auto">
-                            <h3 class="m-form__section">{{__('main.SubCategory')}}</h3>
-                        </div>
-                    </div>
-                    <div class=" form-group col-12">
-                        <input id="count" type="hidden" style="display: none" vlaue ="<?= $i = 0 ?>"> 
-                        <table id="item-add" style="width:100%;">
-                            <tr class="list-item">
-                                <td>
-                                    <div class="row">
+                            <div class="col-12 m-t20">
+                                <div class="ml-auto">
+                                    <h3 class="m-form__section">{{__('main.SubCategory')}}</h3>
+                                </div>
+                            </div>
+                            <div class=" form-group col-12">
+                                <input id="count" type="hidden" style="display: none" vlaue ="<?= $i = 0 ?>"> 
+                                <table id="item-add" style="width:100%;">
+                                    <tr class="list-item">
+                                        <td>
+                                            <div class="row">
 
-                                        <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
-                                            <div class="col-6">
-                                                <?php if ($local == "ar"): ?>
-                                                    <label class="col-form-label">{{__('main.CatNameAr')}}</label>
-                                                <?php elseif ($local == "en"): ?>
-                                                    <label class="col-form-label"> {{__('main.CatNameEn')}}</label>
-                                                <?php endif; ?>
-                                                <div>
+                                                <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
+                                                    <div class="col-6">
+                                                        <?php if ($local == "ar"): ?>
+                                                            <label class="col-form-label">{{__('main.CatNameAr')}}</label>
+                                                        <?php elseif ($local == "en"): ?>
+                                                            <label class="col-form-label"> {{__('main.CatNameEn')}}</label>
+                                                        <?php endif; ?>
+                                                        <div>
 
-                                                    <input  class="form-control" required="" name="branchs[0][<?= $local ?>]" type="text" value="" multiple="">
+                                                            <input  class="form-control" required="" name="branchs[0][<?= $local ?>]" type="text" value="" multiple="">
+                                                        </div>
+                                                    </div>
+
+                                                <?php endforeach; ?>
+
+                                                <div class="col-md-12">
+                                                    <label class="col-form-label">{{__('main.Close')}}</label>
+                                                    <div class="form-group">
+                                                        <a class="delete" href="#"><i class="fa fa-close"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="form-group col-12 ">
 
-                                        <?php endforeach; ?>
-
-                                        <div class="col-md-12">
-                                            <label class="col-form-label">{{__('main.Close')}}</label>
-                                            <div class="form-group">
-                                                <a class="delete" href="#"><i class="fa fa-close"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="form-group col-12 ">
-
-                        <button type="button"  class="btn btn-primary mr-1 mb-1 waves-effect waves-light add-item"><i class="fa fa-fw fa-plus-circle"></i>{{__('main.Add Item')}}</button>
-                        <button type="submit" class="btn btn-success mr-1 mb-1 waves-effect waves-light">{{__('main.Save')}}</button>
-                    </div>
-                    <div style="display: none" action="#" class="dropzone dropzone-area dz-clickable" id="dataListUpload">
-                        <div class="dz-message">Upload Image</div>
-                    </div>
-                </div>
-            </form>
+                                <button type="button"  class="btn btn-primary mr-1 mb-1 waves-effect waves-light add-item"><i class="fa fa-fw fa-plus-circle"></i>{{__('main.Add Item')}}</button>
+                                <button type="submit" class="btn btn-success mr-1 mb-1 waves-effect waves-light">{{__('main.Save')}}</button>
+                            </div>
+                            <div style="display: none" action="#" class="dropzone dropzone-area dz-clickable" id="dataListUpload">
+                                <div class="dz-message">Upload Image</div>
+                            </div>
+                        </div>
+                    </form>
+                
+            </div>
         </div>
+
     </div>
 
     <!-- Modal -->

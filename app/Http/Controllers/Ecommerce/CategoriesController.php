@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 use App\SubCategory;
-use App\Sub_SubCategory;
+use App\SubSubCategory;
 use LaravelLocalization;
 
 class CategoriesController extends Controller {
@@ -38,10 +38,10 @@ class CategoriesController extends Controller {
 
         $request->validate($rules);
         $subcategory = SubCategory::where('id', $id)->first();
-        $sub_subCategory = new Sub_SubCategory;
+        $sub_subCategory = new SubSubCategory;
         $sub_subCategory->translateOrNew('en')->name = $request->input('name_en');
         $sub_subCategory->translateOrNew('ar')->name = $request->input('name_ar');
-        $sub_subCategory->subCategry()->associate($subcategory);
+        $sub_subCategory->subCategory()->associate($subcategory);
         $sub_subCategory->save();
         return response()->json($sub_subCategory);
     }

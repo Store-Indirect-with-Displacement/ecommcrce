@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->string('popularity')->nullable();
             $table->integer('price')->nullable();
-            $table->bigInteger('sub_subcategory_id')->unsigned();
-            $table->foreign('sub_subcategory_id')->references('id')->on('sub__sub_categories')->onDelete('cascade');
+            $table->bigInteger('subsubcategory_id')->unsigned();
+            $table->foreign('subsubcategory_id')->references('id')->on('sub_sub_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

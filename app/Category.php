@@ -9,6 +9,8 @@ use App\SubCategory;
 
 class Category extends Model implements TranslatableContract {
 
+    public $table = "categories";
+
     use Translatable;
 
     public $translatedAttributes = ['name'];

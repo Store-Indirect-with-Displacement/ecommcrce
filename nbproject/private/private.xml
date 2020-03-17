@@ -5,9 +5,9 @@
         <group>
             <file>file:/E:/Project/laravel/E-commerce/resources/views/Dashborad/pages/categories-list-view.blade.php</file>
             <file>file:/E:/Project/laravel/E-commerce/resources/js/scripts/ui/data-list-view.js</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/lang/en/main.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/views/panels/scripts.blade.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/js/bootstrap.js</file>
+            <file>file:/E:/Project/laravel/E-commerce/app/Category.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/app/Http/Controllers/Ecommerce/CategoriesController.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/routes/web.php</file>
         </group>
     </open-files>
 </project-private>

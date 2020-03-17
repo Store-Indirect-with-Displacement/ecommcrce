@@ -167,7 +167,6 @@ $(document).on('click', '#subcategories #subcategory_item', function (event) {
 });
 $(document).ready(function () {
     var local = window.Laravel.local;
-
     $('[data-toggle="tooltip"]').tooltip();
     var actions = $("#subsubcat td:last-child").html();
     // Append table with add row form on add new button click
@@ -182,8 +181,8 @@ $(document).ready(function () {
                     '</tr>';
         } else if (local = "ar") {
             var row = '<tr>' +
-                    '<td><input type="text" class="form-control" name="name_en" id="name" placeholder="الاسم بالانجليزية"></td>' +
-                    '<td><input type="text" class="form-control" name="name_ar" id="name"placeholder="الاسم بالعربية"></td>' +
+                    '<td><input type="text" class="form-control" name="name_en" id="name_en" placeholder="الاسم بالانجليزية"></td>' +
+                    '<td><input type="text" class="form-control" name="name_ar" id="name_ar"placeholder="الاسم بالعربية"></td>' +
                     '<td>' + actions + '</td>' +
                     '</tr>';
         }
@@ -193,17 +192,10 @@ $(document).ready(function () {
     });
     // Add row on add button click
     $(document).on("click", ".add", function () {
-        var id = $("#model_id").text();
-        var url = window.Laravel.sub_cat_store.replace(':id', id);
-        window.console.log('url:' + url);
         var empty = false;
         var input = $(this).parents("tr").find('input[type="text"]');
-        $.post(url, {
-            name_en: input.attr('name', 'name_en'),
-            name_ar: input.attr('name', 'name_ar')
-        }, function (data) {
-            window.console.log('data:' + data);
-        });
+        window.console.log('input' + input.text());
+
         input.each(function () {
             if (!$(this).val()) {
                 $(this).addClass("error");
@@ -214,12 +206,33 @@ $(document).ready(function () {
         });
         $(this).parents("tr").find(".error").first().focus();
         if (!empty) {
-            input.each(function () {
+            var input_=[];
+            input.each(function (index) {
                 $(this).parent("td").html($(this).val());
-
+                 input_[index] =$(this).attr('name','name_en').val();
+                 
+                      
             });
+            
+            
             $(this).parents("tr").find(".add, .edit").toggle();
             $(".add-new").removeAttr("disabled");
+            
+             var id = $("#model_id").text();
+        var url = window.Laravel.sub_cat_store.replace(':id', id);
+        window.console.log('url:' + url);
+            
+               $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.post('' + url, {
+                    name_en: input_[0],
+                    name_ar: input_[1]
+                }, function (data) {
+                    window.console.log('data:' + data);
+                });
         }
     });
 
