@@ -132,6 +132,8 @@ $(document).ready(function () {
     $('.action-delete').on("click", function (e) {
         e.stopPropagation();
         $(this).closest('td').parent('tr').fadeOut();
+        var id = $(this).closest('td').parent('tr').find("#cat_id").text();
+        deleteCategory(id);
     });
     // dropzone init
     Dropzone.options.dataListUpload = {
@@ -163,6 +165,8 @@ $(document).on('click', '#subcategories #subcategory_item', function (event) {
     var id = item.find("#sub_id").text();
     $("#exampleModalCenterTitle").text(name);
     $("#model_id").text(id);
+
+    setInterval(getSubsubCategory(id), 1000);
 
 });
 $(document).ready(function () {
@@ -206,33 +210,33 @@ $(document).ready(function () {
         });
         $(this).parents("tr").find(".error").first().focus();
         if (!empty) {
-            var input_=[];
+            var input_ = [];
             input.each(function (index) {
                 $(this).parent("td").html($(this).val());
-                 input_[index] =$(this).attr('name','name_en').val();
-                 
-                      
+                input_[index] = $(this).attr('name', 'name_en').val();
+
+
             });
-            
-            
+
+
             $(this).parents("tr").find(".add, .edit").toggle();
             $(".add-new").removeAttr("disabled");
-            
-             var id = $("#model_id").text();
-        var url = window.Laravel.sub_cat_store.replace(':id', id);
-        window.console.log('url:' + url);
-            
-               $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.post('' + url, {
-                    name_en: input_[0],
-                    name_ar: input_[1]
-                }, function (data) {
-                    window.console.log('data:' + data);
-                });
+
+            var id = $("#model_id").text();
+            var url = window.Laravel.sub_cat_store.replace(':id', id);
+            window.console.log('url:' + url);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.post('' + url, {
+                name_en: input_[0],
+                name_ar: input_[1]
+            }, function (data) {
+                window.console.log('data:' + data);
+            });
         }
     });
 
@@ -247,9 +251,75 @@ $(document).ready(function () {
     // Delete row on delete button click
     $(document).on("click", ".delete", function () {
         $(this).parents("tr").remove();
+        var id = $(this).parents("tr").find("#subsubcategoryId").text();
+        var url = window.Laravel.deleteSubsubCategory.replace(':id', id);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post('' + url, {
+            id: id,
+            method: 'delete'
+        }, function (data) {
+            window.console.log(data);
+        });
         $(".add-new").removeAttr("disabled");
     });
+    $(document).on('click', "#deletesubcategory", function () {
+        var id = $("#model_id").text();
+        var url = window.Laravel.deleteSubCategory.replace(':id', id);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post('' + url, {
+            id: id,
+            method: 'delete'
+        }, function (data) {
+            window.console.log(data);
+        });
+    });
+    $("#exampleModalLong").attr('aria-hidden', 'true');
+
+
 }
 );
 
-
+function getSubsubCategory(id) {
+    var url = window.Laravel.getSubsubCategory.replace(':id', id);
+    $.get('' + url, function (data) {
+        var html = data.map(function (dataItem) {
+            return createsubcategoryItem(dataItem.name, dataItem.id);
+        });
+        $("#subsubcategory").html(html);
+    });
+}
+function createsubcategoryItem(name, id) {
+    var html = `
+                                  <tr>
+                                        <td id="subsubcategoryId" style="display:none;">` + id + `</td>
+                                        <td id="subsubcategoryName">` + name + `</td>
+                                        <td>
+                                            <a class="add" title="ADD" data-toggle="tooltip"><i class="fa fa-plus"></i></a>
+                                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="feather icon-edit"></i></a>
+                                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="feather icon-trash"></i></a>
+                                        </td>
+                                  </tr>`;
+    return html;
+}
+function deleteCategory(id) {
+    var url = window.Laravel.deleteCategory.replace(':id', id);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.post('' + url, {
+        id: id,
+        method: 'delete',
+    }, function (data) {
+        window.console.log(data);
+    });
+}

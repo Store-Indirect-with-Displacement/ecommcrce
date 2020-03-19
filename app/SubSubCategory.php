@@ -11,12 +11,12 @@ class SubSubCategory extends Model
       use Translatable;
 
     public $translatedAttributes = ['name'];
-    public $fillable = ['subcategory_id'];
+    public $fillable = ['sub_category_id'];
     public $table = "sub_sub_categories";
     public function products(){
         return $this->hasMany(Product::class);
     }
     public function subCategory(){
-        return $this->belongsTo(SubCategory::class , 'subcategory_id');
+        return $this->belongsTo(SubCategory::class , 'sub_category_id');
     }
 }

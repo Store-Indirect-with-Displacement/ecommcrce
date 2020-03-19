@@ -41,8 +41,11 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::get('productList', 'Ecommerce\ProductController@index')->name('productList');
                     Route::get('categorieslist', 'Ecommerce\CategoriesController@index')->name('categorieslist');
                     Route::post('categoryStore', 'Ecommerce\CategoriesController@store')->name('cat_store');
-                    Route::post('subsubcategorystore/{id}','Ecommerce\CategoriesController@storeSub_SubCategories')->name('sub_cat_store');
-                    
+                    Route::post('subsubcategorystore/{id}', 'Ecommerce\CategoriesController@storeSub_SubCategories')->name('sub_cat_store');
+                    Route::get('getsubsubcategory/{id}', 'Ecommerce\CategoriesController@getSubSubCategoey')->name('getsubcat');
+                    Route::post('deletesubsubcategory/{id}', 'Ecommerce\CategoriesController@deleteSubsubCategory')->name('deletesubsubCategory');
+                    Route::post('deletesubcategory/{id}', 'Ecommerce\CategoriesController@deteteSubCategory')->name('deletesubCategory');
+                    Route::post('deletecategory/{id}', 'Ecommerce\CategoriesController@destroy')->name('deletecategory');
                 });
             });
         });

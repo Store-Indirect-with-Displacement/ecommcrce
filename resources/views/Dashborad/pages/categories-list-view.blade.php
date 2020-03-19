@@ -50,6 +50,10 @@
     <script type="text/javascript">
         window.Laravel.local = "<?= App::getLocale(); ?>";
         window.Laravel.sub_cat_store = '<?= route('sub_cat_store', ':id') ?>';
+        window.Laravel.getSubsubCategory = '<?= route('getsubcat', ':id') ?>';
+        window.Laravel.deleteSubsubCategory = '<?= route('deletesubsubCategory', ':id') ?>';
+        window.Laravel.deleteSubCategory = '<?= route('deletesubCategory', ':id') ?>';
+        window.Laravel.deleteCategory = '<?= route('deletecategory', ':id') ?>';
     </script>
 <?php endif; ?>
 
@@ -108,6 +112,7 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th style="display: none;">id</th>
                     <th>{{__('main.Name')}}</th>
                     <th>{{__('main.subCategoty_')}}</th>
                     <th>POPULARITY</th>
@@ -119,6 +124,7 @@
                 <?php foreach ($categories as $cat): ?>
                     <tr>
                         <td></td>
+                        <td id="cat_id" style="display: none;"><?= $cat->id ?></td>
                         <td class="product-name"><?= $cat->name ?></td>
                         <td class="product-category">
                             <div class="btn-group">
@@ -175,79 +181,79 @@
 
         <div class="add-new-data " >
             <div class="scrollbar" id="style-8">
-                    <div id="app">
-                        @include('layouts.session')
-                    </div>
-                    <form class="edit-profile m-b30"  action="<?= route('cat_store') ?>" method="POST" >
-                        @csrf
-                        <div class="row">
-                            <div class="col-12 m-t20">
-                                <div class="ml-auto">
-                                    <h3 class="m-form__section">{{__('main.CreatenewCategory')}}</h3>
-                                </div>
-                            </div>
-                            <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
-                                <div class="form-group col-6">
-                                    <?php if ($local == "ar"): ?>
-                                        <label class="col-form-label">{{__('main.CatNameAr')}}</label>
-                                    <?php elseif ($local == "en"): ?>
-                                        <label class="col-form-label">{{__('main.CatNameEn')}}</label>
-                                    <?php endif; ?>
-                                    <div>
-                                        <input class="form-control"  name="name_<?= $local ?>" required=""  type="text" value="">
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-
-                            <div class="col-12 m-t20">
-                                <div class="ml-auto">
-                                    <h3 class="m-form__section">{{__('main.SubCategory')}}</h3>
-                                </div>
-                            </div>
-                            <div class=" form-group col-12">
-                                <input id="count" type="hidden" style="display: none" vlaue ="<?= $i = 0 ?>"> 
-                                <table id="item-add" style="width:100%;">
-                                    <tr class="list-item">
-                                        <td>
-                                            <div class="row">
-
-                                                <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
-                                                    <div class="col-6">
-                                                        <?php if ($local == "ar"): ?>
-                                                            <label class="col-form-label">{{__('main.CatNameAr')}}</label>
-                                                        <?php elseif ($local == "en"): ?>
-                                                            <label class="col-form-label"> {{__('main.CatNameEn')}}</label>
-                                                        <?php endif; ?>
-                                                        <div>
-
-                                                            <input  class="form-control" required="" name="branchs[0][<?= $local ?>]" type="text" value="" multiple="">
-                                                        </div>
-                                                    </div>
-
-                                                <?php endforeach; ?>
-
-                                                <div class="col-md-12">
-                                                    <label class="col-form-label">{{__('main.Close')}}</label>
-                                                    <div class="form-group">
-                                                        <a class="delete" href="#"><i class="fa fa-close"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="form-group col-12 ">
-
-                                <button type="button"  class="btn btn-primary mr-1 mb-1 waves-effect waves-light add-item"><i class="fa fa-fw fa-plus-circle"></i>{{__('main.Add Item')}}</button>
-                                <button type="submit" class="btn btn-success mr-1 mb-1 waves-effect waves-light">{{__('main.Save')}}</button>
-                            </div>
-                            <div style="display: none" action="#" class="dropzone dropzone-area dz-clickable" id="dataListUpload">
-                                <div class="dz-message">Upload Image</div>
+                <div id="app">
+                    @include('layouts.session')
+                </div>
+                <form class="edit-profile m-b30"  action="<?= route('cat_store') ?>" method="POST" >
+                    @csrf
+                    <div class="row">
+                        <div class="col-12 m-t20">
+                            <div class="ml-auto">
+                                <h3 class="m-form__section">{{__('main.CreatenewCategory')}}</h3>
                             </div>
                         </div>
-                    </form>
-                
+                        <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
+                            <div class="form-group col-6">
+                                <?php if ($local == "ar"): ?>
+                                    <label class="col-form-label">{{__('main.CatNameAr')}}</label>
+                                <?php elseif ($local == "en"): ?>
+                                    <label class="col-form-label">{{__('main.CatNameEn')}}</label>
+                                <?php endif; ?>
+                                <div>
+                                    <input class="form-control"  name="name_<?= $local ?>" required=""  type="text" value="">
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+
+                        <div class="col-12 m-t20">
+                            <div class="ml-auto">
+                                <h3 class="m-form__section">{{__('main.SubCategory')}}</h3>
+                            </div>
+                        </div>
+                        <div class=" form-group col-12">
+                            <input id="count" type="hidden" style="display: none" vlaue ="<?= $i = 0 ?>"> 
+                            <table id="item-add" style="width:100%;">
+                                <tr class="list-item">
+                                    <td>
+                                        <div class="row">
+
+                                            <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
+                                                <div class="col-6">
+                                                    <?php if ($local == "ar"): ?>
+                                                        <label class="col-form-label">{{__('main.CatNameAr')}}</label>
+                                                    <?php elseif ($local == "en"): ?>
+                                                        <label class="col-form-label"> {{__('main.CatNameEn')}}</label>
+                                                    <?php endif; ?>
+                                                    <div>
+
+                                                        <input  class="form-control" required="" name="branchs[0][<?= $local ?>]" type="text" value="" multiple="">
+                                                    </div>
+                                                </div>
+
+                                            <?php endforeach; ?>
+
+                                            <div class="col-md-12">
+                                                <label class="col-form-label">{{__('main.Close')}}</label>
+                                                <div class="form-group">
+                                                    <a class="delete" href="#"><i class="fa fa-close"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group col-12 ">
+
+                            <button type="button"  class="btn btn-primary mr-1 mb-1 waves-effect waves-light add-item"><i class="fa fa-fw fa-plus-circle"></i>{{__('main.Add Item')}}</button>
+                            <button type="submit" class="btn btn-success mr-1 mb-1 waves-effect waves-light">{{__('main.Save')}}</button>
+                        </div>
+                        <div style="display: none" action="#" class="dropzone dropzone-area dz-clickable" id="dataListUpload">
+                            <div class="dz-message">Upload Image</div>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
 
@@ -302,39 +308,55 @@
                                         <th>{{__('main.Actions')}}</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="subsubcategory">
                                     <tr>
-                                        <td>John Doe</td>
+                                        <td id="subsubcategoryName"></td>
                                         <td>
-                                            <a class="add" title="{{__('main.ADD')}}" data-toggle="tooltip"><i class="fa fa-plus"></i></a>
-                                            <a class="edit" title="{{__('main.Edit')}}" data-toggle="tooltip"><i class="feather icon-edit"></i></a>
-                                            <a class="delete" title="{{__('main.Delete')}}" data-toggle="tooltip"><i class="feather icon-trash"></i></a>
+                                            <a class="add" title="ADD" data-toggle="tooltip"><i class="fa fa-plus"></i></a>
+                                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="feather icon-edit"></i></a>
+                                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="feather icon-trash"></i></a>
                                         </td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
 
                         </div>
 
                         <div class="tab-pane" id="messages-just" role="tabpanel" aria-labelledby="messages-tab-justified">
-                            <p>
-                                Tootsie roll oat cake I love bear claw I love caramels caramels halvah chocolate bar. Cotton candy
-                                gummi bears pudding pie apple pie cookie. Cheesecake jujubes lemon drops danish dessert I love
-                                caramels powder.
-                            </p>
+                            <table id="subsubcatedit"class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>{{__('main.CatNameAr')}}</th>
+                                        <th>{{__('main.CatNameEn')}}</th>
+                                        <th>{{__('main.Save')}}</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="subsubcategoryEdit">
+                                    <tr>
+                                        <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
+
+                                            <td>
+                                                <?php if ($local == "en"): ?>
+                                                    <input type="text" class="form-control" name="name_en" id="name" placeholder="{{__('main.CatNameAr')}}">
+                                                <?php elseif ($local == "ar"): ?>
+                                                    <input type="text" class="form-control" name="name_ar" id="name" placeholder="{{__('main.CatNameEn')}}">
+                                                <?php endif; ?>
+                                            </td>
+
+                                        <?php endforeach; ?>
+                                        <td>
+                                            <button id="Editsubcategory" type="button" class="btn btn-success mr-1 mb-1 waves-effect waves-light">{{__('main.Save')}}</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="tab-pane active" id="settings-just" role="tabpanel" aria-labelledby="settings-tab-justified">
-                            <p>
-                                Biscuit powder jelly beans. Lollipop candy canes croissant icing chocolate cake. Cake fruitcake powder
-                                pudding pastry.I love caramels caramels halvah chocolate bar. Cotton candy
-                                gummi bears pudding pie apple pie cookie.
-                            </p>
+                        <div class="tab-pane active" id="settings-just" role="tabpanel" aria-labelledby="settings-tab-justified">  
+                            <button id="deletesubcategory" type="button" class="btn btn-success mr-1 mb-1 waves-effect waves-light">{{__('main.Delete')}}</button>
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Accept</button>
                 </div>
@@ -342,9 +364,6 @@
         </div>
     </div>
 </section>
-
-
-
 {{-- Data list view end --}}
 @endsection
 @section('vendor-script')
@@ -363,30 +382,28 @@
 <script src="{{ asset('js/scripts/modal/components-modal.js') }}"></script>
 <script>
 // Pricing add
-    var i = 0;
-    function newMenuItem(i) {
-        var newElem = $('tr.list-item').first().clone();
-        newElem.find('input').val('');
-        newElem.appendTo('table#item-add');
-        newElem.find('input').attr('name', function (index, name) {
-            var newname = name.replace('branchs[0]', 'branchs[' + i + ']');
-            $(this).attr('name', newname);
-            console.log('name' + index + ':' + newname);
-        });
-    }
-    if ($("table#item-add").is('*')) {
-        $('.add-item').on('click', function (e) {
-            e.preventDefault();
-            i++;
-            newMenuItem(i);
-        });
-        $(document).on("click", "#item-add .delete", function (e) {
-            e.preventDefault();
-            $(this).parent().parent().parent().parent().remove();
-            i--;
-        });
-    }
+        var i = 0;
+        function newMenuItem(i) {
+            var newElem = $('tr.list-item').first().clone();
+            newElem.find('input').val('');
+            newElem.appendTo('table#item-add');
+            newElem.find('input').attr('name', function (index, name) {
+                var newname = name.replace('branchs[0]', 'branchs[' + i + ']');
+                $(this).attr('name', newname);
+                console.log('name' + index + ':' + newname);
+            });
+        }
+        if ($("table#item-add").is('*')) {
+            $('.add-item').on('click', function (e) {
+                e.preventDefault();
+                i++;
+                newMenuItem(i);
+            });
+            $(document).on("click", "#item-add .delete", function (e) {
+                e.preventDefault();
+                $(this).parent().parent().parent().parent().remove();
+                i--;
+            });
+        }
 </script>
-
-
 @endsection

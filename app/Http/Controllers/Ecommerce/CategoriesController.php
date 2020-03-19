@@ -112,28 +112,31 @@ class CategoriesController extends Controller {
      */
     public function destroy($id) {
         $category = Category::where('id', $id)->first();
-        if ($category) {
-            $subCategories = SubCategory::where('category_id', $id)->get();
-            if ($subCategories) {
-                foreach ($subCategories as $subcategory) {
-                    $sub_subcategories = Sub_SubCategory::where('subcategory_id', $subcategory->id)->get();
-                    if ($sub_subcategories) {
-                        foreach ($sub_subcategories as $sub_subcategory) {
-                            $sub_subcategory->delete();
-                        }
-                    }
-                    $subcategory->delete();
-                }
-            }
-
-            $category->delete();
+        $subcategory = $category->subCategories();
+        foreach ($subcategory as $subcat) {
+            $subcat->subsubCategories()->delete();
         }
+        $subcategory->delete();
+        $category->delete();
+        return response('sucess', 200);
     }
 
     public function getSubSubCategoey($id) {
         $subCategory = SubCategory::where('id', $id)->first();
-        $sub_subCategories = $subCategory->sub_subCategories;
+        $sub_subCategories = $subCategory->subsubCategories;
         return response()->json($sub_subCategories);
+    }
+
+    public function deleteSubsubCategory($id) {
+        $subsubCategory = SubSubCategory::where('id', $id)->delete();
+        return response('sucess', 200);
+    }
+
+    public function deteteSubCategory($id) {
+        $subCategory = SubCategory::where('id', $id)->first();
+        $subCategory->subsubCategories()->delete();
+        $subCategory->delete();
+        return response('sucess', 200);
     }
 
 }
