@@ -31,7 +31,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+//
     }
 
     /**
@@ -41,7 +41,39 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        $rules = [
+            'name_en' => 'required|string|max:255',
+            'name_ar' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'subcategory_id' => 'nullable',
+            'subsubcategory_id' => 'nullable',
+            'status' => 'required|string|max:255',
+            'price' => 'required|numeric'
+        ];
+        $request->validate($rules);
+        $category = Category::find($request->input('category_id'));
+        $subcategory = SubCategory::find($request->input('subcategory_id'));
+        $subsubCategory = SubSubCategory::find($request->input('subsubcategory_id'));
+        $product = new Product();
+        $product->translateOrNew('en')->name = $request->input('name_en');
+        $product->translateOrNew('ar')->name = $request->input('name_ar');
+        $product->Category()->associate($category);
+        $product->SubCategory()->associate($subcategory);
+        $product->SubSubCategory()->associate($subsubCategory);
+        $product->order_status = $request->input('status');
+        $product->price = $request->input('price');
+        $images = $request->session()->get('images');
+        $product->save();
+        if ($images) {
+            $request->session()->forget('images');
+            foreach ($images as $key => $img) {
+                $image = ProductImage::where('id', $img)->first();
+                $image->product()->associate($product);
+                $image->update();
+            }
+        }
+
+        return response()->json($product);
     }
 
     /**
@@ -51,7 +83,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+//
     }
 
     /**
@@ -61,7 +93,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+//
     }
 
     /**
@@ -72,7 +104,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+//
     }
 
     /**
@@ -82,7 +114,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+//
     }
 
     public function getcategories() {
@@ -103,12 +135,18 @@ class ProductController extends Controller {
     }
 
     public function uploadImage(Request $request) {
+
         $file = $request->file('file');
         $path = $file->store('media_proudects');
         $image = new ProductImage;
         $image->image = $file;
         $image->is_main = false;
-        $image->save();
+        $Issave = $image->save();
+        $images = [$image->id => $image->id];
+        $request->session()->push('images', $images);
+        if ($Issave) {
+            return response('sucess', 200);
+        }
     }
 
 }

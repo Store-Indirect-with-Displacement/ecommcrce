@@ -51,6 +51,7 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::get('getsubcategorirs/{id}', 'Ecommerce\ProductController@getsubcategories')->name('getsubcategories');
                     Route::get('getsubsubcategorirs/{id}', 'Ecommerce\ProductController@getsubsubcategories')->name('getsubsubcategories');
                     Route::post('uploadproductimage', 'Ecommerce\ProductController@uploadImage')->name('uploadImage');
+                    Route::post('saveproduct' , 'Ecommerce\ProductController@store')->name('storeproduct');
                 });
             });
         });

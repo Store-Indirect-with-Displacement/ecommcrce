@@ -10,12 +10,60 @@ use App\ProductImage;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
+/**
+ * App\Product
+ *
+ * @property int $id
+ * @property string|null $image
+ * @property string|null $popularity
+ * @property int|null $price
+ * @property int $subsubcategory_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $category_id
+ * @property int $sub_category_id
+ * @property-read \App\Category $Category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductImage[] $Images
+ * @property-read int|null $images_count
+ * @property-read \App\SubCategory $SubCategory
+ * @property-read \App\SubSubCategory $SubSubCategory
+ * @property-read \App\ProductTranslation $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductTranslation[] $translations
+ * @property-read int|null $translations_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product listsTranslations($translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product notTranslatedIn($locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product orWhereTranslation($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product orWhereTranslationLike($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product orderByTranslation($translationField, $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product translatedIn($locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product wherePopularity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereSubCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereSubsubcategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereTranslationLike($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product withTranslation()
+ * @mixin \Eloquent
+ * @property string|null $order_status
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereOrderStatus($value)
+ * @property int|null $sub_subcategory_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereSubSubcategoryId($value)
+ */
 class Product extends Model implements TranslatableContract {
 
     use Translatable;
 
     public $translatedAttributes = ['name', 'orderStatus'];
-    public $fillable = ['name', 'image', 'popularity', 'sub_subcategory_id', 'category_id', 'sub_category_id'];
+    public $fillable = ['name', 'image', 'popularity', 'order_status', 'sub_subcategory_id', 'category_id', 'sub_category_id'];
     public $table = "products";
 
     public function Category() {
@@ -29,7 +77,8 @@ class Product extends Model implements TranslatableContract {
     public function SubSubCategory() {
         return $this->belongsTo(SubSubCategory::class, 'sub_subcategory_id');
     }
-    public function Images(){
+
+    public function Images() {
         return $this->hasMany(ProductImage::class);
     }
 

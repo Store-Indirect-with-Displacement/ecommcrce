@@ -8,7 +8,7 @@
  ==========================================================================================*/
 
 $(document).ready(function () {
-  
+
     "use strict"
     // init list view datatable
     var dataListView = $('.data-list-view').DataTable({
@@ -293,6 +293,34 @@ $(document).ready(function () {
     $(document).on('change', "#data-subcategory", function () {
         var id = $(this).val();
         setInterval(subsubcategories(id), 2000);
+
+    });
+
+    $(document).on('submit', "#saveproduct", function (event) {
+        var name_en = event.target.name_en.value;
+        var name_ar = event.target.name_ar.value;
+        var category = event.target.category_id.value;
+        var subcateogry = event.target.subcategory_id.value;
+        var subsubcateogry = event.target.subsubcategory_id.value;
+        var status = event.target.status.value;
+        var price = event.target.price.value;
+        var url = window.Laravel.storeproduct;
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post('' + url, {
+            name_ar: name_ar,
+            name_en: name_en,
+            category_id: category,
+            subcategory_id: subcateogry,
+            subsubcategory_id: subsubcateogry,
+            status: status,
+            price: price
+        }, function (data) {
+            window.console.log(data);
+        });
 
     });
 });
