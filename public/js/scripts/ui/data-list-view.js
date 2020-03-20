@@ -8,6 +8,11 @@
  ==========================================================================================*/
 
 $(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     "use strict"
     // init list view datatable
     var dataListView = $('.data-list-view').DataTable({
@@ -137,8 +142,10 @@ $(document).ready(function () {
     });
     // dropzone init
     Dropzone.options.dataListUpload = {
+
         complete: function (files) {
             var _this = this
+
             // checks files in class dropzone and remove that files
             $(".hide-data-sidebar, .cancel-data-btn, .actions .dt-buttons").on(
                     "click",
@@ -282,10 +289,56 @@ $(document).ready(function () {
         });
     });
     $("#exampleModalLong").attr('aria-hidden', 'true');
+    setInterval(getCategires(), 2000);
+    $(document).on('change', "#data-category", function () {
+        var id = $(this).val();
+        setInterval(getsubcategories(id), 2000);
+    });
+    $(document).on('change', "#data-subcategory", function () {
+        var id = $(this).val();
+        setInterval(subsubcategories(id), 2000);
 
+    });
+});
+function getCategires() {
+    var url = window.Laravel.getcategories;
+    $.get('' + url, function (data) {
+        var html = data.map(function (dataItem) {
+            return '<option value="' + dataItem.id + '">' + dataItem.name + '</option>'
+        });
+
+        $("#data-category").append(html);
+    });
+}
+function getsubcategories(id) {
+    if (id) {
+        var url = window.Laravel.getsubcategories.replace(':id', id);
+        $.get('' + url, function (data) {
+            var html = data.map(function (dataItem) {
+                return '<option value="' + dataItem.id + '">' + dataItem.name + '</option>'
+            });
+            $("#data-subcategory").html('<option selected=> Select...</option>');
+            $("#data-subcategory").append(html);
+        });
+    } else {
+        $("#data-subcategory").empty();
+    }
 
 }
-);
+function subsubcategories(id) {
+    if (id) {
+        var url = window.Laravel.getsubsubcategories.replace(':id', id);
+        $.get('' + url, function (data) {
+            var html = data.map(function (dataItem) {
+                return '<option value="' + dataItem.id + '">' + dataItem.name + '</option>'
+            });
+            $("#data-subsubcategory").html('<option selected=> Select...</option>');
+            $("#data-subsubcategory").append(html);
+        });
+    } else {
+        $("#data-subsubcategory").empty();
+    }
+}
 
 function getSubsubCategory(id) {
     var url = window.Laravel.getSubsubCategory.replace(':id', id);
@@ -294,6 +347,7 @@ function getSubsubCategory(id) {
             return createsubcategoryItem(dataItem.name, dataItem.id);
         });
         $("#subsubcategory").html(html);
+
     });
 }
 function createsubcategoryItem(name, id) {

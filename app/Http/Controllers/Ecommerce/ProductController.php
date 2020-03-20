@@ -5,20 +5,24 @@ namespace App\Http\Controllers\Ecommerce;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
-class ProductController extends Controller
-{
+use App\Category;
+use App\SubCategory;
+use App\SubSubCategory;
+use App\ProductImage;
+
+class ProductController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request) {
         $products = Product::all();
-          $breadcrumbs = [
-            ['link'=>"dashboard-analytics",'name'=>"Home"],['link'=>"dashboard-analytics",'name'=>"Data List"], ['name'=>"List View"]
+        $breadcrumbs = [
+            ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
         ];
-          return view('Dashborad.pages.data-list-view' , compact('products' ,'breadcrumbs'));
+        return view('Dashborad.pages.product', compact('products', 'breadcrumbs'));
     }
 
     /**
@@ -26,8 +30,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -37,8 +40,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -48,8 +50,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -59,8 +60,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -71,8 +71,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -82,8 +81,34 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
+    public function getcategories() {
+        $categories = Category::all();
+        return response()->json($categories);
+    }
+
+    public function getsubcategories($id) {
+        $category = Category::where('id', $id)->first();
+        $subcategoires = $category->subCategories;
+        return response()->json($subcategoires);
+    }
+
+    public function getsubsubcategories($id) {
+        $subcategory = SubCategory::where('id', $id)->first();
+        $subsubcategories = $subcategory->subsubCategories;
+        return response()->json($subsubcategories);
+    }
+
+    public function uploadImage(Request $request) {
+        $file = $request->file('file');
+        $path = $file->store('media_proudects');
+        $image = new ProductImage;
+        $image->image = $file;
+        $image->is_main = false;
+        $image->save();
+    }
+
 }

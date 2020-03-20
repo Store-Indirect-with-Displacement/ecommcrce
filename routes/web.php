@@ -16,12 +16,10 @@ Route::prefix(LaravelLocalization::setLocale())
         ->middleware('web', 'localizationRedirect', 'localeViewPath')
         ->middleware('localeSessionRedirect')
         ->group(function() {
-            Route::get('/', function () {
-                return view('home');
-            });
+           
 
             Auth::routes();
-            Route::get('/home', 'HomeController@index')->name('home');
+            Route::get('/', 'HomeController@index')->name('home');
 
 //authentication Views
             Route::get('auth-login', 'AuthenticationController@login')->name('auth-login');
@@ -37,8 +35,8 @@ Route::prefix(LaravelLocalization::setLocale())
                 //Dashborad
                 Route::group(['middleware' => ['admin']], function () {
                     Route::get('dashborad-analytics', 'DashbroadController@dashboradAnalytics')->name('dashborad-analytics');
-                    //Product and Categories
-                    Route::get('productList', 'Ecommerce\ProductController@index')->name('productList');
+                    // Categories
+
                     Route::get('categorieslist', 'Ecommerce\CategoriesController@index')->name('categorieslist');
                     Route::post('categoryStore', 'Ecommerce\CategoriesController@store')->name('cat_store');
                     Route::post('subsubcategorystore/{id}', 'Ecommerce\CategoriesController@storeSub_SubCategories')->name('sub_cat_store');
@@ -46,6 +44,13 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::post('deletesubsubcategory/{id}', 'Ecommerce\CategoriesController@deleteSubsubCategory')->name('deletesubsubCategory');
                     Route::post('deletesubcategory/{id}', 'Ecommerce\CategoriesController@deteteSubCategory')->name('deletesubCategory');
                     Route::post('deletecategory/{id}', 'Ecommerce\CategoriesController@destroy')->name('deletecategory');
+
+                    //Product
+                    Route::get('productList', 'Ecommerce\ProductController@index')->name('productList');
+                    Route::get('getcategorirs', 'Ecommerce\ProductController@getcategories')->name('getcategories');
+                    Route::get('getsubcategorirs/{id}', 'Ecommerce\ProductController@getsubcategories')->name('getsubcategories');
+                    Route::get('getsubsubcategorirs/{id}', 'Ecommerce\ProductController@getsubsubcategories')->name('getsubsubcategories');
+                    Route::post('uploadproductimage', 'Ecommerce\ProductController@uploadImage')->name('uploadImage');
                 });
             });
         });

@@ -18,7 +18,6 @@ class CategoriesController extends Controller {
      */
     public function index() {
         $categories = Category::all();
-
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
         ];
@@ -62,13 +61,14 @@ class CategoriesController extends Controller {
         $category->translateOrNew('en')->name = $request->input('name_en');
         $category->translateOrNew('ar')->name = $request->input('name_ar');
         $category->save();
-
-        foreach ($request->input('branchs') as $key => $branch) {
-            $subCategory = new SubCategory;
-            $subCategory->translateOrNew('en')->name = $branch["en"];
-            $subCategory->translateOrNew('ar')->name = $branch["ar"];
-            $subCategory->category()->associate($category);
-            $subCategory->save();
+        if ($request->input('branchs')) {
+            foreach ($request->input('branchs') as $key => $branch) {
+                $subCategory = new SubCategory;
+                $subCategory->translateOrNew('en')->name = $branch["en"];
+                $subCategory->translateOrNew('ar')->name = $branch["ar"];
+                $subCategory->category()->associate($category);
+                $subCategory->save();
+            }
         }
         return redirect()->route('categorieslist');
     }
