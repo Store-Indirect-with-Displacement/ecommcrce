@@ -78,7 +78,10 @@ Dropzone.options.dpzRemoveThumb = {
         $.post('' + url, {
             file: file.name,
         }, function (data) {
-            window.console.log(data);
+           
+            var fileRef;
+            return (fileRef = file.previewElement) != null ? 
+                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
         });
     }
 }

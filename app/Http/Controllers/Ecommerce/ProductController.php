@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\SubCategory;
 use App\SubSubCategory;
 use App\ProductImage;
+use Arr;
 
 class ProductController extends Controller {
 
@@ -139,32 +141,40 @@ class ProductController extends Controller {
     }
 
     public function uploadImage(Request $request) {
-
         $file = $request->file('file');
-        $path = $file->store('media_proudects');
+        $filename = $file->getClientOriginalName();
+        $path = $file->storeAs('ProductImages', $filename);
+//        $file->move($path, $filename);
         $image = new ProductImage;
-        $image->image = $file;
+        $image->image = $filename;
         $image->is_main = false;
         $Issave = $image->save();
-        $images = [$image->id => $image->id];
+        $images = [
+            'id' => $image->id,
+            'image' => $image->image,
+            'is_main' => $image->is_main,
+        ];
         $request->session()->push('images', $images);
         if ($Issave) {
-            return response('sucess', 200);
+             return response('success' ,200);
         }
     }
 
     public function removeImage(Request $request) {
-        $images = $request->session()->get('images');
-        $image = ProductImage::where('image', $request->input('file'))->first();
-        unset($images[$image->id]);
-        $request->session()->forget('images');
-        $request->session()->push('images', $images);
-        $path = public_path('media_proudects') . $request->input('file');
-        if (file_exists($path)) {
-            unlink($path);
+        $filename = $request->input('file');
+        $image = ProductImage::where('image', $filename)->first();
+        $path = 'ProductImages/' . $request->input('file');
+        Storage::delete($path);
+        if ($request->session()->has('images')) {
+            foreach ($request->session()->get('images') as $key => $img) {
+                if ($img["image"] === $filename) {
+                    $request->session()->pull('images.' . $key);
+                    break;
+                }
+            }
         }
         $image->delete();
-        return response()->json($images);
+        return response('success' ,200);
     }
 
 }

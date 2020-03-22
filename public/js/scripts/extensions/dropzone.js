@@ -68,7 +68,7 @@ Dropzone.options.dpzRemoveThumb = {
     addRemoveLinks: true,
     dictRemoveFile: " Trash",
     removedfile: function (file) {
-        window.console.log('file:' + file);
+        window.console.log('file:' + file.name);
         var url = window.Laravel.removeImage;
         $.ajaxSetup({
             headers: {
@@ -76,9 +76,12 @@ Dropzone.options.dpzRemoveThumb = {
             }
         });
         $.post('' + url, {
-            file: file,
+            file: file.name,
         }, function (data) {
             window.console.log(data);
+            var fileRef;
+            return (fileRef = file.previewElement) != null ? 
+                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
         });
     }
 }
