@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -16,12 +17,12 @@ Route::prefix(LaravelLocalization::setLocale())
         ->middleware('web', 'localizationRedirect', 'localeViewPath')
         ->middleware('localeSessionRedirect')
         ->group(function() {
-           
+
 
             Auth::routes();
             Route::get('/', 'HomeController@index')->name('home');
 
-//authentication Views
+            //authentication Views
             Route::get('auth-login', 'AuthenticationController@login')->name('auth-login');
             Route::get('auth-register', 'AuthenticationController@register')->name('auth-register');
             Route::get('auth-forgot_password', 'AuthenticationController@forgot_password')->name('auth-forgot_password');
@@ -29,6 +30,9 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('auth-lock_screen', 'AuthenticationController@lock_screen')->name('auth-lock_screen');
             Route::get('data/locales/en.json', 'Controller@getJson_en');
             Route::get('data/locales/ar.json', 'Controller@getJson_ar');
+
+
+
 
 
             Route::group(['middleware' => ['auth']], function() {
@@ -51,7 +55,11 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::get('getsubcategorirs/{id}', 'Ecommerce\ProductController@getsubcategories')->name('getsubcategories');
                     Route::get('getsubsubcategorirs/{id}', 'Ecommerce\ProductController@getsubsubcategories')->name('getsubsubcategories');
                     Route::post('uploadproductimage', 'Ecommerce\ProductController@uploadImage')->name('uploadImage');
-                    Route::post('saveproduct' , 'Ecommerce\ProductController@store')->name('storeproduct');
+                    Route::post('removeprouct', 'Ecommerce\ProductController@removeImage')->name('removeImage');
+                    Route::post('saveproduct', 'Ecommerce\ProductController@store')->name('storeproduct');
                 });
             });
+
+            //Proudct Fornt End  
+            Route::get('/proudct/{id}/details', 'Ecommerce\ProductController@show')->name('product_details');
         });

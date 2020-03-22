@@ -7,6 +7,8 @@ use App\SubSubCategory;
 use App\Category;
 use App\SubCategory;
 use App\ProductImage;
+use App\ProductSize;
+use App\ProductColor;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
@@ -57,6 +59,10 @@ use Astrotomic\Translatable\Translatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereOrderStatus($value)
  * @property int|null $sub_subcategory_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereSubSubcategoryId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductColor[] $colors
+ * @property-read int|null $colors_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductSize[] $sizes
+ * @property-read int|null $sizes_count
  */
 class Product extends Model implements TranslatableContract {
 
@@ -80,6 +86,14 @@ class Product extends Model implements TranslatableContract {
 
     public function Images() {
         return $this->hasMany(ProductImage::class);
+    }
+
+    public function colors() {
+        return $this->hasMany(ProductColor::class);
+    }
+
+    public function sizes() {
+        return $this->hasMany(ProductSize::class);
     }
 
 }

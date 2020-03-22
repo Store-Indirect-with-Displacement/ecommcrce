@@ -154,7 +154,8 @@ $(document).ready(function () {
             )
         }
     }
-    Dropzone.options.dataListUpload.complete()
+    Dropzone.options.dataListUpload.complete();
+
 
     // mac chrome checkbox fix
     if (navigator.userAgent.indexOf("Mac OS X") != -1) {
@@ -296,14 +297,27 @@ $(document).ready(function () {
 
     });
 
+    $(document).on('click', "#addsize", function (e) {
+
+        $("#sizeitem").css('display', 'block');
+        var newElem = $("#sizeitem").first().clone();
+        newElem.appendTo("#size");
+    });
+    $(document).on("click", "#removesize", function (e) {
+        e.preventDefault();
+        $(this).parent().remove();
+
+    });
     $(document).on('submit', "#saveproduct", function (event) {
         var name_en = event.target.name_en.value;
         var name_ar = event.target.name_ar.value;
         var category = event.target.category_id.value;
         var subcateogry = event.target.subcategory_id.value;
         var subsubcateogry = event.target.subsubcategory_id.value;
-        var status = event.target.status.value;
+        var details_en = event.target.details_en.value;
+        var details_ar = event.target.details_ar.value;
         var price = event.target.price.value;
+        var Image = event.target.Image.value;
         var url = window.Laravel.storeproduct;
         $.ajaxSetup({
             headers: {
@@ -316,8 +330,11 @@ $(document).ready(function () {
             category_id: category,
             subcategory_id: subcateogry,
             subsubcategory_id: subsubcateogry,
-            status: status,
-            price: price
+            details_en: details_en,
+            details_ar: details_ar,
+            price: price,
+            Image: Image,
+
         }, function (data) {
             window.console.log(data);
         });
@@ -396,7 +413,6 @@ function deleteCategory(id) {
     });
     $.post('' + url, {
         id: id,
-        method: 'delete',
     }, function (data) {
         window.console.log(data);
     });

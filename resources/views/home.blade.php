@@ -8,7 +8,7 @@
                     <div class="ps-masonry">
                         <div class="grid-sizer"></div>
                         <div class="grid-item">
-                            <div class="grid-item__content-wrapper"><a class="ps-offer" href="product-detail.html"><img src="{{asset('userInterface/images/offer/home-2-1.jpg')}}" alt=""></a></div>
+                            <div class="grid-item__content-wrapper"><a class="ps-offer" href=""><img src="{{asset('userInterface/images/offer/home-2-1.jpg')}}" alt=""></a></div>
                         </div>
                         <div class="grid-item">
                             <div class="grid-item__content-wrapper"><a class="ps-offer" href="product-detail.html"><img src="{{asset('userInterface/images/offer/home-2-2.jpg')}}" alt=""></a></div>

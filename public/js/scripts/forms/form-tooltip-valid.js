@@ -11,7 +11,7 @@
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   // Loop over them and prevent submission
-  $("button").click(function () {
+  $("#btnsaveproduct").click(function () {
     var form = $(".needs-validation");
     if (form[0].checkValidity() === false) {
         event.preventDefault();

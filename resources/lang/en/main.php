@@ -176,4 +176,6 @@ return [
     "cat" => "Categories",
     "Details" => "Details",
     "All" => "All",
+      "DetailsEn"=>"English Details",
+    "DetailsAr" =>"Arabic Details",
 ];

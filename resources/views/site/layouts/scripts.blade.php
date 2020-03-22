@@ -29,3 +29,4 @@ and open the template in the editor.
 <!-- Custom scripts-->
 <script type="text/javascript" src="{{asset('userInterface/js/main.js')}}"></script>
  @yield('site-vendor-script')
+ @yield('site-page-script')

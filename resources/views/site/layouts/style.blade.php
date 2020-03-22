@@ -19,3 +19,6 @@
 {{-- site Vendor Styles --}}
 @yield('site-vendor-style')
 {{-- Theme Styles --}}
+
+{{-- Page Styles --}}
+@yield('site-page-style')

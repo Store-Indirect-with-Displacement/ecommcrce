@@ -4,9 +4,10 @@
 
 @section('vendor-style')
 {{-- vendor files --}}
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/datatables.min.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/extensions/dataTables.checkboxes.css')) }}">
+<link rel="stylesheet" href="{{ asset('vendors/css/file-uploaders/dropzone.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendors/css/tables/datatable/datatables.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendors/css/tables/datatable/extensions/dataTables.checkboxes.css') }}">
+
 <script>
     window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
 
@@ -18,6 +19,7 @@
         window.Laravel.getsubcategories = '<?= route('getsubcategories', ':id') ?>';
         window.Laravel.getsubsubcategories = '<?= route('getsubsubcategories', ':id') ?>';
         window.Laravel.storeproduct = '<?= route('storeproduct') ?>';
+        window.Laravel.removeImage ='<?=route('removeImage')?>';
     </script>
 <?php endif; ?>
 
@@ -26,13 +28,17 @@
 @endsection
 <?php if (LaravelLocalization::getCurrentLocaleDirection() === 'ltr'): ?>
     @section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('css/plugins/file-uploaders/dropzone.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('css/pages/data-list-view.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/file-uploaders/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/data-list-view.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pages/app-ecommerce-details.css') }}">
     @endsection
 <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
     @section('page-style')
     <link rel="stylesheet" href="{{ asset('css-rtl/plugins/file-uploaders/dropzone.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/pages/data-list-view.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css-rtl/pages/app-ecommerce-details.css') }}">
+
+
     @endsection
 <?php endif; ?>
 
@@ -72,7 +78,7 @@
             </thead>
             <tbody>
                 <?php foreach ($products as $product): ?>
-                    <?= $color=""?>
+                    <?= $color = "" ?>
                     <?php if ($product->order_status === 'delivered'): ?>
                         <?= $color = "success" ?>
                     <?php elseif ($product->order_status === 'pending'): ?>
@@ -101,11 +107,11 @@
                         <td>
                             <div class="chip chip- <?= $color ?>">
                                 <div class="chip-body">
-                                    <div class="chip-text"><?= $product->order_status?></div>
+                                    <div class="chip-text"><?= $product->order_status ?></div>
                                 </div>
                             </div>
                         </td>
-                        <td class="product-price"><?=$product->price ?></td>
+                        <td class="product-price"><?= $product->price ?></td>
                         <td class="product-action">
                             <span class="action-edit"><i class="feather icon-edit"></i></span>
                             <span class="action-delete"><i class="feather icon-trash"></i></span>
@@ -149,14 +155,12 @@
                                 <label for="data-category"> Category </label>
                                 <select class="form-control"  id="data-category" name="category_id">
                                     <option selected value="">select Category</option>
-
                                 </select>
                             </div>
                             <div class="col-sm-12 data-field-col form-group">
                                 <label for="data-subcategory"> SubCategory </label>
                                 <select class="form-control" id="data-subcategory" name="subcategory_id">
                                     <option selected value="">select subCategory</option>
-
                                 </select>
                             </div>
                             <div class="col-sm-12 data-field-col form-group">
@@ -166,61 +170,88 @@
 
                                 </select>
                             </div>
-                            <div class="col-sm-12 data-field-col form-group">
-                                <label for="data-status">Order Status</label>
-                                <select class="form-control" id="data-status" name="status">
-                                    <option value="Pending">Pending</option>
-                                    <option value="Canceled">Canceled</option>
-                                    <option value="Delivered">Delivered</option>
-                                    <option value="On Hold">On Hold</option>
-                                </select>
-                            </div>
+                            <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
+                                <div class="col-sm-12 form-group data-field-col">
+                                    <?php if ($local == "ar"): ?>
+                                        <label for="data-details">{{__('main.DetailsAr')}}</label>
+                                    <?php elseif ($local == "en"): ?>
+                                        <label for="data-details">{{__('main.DetailsEn')}}</label>
+                                    <?php endif; ?>
+                                    <textarea class="form-control" id="data-details-<?= $local ?>" name="details_<?= $local ?>" ></textarea>
+                                </div>
+                            <?php endforeach; ?>
+
+
                             <div class="col-sm-12 form-group data-field-col">
                                 <label for="data-price">Price</label>
                                 <input type="text" name="price" class="form-control" id="data-price">
                             </div>
 
 
+                            <div class="col-sm-12 form-group data-field-col" id="">
+                                <button id="addsize" type="button"class="btn btn-drak">ADD Size</button>
+                            </div>
+                            <div class="col-sm-12 form-group data-field-col" >
 
+                                <div id="sizeitem" class="input-group" >
+                                    <input type="text" name="size[]" class="touchspin" value="50" data-bts-step="0.5" data-bts-decimals="2" id="data-size" multiple="">
+                                    <a  id="removesize" href="#"><i class="fa fa-close"></i></a>
+                                </div>
+                            </div>
 
+                            <div class="col-sm-12 form-group data-field-col">
+                                <fieldset class="form-group">
+                                    <label for="basicInputFile">Product Image</label>
+                                    <div class="custom-file">
+                                        <input type="file" name ="Image"class="custom-file-input" id="inputGroupFile01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                 </form>  
 
                 <div class="col-sm-12 data-field-col data-list-upload">
-                    <form action="<?= route('uploadImage') ?>" class="dropzone dropzone-area"  method="post" id="dataListUpload">
-                        @csrf
-                        <div class="dz-message">Upload Image</div>
 
+
+                    <form action="<?= route('uploadImage') ?>" method="post" class="dropzone dropzone-area" id="dpz-remove-thumb">
+                        @csrf 
+                        <div class="dz-message">Drop Files Here To Upload</div>
                     </form>
-                </div>
-            </div>
-            <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
-                <div class="add-data-btn form-group">
-                    <button type="submit" id="btnsaveproduct" form="saveproduct"  class="btn btn-primary">{{__('main.Save')}}</button>
-                </div>
-                <div class="cancel-data-btn">
-                    <button type="button"class="btn btn-outline-danger">Cancel</button>
-                </div>
-            </div>
 
+                </div>
+             
+                <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
+                    <div class="add-data-btn form-group">
+                        <button type="submit" id="btnsaveproduct" form="saveproduct"  class="btn btn-primary">{{__('main.Save')}}</button>
+                    </div>
+                    <div class="cancel-data-btn">
+                        <button type="button"class="btn btn-outline-danger">Cancel</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-    {{-- add new sidebar ends --}}
+        {{-- add new sidebar ends --}}
 </section>
 {{-- Data list view end --}}
 @endsection
 @section('vendor-script')
 {{-- vendor js files --}}
-<script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/tables/datatable/datatables.min.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/tables/datatable/datatables.bootstrap4.min.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/tables/datatable/buttons.bootstrap.min.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/tables/datatable/dataTables.select.min.js')) }}"></script>
-<script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
+<script src="{{ asset('vendors/js/extensions/dropzone.min.js') }}"></script>
+<script src="{{ asset('vendors/js/tables/datatable/datatables.min.js') }}"></script>
+<script src="{{ asset('vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
+<script src="{{ asset('vendors/js/tables/datatable/datatables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendors/js/tables/datatable/buttons.bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendors/js/tables/datatable/dataTables.select.min.js') }}"></script>
+<script src="{{ asset('vendors/js/tables/datatable/datatables.checkboxes.min.js') }}"></script>
+<script src="{{ asset('vendors/js/forms/spinner/jquery.bootstrap-touchspin.js') }}"></script>
 @endsection
 @section('page-script')
 {{-- Page js files --}}
-<script src="{{ asset(mix('js/scripts/ui/data-list-view.js')) }}"></script>
+<script src="{{ asset('js/scripts/ui/data-list-view.js') }}"></script>
+<script src="{{ asset('js/scripts/forms/form-tooltip-valid.js') }}"></script>
+<script src="{{ asset('js/scripts/forms/number-input.js') }}"></script>
+<script src="{{ asset('js/scripts/extensions/dropzone.js')}}"></script>
 @endsection

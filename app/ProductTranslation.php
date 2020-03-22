@@ -29,5 +29,5 @@ use Illuminate\Database\Eloquent\Model;
 class ProductTranslation extends Model
 {
      public $timestamps = false;
-     public $fillable = ['name' , 'orderStatus'];
+     public $fillable = ['name' , 'order_status' ,'Details'];
 }

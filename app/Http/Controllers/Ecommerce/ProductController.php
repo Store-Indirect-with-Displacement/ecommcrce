@@ -47,8 +47,10 @@ class ProductController extends Controller {
             'category_id' => 'required|exists:categories,id',
             'subcategory_id' => 'nullable',
             'subsubcategory_id' => 'nullable',
-            'status' => 'required|string|max:255',
-            'price' => 'required|numeric'
+            'details_en' => 'required|max:1000',
+            'details_ar' => 'required|max:1000',
+            'price' => 'required|numeric',
+            'Image' => 'required|mimes:jpg,jpeg,png,gif,mp4,mwv,wma,webm',
         ];
         $request->validate($rules);
         $category = Category::find($request->input('category_id'));
@@ -62,6 +64,7 @@ class ProductController extends Controller {
         $product->SubSubCategory()->associate($subsubCategory);
         $product->order_status = $request->input('status');
         $product->price = $request->input('price');
+        $product->image = $request->input('Image');
         $images = $request->session()->get('images');
         $product->save();
         if ($images) {
@@ -83,7 +86,8 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-//
+        $product = Product::where('id', $id)->first();
+        return view('site.ForntEnd.product_details' . compact('product'));
     }
 
     /**
@@ -147,6 +151,20 @@ class ProductController extends Controller {
         if ($Issave) {
             return response('sucess', 200);
         }
+    }
+
+    public function removeImage(Request $request) {
+        $images = $request->session()->get('images');
+        $image = ProductImage::where('image', $request->input('file'))->first();
+        unset($images[$image->id]);
+        $request->session()->forget('images');
+        $request->session()->push('images', $images);
+        $path = public_path('media_proudects') . $request->input('file');
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        $image->delete();
+        return response()->json($images);
     }
 
 }
