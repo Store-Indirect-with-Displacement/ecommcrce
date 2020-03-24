@@ -297,49 +297,6 @@ $(document).ready(function () {
 
     });
 
-    $(document).on('click', "#addsize", function (e) {
-
-        $("#sizeitem").css('display', 'block');
-        var newElem = $("#sizeitem").first().clone();
-        newElem.appendTo("#size");
-    });
-    $(document).on("click", "#removesize", function (e) {
-        e.preventDefault();
-        $(this).parent().remove();
-
-    });
-    $(document).on('submit', "#saveproduct", function (event) {
-        var name_en = event.target.name_en.value;
-        var name_ar = event.target.name_ar.value;
-        var category = event.target.category_id.value;
-        var subcateogry = event.target.subcategory_id.value;
-        var subsubcateogry = event.target.subsubcategory_id.value;
-        var details_en = event.target.details_en.value;
-        var details_ar = event.target.details_ar.value;
-        var price = event.target.price.value;
-        var Image = event.target.Image.value;
-        var url = window.Laravel.storeproduct;
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.post('' + url, {
-            name_ar: name_ar,
-            name_en: name_en,
-            category_id: category,
-            subcategory_id: subcateogry,
-            subsubcategory_id: subsubcateogry,
-            details_en: details_en,
-            details_ar: details_ar,
-            price: price,
-            Image: Image,
-
-        }, function (data) {
-            window.console.log(data);
-        });
-
-    });
 });
 function getCategires() {
     var url = window.Laravel.getcategories;

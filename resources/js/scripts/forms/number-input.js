@@ -4,6 +4,7 @@
  ----------------------------------------------------------------------------------------
  Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
  Author: PIXINVENT
+ https://designmodo.com/demo/product-page/
  Author URL: http://www.themeforest.net/user/pixinvent
  ==========================================================================================*/
 
@@ -13,8 +14,8 @@
 
     // Default Spin
     $(".touchspin").TouchSpin({
-        buttondown_class: "btn btn-primary",
-        buttonup_class: "btn btn-primary",
+        buttondown_class: "btn btn-success",
+        buttonup_class: "btn btn-danger",
     });
 
     // Icon Change
@@ -25,6 +26,81 @@
 
     // Min - Max
 
+    $(document).on('click', "#addSize", function (e) {
+        e.preventDefault();
+
+        var html = `<div class="input-group bootstrap-touchspin" id="size_item">
+                                  <input type="text" name ="size[]" class="touchspin" value="50" data-bts-step="0.5" data-bts-decimals="2" multiple >
+                                    <button style="height: 90%" id="removeSize" type="button" class="btn btn-danger waves-effect waves-light" aria-haspopup="true" aria-expanded="false">
+                                        Remove
+                                    </button>
+                                </div>`;
+
+
+        $("#size").append(html);
+        $('.touchspin').TouchSpin({
+            buttondown_class: "btn btn-success",
+            buttonup_class: "btn btn-danger",
+
+        });
+    });
+
+    $(document).on('click', "#removeSize", function (e) {
+        e.preventDefault();
+        $(this).parent().remove();
+    });
+    $(document).on('change', "#customSwitch3", function () {
+        if ($(this).is(':checked')) {
+            $(this).val('Blue');
+        } else {
+            $(this).val('false');
+        }
+        window.console.log($(this).val());
+    });
+    $(document).on('change', "#customSwitch4", function () {
+        if ($(this).is(':checked'))  {
+            $(this).val('Green');
+        } else {
+            $(this).val('false');
+        }
+        window.console.log($(this).val());
+    });
+    $(document).on('change', "#customSwitch5", function () {
+        if ($(this).is(':checked')) {
+            $(this).val('Red');
+        } else {
+            $(this).val('false');
+        }
+        window.console.log($(this).val());
+    });
+    $(document).on('change', "#customSwitch6", function () {
+       if ($(this).is(':checked')){
+            $(this).val("Light Blue");
+        } else {
+            $(this).val('false');
+        }
+        window.console.log($(this).val());
+    });
+    $(document).on('change', "#customSwitch7", function () {
+        if ($(this).is(':checked')) {
+            $(this).val('Orange');
+        } else {
+            $(this).val('false');
+        }
+        window.console.log($(this).val());
+    });
+    $(document).on('change', "#customSwitch8", function () {
+        if ($(this).is(':checked')){
+            $(this).val('Black');
+        } else {
+            $(this).val('false');
+        }
+        window.console.log($(this).val());
+    });
+    $(document).on('click', "#addColor", function (e) {
+        e.preventDefault();
+        $("#message").css('display', 'block');
+    });
     var touchspinValue = $(".touchspin-min-max"),
             counterMin = 15,
             counterMax = 21;
@@ -72,5 +148,6 @@
             buttonup_txt: '<i class="feather icon-plus"></i>'
         });
     });
+
 
 })(window, document, jQuery);

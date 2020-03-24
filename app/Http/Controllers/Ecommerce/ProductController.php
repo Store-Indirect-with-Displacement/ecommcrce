@@ -10,7 +10,8 @@ use App\Category;
 use App\SubCategory;
 use App\SubSubCategory;
 use App\ProductImage;
-use Arr;
+use App\ProductColor;
+use App\ProductSize;
 
 class ProductController extends Controller {
 
@@ -61,24 +62,43 @@ class ProductController extends Controller {
         $product = new Product();
         $product->translateOrNew('en')->name = $request->input('name_en');
         $product->translateOrNew('ar')->name = $request->input('name_ar');
+        $product->translateOrNew('en')->Details = $request->input('details_en');
+        $product->translateOrNew('ar')->Details = $request->input('details_ar');
+        $product->price = $request->input('price');
+        $imagepath = 'images/pages/productlist/productsmainImages';
+        $path = $request->file('Image')->storeAs($imagepath, $request->file('Image')->getClientOriginalName(), ['disk' => 'public']);
+        $product->image = $path;
         $product->Category()->associate($category);
         $product->SubCategory()->associate($subcategory);
         $product->SubSubCategory()->associate($subsubCategory);
-        $product->order_status = $request->input('status');
-        $product->price = $request->input('price');
-        $product->image = $request->input('Image');
         $images = $request->session()->get('images');
         $product->save();
+        if ($request->input('sizes')) {
+            foreach ($request->input('sizes') as $size) {
+                $productsize = new ProductSize;
+                $productsize->size = $size;
+                $productsize->Product()->associate($product);
+                $productsize->save();
+            }
+        }
+        if ($request->input('colors')) {
+            foreach ($request->input('colors') as $color) {
+                $productcolor = new ProductColor;
+                $productcolor->color = $color;
+                $productcolor->Product()->associate($product);
+                $productcolor->save();
+            }
+        }
         if ($images) {
             $request->session()->forget('images');
             foreach ($images as $key => $img) {
-                $image = ProductImage::where('id', $img)->first();
+                $image = ProductImage::where('id', $img["id"])->first();
                 $image->product()->associate($product);
                 $image->update();
             }
         }
 
-        return response()->json($product);
+        return redirect()->route('productList');
     }
 
     /**
@@ -143,38 +163,40 @@ class ProductController extends Controller {
     public function uploadImage(Request $request) {
         $file = $request->file('file');
         $filename = $file->getClientOriginalName();
-        $path = $file->storeAs('ProductImages', $filename);
+        $imagepath = 'images/pages/productlist/productsImages';
+        $path = $file->storeAs($imagepath, $filename, ['disk' => 'public']);
 //        $file->move($path, $filename);
         $image = new ProductImage;
-        $image->image = $filename;
+        $image->path = $path;
+        $image->name = $file->getClientOriginalName();
         $image->is_main = false;
         $Issave = $image->save();
         $images = [
             'id' => $image->id,
-            'image' => $image->image,
+            'image' => $image->path,
+            'name' => $image->name,
             'is_main' => $image->is_main,
         ];
         $request->session()->push('images', $images);
         if ($Issave) {
-             return response('success' ,200);
+            return response('success', 200);
         }
     }
 
     public function removeImage(Request $request) {
         $filename = $request->input('file');
-        $image = ProductImage::where('image', $filename)->first();
-        $path = 'ProductImages/' . $request->input('file');
-        Storage::delete($path);
+        $image = ProductImage::where('name', $filename)->first();
+        Storage::delete('public/'.$image->path);
         if ($request->session()->has('images')) {
             foreach ($request->session()->get('images') as $key => $img) {
-                if ($img["image"] === $filename) {
+                if ($img["name"] === $filename) {
                     $request->session()->pull('images.' . $key);
                     break;
                 }
             }
         }
         $image->delete();
-        return response('success' ,200);
+        return response('success', 200);
     }
 
 }

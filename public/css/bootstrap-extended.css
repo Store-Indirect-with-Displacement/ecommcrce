@@ -973,16 +973,15 @@ select.form-control:not([multiple=multiple]) {
 /* Bootstrap touchspin */
 
 .bootstrap-touchspin.input-group {
-  width: 8.4rem;
+  width: 80%;
   align-items: center;
 }
 
 .bootstrap-touchspin.input-group .form-control {
-  padding: 5px;
-  height: auto;
+  padding: 10px;
+  height: 80%;
   border: 0;
   background-color: #f8f8f8;
-  border-radius: 5px !important;
   text-align: center;
   font-weight: 500;
 }
@@ -998,10 +997,9 @@ select.form-control:not([multiple=multiple]) {
 
 .bootstrap-touchspin .bootstrap-touchspin-injected .bootstrap-touchspin-down,
 .bootstrap-touchspin .bootstrap-touchspin-injected .bootstrap-touchspin-up {
-  padding: 0;
-  min-width: 22px;
-  min-height: 22px;
-  border-radius: 5px !important;
+  padding: 10px;
+  min-width: 100%;
+  min-height: 80%;
   position: relative;
 }
 

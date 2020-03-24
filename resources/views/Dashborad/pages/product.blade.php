@@ -18,8 +18,7 @@
         window.Laravel.getcategories = '<?= route('getcategories') ?>';
         window.Laravel.getsubcategories = '<?= route('getsubcategories', ':id') ?>';
         window.Laravel.getsubsubcategories = '<?= route('getsubsubcategories', ':id') ?>';
-        window.Laravel.storeproduct = '<?= route('storeproduct') ?>';
-        window.Laravel.removeImage ='<?=route('removeImage')?>';
+        window.Laravel.removeImage = '<?= route('removeImage') ?>';
     </script>
 <?php endif; ?>
 
@@ -94,7 +93,7 @@
                     ?>
                     <tr>
                         <td></td>
-                        <td class="product-img"><img src="<?= $product->image ?>" alt="Img placeholder">
+                        <td class="product-img"><img src="<?= asset('storage/' . $product->image) ?>" alt="Img placeholder">
                         </td>
                         <td class="product-name"><?= $product->name ?></td>
                         <td class="product-category"><?= $product->category->name ?></td>
@@ -138,7 +137,8 @@
             </div>
 
             <div class="data-items pb-3">
-                <form action="javascript:;"  method="post" id="saveproduct">
+                <form action="<?= route('storeproduct') ?>"   method="post" id="saveproduct"  enctype="multipart/form-data">
+                    @csrf
                     <div class="data-fields px-2 mt-1">
                         <div class="row">
                             <?php foreach (LaravelLocalization::getSupportedLocales() as $local => $prop): ?>
@@ -153,7 +153,7 @@
                             <?php endforeach; ?>
                             <div  class="col-sm-12 data-field-col form-group">
                                 <label for="data-category"> Category </label>
-                                <select class="form-control"  id="data-category" name="category_id">
+                                <select class="form-control"  required="" id="data-category" name="category_id">
                                     <option selected value="">select Category</option>
                                 </select>
                             </div>
@@ -177,63 +177,132 @@
                                     <?php elseif ($local == "en"): ?>
                                         <label for="data-details">{{__('main.DetailsEn')}}</label>
                                     <?php endif; ?>
-                                    <textarea class="form-control" id="data-details-<?= $local ?>" name="details_<?= $local ?>" ></textarea>
+                                    <textarea class="form-control" required=""id="data-details-<?= $local ?>" name="details_<?= $local ?>" ></textarea>
                                 </div>
                             <?php endforeach; ?>
 
 
-                            <div class="col-sm-12 form-group data-field-col">
-                                <label for="data-price">Price</label>
-                                <input type="text" name="price" class="form-control" id="data-price">
-                            </div>
+                            <?php if (App::getLocale() == "ar"): ?>
+                                <div class="col-sm-12 form-group data-field-co">
+                                    <fieldset>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                            <input type="text" required=""name ="price"class="form-control" placeholder="Enter a Price" aria-label="Amount (to the nearest dollar)">
 
-
-                            <div class="col-sm-12 form-group data-field-col" id="">
-                                <button id="addsize" type="button"class="btn btn-drak">ADD Size</button>
-                            </div>
-                            <div class="col-sm-12 form-group data-field-col" >
-
-                                <div id="sizeitem" class="input-group" >
-                                    <input type="text" name="size[]" class="touchspin" value="50" data-bts-step="0.5" data-bts-decimals="2" id="data-size" multiple="">
-                                    <a  id="removesize" href="#"><i class="fa fa-close"></i></a>
+                                        </div>
+                                    </fieldset>
                                 </div>
-                            </div>
+                            <?php elseif (App::getLocale() == "en"): ?>
+                                <div class="col-sm-12 form-group data-field-co">
+                                    <label>Product Price</label>
+                                    <fieldset>
+                                        <div class="input-group">
+                                            <input type="text" required="" name ="price"class="form-control" placeholder="Enter a Price" aria-label="Amount (to the nearest dollar)">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            <?php endif; ?>
 
                             <div class="col-sm-12 form-group data-field-col">
                                 <fieldset class="form-group">
                                     <label for="basicInputFile">Product Image</label>
                                     <div class="custom-file">
-                                        <input type="file" name ="Image"class="custom-file-input" id="inputGroupFile01">
+                                        <input type="file" required="" accept="image/*,video/*" name ="Image" class="custom-file-input" id="inputGroupFile01" >
                                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                     </div>
                                 </fieldset>
                             </div>
+
+                            <div class="card form-group" style="width: 100%">
+                                <div class="card-header">
+                                    <h4 class="card-title">
+                                        <button id="addSize"type="button" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">ADD Size</button>
+                                    </h4>
+                                </div>
+                                <div class="card-content" >
+                                    <div class="card-body">
+                                        <div class="row" id="size"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card form-group" style="width: 100%">
+                                <div class="card-header">
+                                    <h4 class="card-title">
+                                        <button id="addColor"type="button" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">ADD Color</button>
+                                    </h4>
+                                </div>
+                                <div class="card-content" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="d-flex justify-content-start flex-wrap" id="color">
+                                                <div class="custom-control custom-switch mr-2 mb-1">
+                                                    <p class="mb-0">Blue</p>
+                                                    <input name="color[]"type="checkbox" class="custom-control-input"  id="customSwitch3" multiple >
+                                                    <label class="custom-control-label" for="customSwitch3"></label>
+                                                </div>
+                                                <div class="custom-control custom-switch custom-switch-success mr-2 mb-1" >
+                                                    <p class="mb-0">Green</p>
+                                                    <input name="color[]"  type="checkbox" class="custom-control-input"  id="customSwitch4" multiple >
+                                                    <label class="custom-control-label" for="customSwitch4"></label>
+                                                </div>
+                                                <div  class="custom-control custom-switch custom-switch-danger mr-2 mb-1">
+                                                    <p class="mb-0">Red</p>
+                                                    <input name="color[]"  type="checkbox" class="custom-control-input" id="customSwitch5" multiple >
+                                                    <label class="custom-control-label" for="customSwitch5"></label>
+                                                </div>
+                                                <div class="custom-control custom-switch custom-switch-info mr-2 mb-1">
+                                                    <p class="mb-0">Light Blue</p>
+                                                    <input name="color[]"  type="checkbox" class="custom-control-input" id="customSwitch6" multiple >
+                                                    <label class="custom-control-label" for="customSwitch6"></label>
+                                                </div>
+                                                <div class="custom-control custom-switch custom-switch-warning mr-2 mb-1">
+                                                    <p class="mb-0">Orange</p>
+                                                    <input name="color[]"  type="checkbox" class="custom-control-input" id="customSwitch7" multiple >
+                                                    <label class="custom-control-label" for="customSwitch7"></label>
+                                                </div>
+                                                <div class="custom-control custom-switch custom-switch-dark mb-1">
+                                                    <p class="mb-0">Black</p>
+                                                    <input name="color[]"  type="checkbox"class="custom-control-input" id="customSwitch8" multiple >
+                                                    <label class="custom-control-label" for="customSwitch8"></label>
+                                                </div>
+                                            </div>
+                                            <div style="display: none" id="message">
+                                                <label>Not Supported with this version</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>  
-
                 <div class="col-sm-12 data-field-col data-list-upload">
-
-
                     <form action="<?= route('uploadImage') ?>" method="post" class="dropzone dropzone-area" id="dpz-remove-thumb">
                         @csrf 
                         <div class="dz-message">Drop Files Here To Upload</div>
                     </form>
 
                 </div>
-             
-                <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
-                    <div class="add-data-btn form-group">
-                        <button type="submit" id="btnsaveproduct" form="saveproduct"  class="btn btn-primary">{{__('main.Save')}}</button>
-                    </div>
-                    <div class="cancel-data-btn">
-                        <button type="button"class="btn btn-outline-danger">Cancel</button>
-                    </div>
-                </div>
-
             </div>
+
+
+            <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
+                <div class="add-data-btn form-group">
+                    <button type="submit" id="btnsaveproduct" form="saveproduct"  class="btn btn-primary">{{__('main.Save')}}</button>
+                </div>
+                <div class="cancel-data-btn">
+                    <button type="button"class="btn btn-outline-danger">Cancel</button>
+                </div>
+            </div>
+
         </div>
-        {{-- add new sidebar ends --}}
+    </div>
+    {{-- add new sidebar ends --}}
 </section>
 {{-- Data list view end --}}
 @endsection
@@ -250,8 +319,7 @@
 @endsection
 @section('page-script')
 {{-- Page js files --}}
-<script src="{{ asset('js/scripts/ui/data-list-view.js') }}"></script>
-<script src="{{ asset('js/scripts/forms/form-tooltip-valid.js') }}"></script>
 <script src="{{ asset('js/scripts/forms/number-input.js') }}"></script>
+<script src="{{ asset('js/scripts/ui/data-list-view.js') }}"></script>
 <script src="{{ asset('js/scripts/extensions/dropzone.js')}}"></script>
 @endsection

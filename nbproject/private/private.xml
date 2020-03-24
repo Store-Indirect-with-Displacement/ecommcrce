@@ -5,13 +5,12 @@
         <group>
             <file>file:/E:/Project/laravel/E-commerce/app/ProductImage.php</file>
             <file>file:/E:/Project/laravel/E-commerce/resources/js/scripts/ui/data-list-view.js</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/js/scripts/forms/number-input.js</file>
+            <file>file:/E:/Project/laravel/E-commerce/routes/api.php</file>
             <file>file:/E:/Project/laravel/E-commerce/app/Http/Controllers/Ecommerce/ProductController.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/app/Http/Controllers/Auth/LoginController.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/app/Http/Controllers/HomeController.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/database/migrations/2020_03_20_004644_create_product_images_table.php</file>
             <file>file:/E:/Project/laravel/E-commerce/resources/views/Dashborad/pages/product.blade.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/app/Product.php</file>
             <file>file:/E:/Project/laravel/E-commerce/routes/web.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/app/Providers/RouteServiceProvider.php</file>
         </group>
     </open-files>
 </project-private>
