@@ -25,6 +25,10 @@ use App\Product;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ProductImage whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ProductImage whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $path
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ProductImage whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ProductImage wherePath($value)
  */
 class ProductImage extends Model {
 

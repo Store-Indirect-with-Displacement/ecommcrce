@@ -109,7 +109,8 @@ class ProductController extends Controller {
      */
     public function show($id) {
         $product = Product::where('id', $id)->first();
-        return view('site.ForntEnd.product_details' . compact('product'));
+        $categoires = Category::where('is_navbar', 1)->get();
+        return view('site.ForntEnd.product_details', compact('product', 'categoires'));
     }
 
     /**
@@ -186,7 +187,7 @@ class ProductController extends Controller {
     public function removeImage(Request $request) {
         $filename = $request->input('file');
         $image = ProductImage::where('name', $filename)->first();
-        Storage::delete('public/'.$image->path);
+        Storage::delete('public/' . $image->path);
         if ($request->session()->has('images')) {
             foreach ($request->session()->get('images') as $key => $img) {
                 if ($img["name"] === $filename) {

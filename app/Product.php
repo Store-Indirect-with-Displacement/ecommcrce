@@ -63,13 +63,19 @@ use Astrotomic\Translatable\Translatable;
  * @property-read int|null $colors_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductSize[] $sizes
  * @property-read int|null $sizes_count
+ * @property int|null $ratings
+ * @property int|null $is_New
+ * @property int|null $is_Discount
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereIsDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereIsNew($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereRatings($value)
  */
 class Product extends Model implements TranslatableContract {
 
     use Translatable;
 
     public $translatedAttributes = ['name', 'orderStatus'];
-    public $fillable = ['name', 'image', 'popularity', 'order_status', 'sub_subcategory_id', 'category_id', 'sub_category_id'];
+    public $fillable = ['name', 'image', 'popularity', 'order_status', 'sub_subcategory_id', 'category_id', 'sub_category_id', 'is_New', 'is_Discount', 'Discount'];
     public $table = "products";
 
     public function Category() {

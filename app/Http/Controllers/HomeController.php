@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
-class HomeController extends Controller
-{
+use App\Product;
+
+class HomeController extends Controller {
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -21,9 +22,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $categoires = Category::all();
-        return view('home' , compact('categoires'));
+    public function index() {
+        $categoires = Category::where('is_navbar', 1)->get();
+
+        $allcategories = Category::all();
+
+        $products = Product::all();
+        return view('home', compact('categoires', 'products', 'allcategories'));
     }
+
+
+
 }

@@ -254,6 +254,7 @@
             var filters = masonryTrigger.closest('.masonry-root').find('.ps-masonry__filter > li > a');
             filters.on('click', function() {
                 var selector = $(this).attr('data-filter');
+                var id =$(this).attr('data-id');
                 filters.find('a').removeClass('current');
                 $(this).parent('li').addClass('current');
                 $(this).parent('li').siblings('li').removeClass('current');

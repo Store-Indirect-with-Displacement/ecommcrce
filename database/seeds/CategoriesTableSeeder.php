@@ -16,6 +16,7 @@ class CategoriesTableSeeder extends Seeder {
         $category = new Category;
         $category->translateOrNew('ar')->name = "رجالي";
         $category->translateOrNew('en')->name = "Men";
+         $category->is_navbar = 1;
         $category->save();
 
         $subcategory = new SubCategory;
@@ -148,16 +149,18 @@ class CategoriesTableSeeder extends Seeder {
         $subsubcategory->translateOrNew('en')->name = "B&G";
         $subsubcategory->subCategory()->associate($subcategory);
         $subsubcategory->save();
-
+        
 
         $category = new Category;
         $category->translateOrNew('ar')->name = "حريمي";
         $category->translateOrNew('en')->name = "ًWomen";
+         $category->is_navbar = 1;
         $category->save();
 
         $category = new Category;
         $category->translateOrNew('ar')->name = "أطفالي";
         $category->translateOrNew('en')->name = "Kids";
+         $category->is_navbar = 1;
         $category->save();
     }
 

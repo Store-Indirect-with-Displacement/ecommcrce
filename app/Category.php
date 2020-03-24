@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use App\SubCategory;
+use App\Product;
 
 /**
  * App\Category
@@ -35,6 +36,8 @@ use App\SubCategory;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category withTranslation()
  * @mixin \Eloquent
+ * @property int|null $is_navbar
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereIsNavbar($value)
  */
 class Category extends Model implements TranslatableContract {
 
@@ -46,6 +49,10 @@ class Category extends Model implements TranslatableContract {
 
     public function subCategories() {
         return $this->hasMany(SubCategory::class);
+    }
+
+    public function products() {
+        return $this->hasMany(Product::class);
     }
 
 }

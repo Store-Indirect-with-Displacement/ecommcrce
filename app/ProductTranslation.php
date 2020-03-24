@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ProductTranslation whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ProductTranslation whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $order_status
+ * @property string|null $Details
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ProductTranslation whereDetails($value)
  */
 class ProductTranslation extends Model
 {

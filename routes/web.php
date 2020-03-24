@@ -62,4 +62,5 @@ Route::prefix(LaravelLocalization::setLocale())
 
             //Proudct Fornt End  
             Route::get('/proudct/{id}/details', 'Ecommerce\ProductController@show')->name('product_details');
+           
         });
