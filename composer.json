@@ -40,7 +40,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "heweb\\productcart\\": "packages/heweb/productcart/src" 
         },
         "classmap": [
             "database/seeds",

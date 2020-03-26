@@ -69,12 +69,14 @@ use Astrotomic\Translatable\Translatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereIsDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereIsNew($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereRatings($value)
+ * @property int|null $Discount
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereDiscount($value)
  */
 class Product extends Model implements TranslatableContract {
 
     use Translatable;
 
-    public $translatedAttributes = ['name', 'orderStatus'];
+    public $translatedAttributes = ['name', 'orderStatus','Details'];
     public $fillable = ['name', 'image', 'popularity', 'order_status', 'sub_subcategory_id', 'category_id', 'sub_category_id', 'is_New', 'is_Discount', 'Discount'];
     public $table = "products";
 

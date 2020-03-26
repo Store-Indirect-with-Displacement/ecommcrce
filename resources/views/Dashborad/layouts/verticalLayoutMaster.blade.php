@@ -47,7 +47,6 @@
 
     <?php if ($configData['blankPage'] == false): ?>
         @include('Dashborad.pages.customizer')
-
         @include('Dashborad.pages.buy-now')
     <?php endif; ?>
     <div class="sidenav-overlay"></div>

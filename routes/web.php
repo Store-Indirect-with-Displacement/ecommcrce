@@ -20,7 +20,7 @@ Route::prefix(LaravelLocalization::setLocale())
 
 
             Auth::routes();
-            Route::get('/', 'HomeController@index')->name('home');
+            Route::get('/', 'HomeController@index')->name('index');
 
             //authentication Views
             Route::get('auth-login', 'AuthenticationController@login')->name('auth-login');
@@ -62,5 +62,5 @@ Route::prefix(LaravelLocalization::setLocale())
 
             //Proudct Fornt End  
             Route::get('/proudct/{id}/details', 'Ecommerce\ProductController@show')->name('product_details');
-           
+            Route::get('/proudct/cart', 'Ecommerce\ProductCartController@index')->name('productcart');
         });

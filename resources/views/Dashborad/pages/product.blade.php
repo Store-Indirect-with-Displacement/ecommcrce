@@ -189,7 +189,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">$</span>
                                             </div>
-                                            <input type="text" required=""name ="price"class="form-control" placeholder="Enter a Price" aria-label="Amount (to the nearest dollar)">
+                                            <input type="number" required=""name ="price"class="form-control" placeholder="Enter a Price" aria-label="Amount (to the nearest dollar)">
 
                                         </div>
                                     </fieldset>
@@ -199,9 +199,35 @@
                                     <label>Product Price</label>
                                     <fieldset>
                                         <div class="input-group">
-                                            <input type="text" required="" name ="price"class="form-control" placeholder="Enter a Price" aria-label="Amount (to the nearest dollar)">
+                                            <input type="number" required="" name ="price"class="form-control" placeholder="Enter a Price" aria-label="Amount (to the nearest dollar)">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">$</span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            <?php endif; ?>
+                            
+                                <?php if (App::getLocale() == "ar"): ?>
+                                <div class="col-sm-12 form-group data-field-co">
+                                    <fieldset>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                            <input type="number" name ="discount"class="form-control" placeholder="Enter a Discount" aria-label="Amount (to the nearest dollar)">
+
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            <?php elseif (App::getLocale() == "en"): ?>
+                                <div class="col-sm-12 form-group data-field-co">
+                                    <label>Product Price</label>
+                                    <fieldset>
+                                        <div class="input-group">
+                                            <input type="number"  name ="discount"class="form-control" placeholder="Enter a Price" aria-label="Amount (to the nearest dollar)">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">%</span>
                                             </div>
                                         </div>
                                     </fieldset>

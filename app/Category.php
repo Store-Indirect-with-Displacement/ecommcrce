@@ -38,6 +38,8 @@ use App\Product;
  * @mixin \Eloquent
  * @property int|null $is_navbar
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereIsNavbar($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
+ * @property-read int|null $products_count
  */
 class Category extends Model implements TranslatableContract {
 

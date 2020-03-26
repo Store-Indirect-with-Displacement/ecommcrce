@@ -40,6 +40,8 @@ use Astrotomic\Translatable\Translatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SubCategory whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SubCategory withTranslation()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
+ * @property-read int|null $products_count
  */
 class SubCategory extends Model {
 

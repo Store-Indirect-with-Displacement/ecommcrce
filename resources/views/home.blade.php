@@ -1,32 +1,60 @@
 @extends('site.layouts.header')
 @section('title', 'Home Page')
+@section('site-page-style')
+<link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/slider.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/responsive.css')}}">
+                                    
+@endsection
 @section('content')
-<div class="ps-section masonry-root pt-20 pb-40">
-    <div class="ps-container">
-        <div class="ps-section__content pb-50">
-            <div class="masonry-wrapper" data-col-md="3" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
-                <div class="ps-masonry">
-                    <div class="grid-sizer"></div>
-                    <div class="grid-item">
-                        <div class="grid-item__content-wrapper"><a class="ps-offer" href=""><img src="{{asset('userInterface/images/offer/home-2-1.jpg')}}" alt=""></a></div>
-                    </div>
-                    <div class="grid-item">
-                        <div class="grid-item__content-wrapper"><a class="ps-offer" href="product-detail.html"><img src="{{asset('userInterface/images/offer/home-2-2.jpg')}}" alt=""></a></div>
-                    </div>
-                    <div class="grid-item high">
-                        <div class="grid-item__content-wrapper"><a class="ps-offer" href="product-detail.html"><img src="{{asset('userInterface/images/offer/home-2-5.jpg')}}" alt=""></a></div>
-                    </div>
-                    <div class="grid-item">
-                        <div class="grid-item__content-wrapper"><a class="ps-offer" href="product-detail.html"><img src="{{asset('userInterface/images/offer/home-2-3.jpg')}}" alt=""></a></div>
-                    </div>
-                    <div class="grid-item">
-                        <div class="grid-item__content-wrapper"><a class="ps-offer" href="product-detail.html"><img src="{{asset('userInterface/images/offer/home-2-4.jpg')}}" alt=""></a></div>
-                    </div>
+
+<div class="slider-area">
+    <!-- Slider -->
+    <div class="block-slider block-slider4">
+        <ul class="" id="bxslider-home4">
+            <li>
+                <img src="{{asset('images/h4-slide.png')}}" alt="Slide" pagespeed_url_hash="3541382440">
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        iPhone 
+                        <span class="primary">6 <strong>Plus</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Dual SIM</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
                 </div>
-            </div>
-        </div>
+            </li>
+            <li><img src="{{asset('images/h4-slide2.png')}}" alt="Slide" pagespeed_url_hash="1094292692" >
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        by one, get one <span class="primary">50% <strong>off</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">school supplies & backpacks.*</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li><img src="{{asset('images/h4-slide3.png')}}" alt="Slide" pagespeed_url_hash="1388792613" >
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">Select Item</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+            <li><img src="{{asset('images/h4-slide4.png')}}" alt="Slide" pagespeed_url_hash="1683292534" >
+                <div class="caption-group">
+                    <h2 class="caption title">
+                        Apple <span class="primary">Store <strong>Ipod</strong></span>
+                    </h2>
+                    <h4 class="caption subtitle">& Phone</h4>
+                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                </div>
+            </li>
+        </ul>
     </div>
-</div>
+    <!-- ./Slider -->
+</div> <!-- End slider area -->
+
 <div class="ps-section--features-product ps-section masonry-root pt-40 pb-80">
     <div class="ps-container">
         <div class="ps-section__header mb-50">
@@ -41,7 +69,7 @@
                 </li>
                 <?php foreach ($allcategories as $category): ?>
                     <li id="item">
-                        <a href="" data-filter=".<?=$category->name?>" data-id = <?= $category->id ?> id="category_prouducts">
+                        <a href="" data-filter=".<?= $category->name ?>" data-id = <?= $category->id ?> id="category_prouducts">
                             <?= $category->name ?> 
                             <sup><?= $category->products->count() ?></sup>
                         </a>
@@ -55,7 +83,7 @@
                 <div class="ps-masonry">
                     <?php foreach ($products as $product): ?>
                         <div class="grid-sizer"></div>
-                        <div class="grid-item <?= $product->category->name?>">
+                        <div class="grid-item <?= $product->category->name ?>">
                             <div class="grid-item__content-wrapper">
                                 <div class="ps-shoe mb-30">
                                     <div class="ps-shoe__thumbnail" style="background-color: #DEE2D8">
@@ -95,10 +123,10 @@
                                         </div>
                                         <div class="ps-shoe__detail">
                                             <a class="ps-shoe__name" href="<?= route('product_details', $product->id) ?>"><?= $product->name ?></a>
-                                            <p class="ps-shoe__categories"
-                                               <a href="#"> <?= $product->category->name ?></a>
-                                                ,<a href="#"> <?= $product->subcategory ?></a>
-                                                <a href="#"> <?= $product->subsubcategory ?></a>
+                                            <p class="ps-shoe__categories">
+                                                <a href="#"><?= $product->category->name ?></a>
+                                                ,<a href="#"><?= $product->SubCategory["name"] ?></a>
+                                                ,<a href="#"><?= $product->SubSubCategory["name"] ?></a>
                                             </p>
                                             <span class="ps-shoe__price">
 
@@ -347,5 +375,22 @@
 @endsection
 @section('site-page-script')
 
+<script type="text/javascript" src="{{asset('userInterface/js/owl.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('userInterface/js/jquery.sticky.js')}}"></script>
+<script type="text/javascript" src="{{asset('userInterface/js/jquery.easing.1.3.min.js')}}"></script>
+
+
+<script type="text/javascript" src="{{asset('userInterface/js/slidermain.js')}}"></script>
+<script type="text/javascript" src="{{asset('userInterface/js/bxslider.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('userInterface/js/script.slider.js')}}"></script>
+
+
+
+<script>window.dataLayer = window.dataLayer || [];
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag('js', new Date());
+                gtag('config', 'UA-10146041-25');</script>
 @endsection
 

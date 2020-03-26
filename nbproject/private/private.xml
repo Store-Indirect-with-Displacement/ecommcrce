@@ -3,14 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Project/laravel/E-commerce/app/ProductImage.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/js/scripts/ui/data-list-view.js</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/js/scripts/forms/number-input.js</file>
-            <file>file:/E:/Project/laravel/E-commerce/routes/api.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/Dashborad/layouts/verticalLayoutMaster.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/layouts/verticalLayoutMaster.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/ForntEnd/prouduct_cart.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/panels/navbar.blade.php</file>
             <file>file:/E:/Project/laravel/E-commerce/app/Http/Controllers/Ecommerce/ProductController.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/database/migrations/2020_03_20_004644_create_product_images_table.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/views/Dashborad/pages/product.blade.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/routes/web.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/app/Http/Controllers/Ecommerce/ProductCartController.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/app/Category.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/config/app.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/composer.json</file>
+            <file>file:/E:/Project/laravel/E-commerce/packages/heweb/productcart/composer.json</file>
+            <file>file:/E:/Project/laravel/E-commerce/app/CategoryTranslation.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/packages/heweb/productcart/src/Providers/ProductCartServiceProvider.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/layouts/style.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/panels/styles.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/config/ide-helper.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/app/ProductCart.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/layouts/navbar.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/ForntEnd/product_details.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/packages/heweb/productcart/Readme.md</file>
         </group>
     </open-files>
 </project-private>

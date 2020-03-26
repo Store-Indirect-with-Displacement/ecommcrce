@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Ecommerce;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
-use App\Product;
 use App\Category;
+use App\Http\Controllers\Controller;
+use App\Product;
+use App\ProductColor;
+use App\ProductImage;
+use App\ProductSize;
 use App\SubCategory;
 use App\SubSubCategory;
-use App\ProductImage;
-use App\ProductColor;
-use App\ProductSize;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller {
 
@@ -23,7 +23,7 @@ class ProductController extends Controller {
     public function index(Request $request) {
         $products = Product::all();
         $breadcrumbs = [
-            ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
+            ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"],
         ];
         return view('Dashborad.pages.product', compact('products', 'breadcrumbs'));
     }
@@ -54,6 +54,7 @@ class ProductController extends Controller {
             'details_ar' => 'required|max:1000',
             'price' => 'required|numeric',
             'Image' => 'required|mimes:jpg,jpeg,png,gif,mp4,mwv,wma,webm',
+            'discount' => 'nullable',
         ];
         $request->validate($rules);
         $category = Category::find($request->input('category_id'));
@@ -65,6 +66,12 @@ class ProductController extends Controller {
         $product->translateOrNew('en')->Details = $request->input('details_en');
         $product->translateOrNew('ar')->Details = $request->input('details_ar');
         $product->price = $request->input('price');
+        $product->Discount = $request->input('discount');
+        $product->category_id;
+        if ($request->input('discount') != null) {
+            $product->is_Discount = 1;
+        }
+
         $imagepath = 'images/pages/productlist/productsmainImages';
         $path = $request->file('Image')->storeAs($imagepath, $request->file('Image')->getClientOriginalName(), ['disk' => 'public']);
         $product->image = $path;
@@ -73,16 +80,17 @@ class ProductController extends Controller {
         $product->SubSubCategory()->associate($subsubCategory);
         $images = $request->session()->get('images');
         $product->save();
-        if ($request->input('sizes')) {
-            foreach ($request->input('sizes') as $size) {
+
+        if ($request->input('size')) {
+            foreach ($request->input('size') as $size) {
                 $productsize = new ProductSize;
                 $productsize->size = $size;
                 $productsize->Product()->associate($product);
                 $productsize->save();
             }
         }
-        if ($request->input('colors')) {
-            foreach ($request->input('colors') as $color) {
+        if ($request->input('color')) {
+            foreach ($request->input('color') as $color) {
                 $productcolor = new ProductColor;
                 $productcolor->color = $color;
                 $productcolor->Product()->associate($product);
@@ -108,9 +116,17 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
+        $pageConfigs = [
+            'bodyClass' => 'ecommerce-application',
+        ];
+        $breadcrumbs = [
+            ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "eCommerce"], ['name' => "Checkout"]
+        ];
         $product = Product::where('id', $id)->first();
+        $category = Category::where('id', $product->category_id)->first();
+        $products = $category->products;
         $categoires = Category::where('is_navbar', 1)->get();
-        return view('site.ForntEnd.product_details', compact('product', 'categoires'));
+        return view('site.ForntEnd.product_details', compact('product', 'categoires', 'products', 'pageConfigs', 'breadcrumbs'));
     }
 
     /**

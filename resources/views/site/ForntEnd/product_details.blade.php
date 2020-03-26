@@ -1,36 +1,37 @@
-@extends('site.layouts.header')
-@section('title', 'Home Page')
-@section('site-vendor-style')
+@extends('site/layouts/contentLayoutMaster')
+@section('title', 'Product Details')
+@section('vendor-style')
 {{-- Vendor Css files --}}
-
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/spinner/jquery.bootstrap-touchspin.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/swiper.min.css')) }}">
 @endsection
-@section('site-page-style')
+@section('page-style')
 {{-- Page Css files --}}
-<link rel="stylesheet" href="{{ asset(mix('css/pages/app-ecommerce-details.css')) }}">
-
+<?php if (LaravelLocalization::getCurrentLocaleDirection() === 'ltr'): ?>
+    <link rel="stylesheet" href="{{ asset(mix('css/pages/app-ecommerce-details.css')) }}">
+<?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
+    <link rel="stylesheet" href="{{ asset('css-rtl/pages/app-ecommerce-details.css') }}">
+<?php endif; ?>
 @endsection
 
 @section('content')
-
--- app ecommerce details start -->
+<!-- app ecommerce details start -->
 <section class="app-ecommerce-details">
     <div class="card">
         <div class="card-body">
             <div class="row mb-5 mt-2">
                 <div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{ asset('images/elements/macbook-pro.png') }}" class="img-fluid" alt="product image">
+                        <img src="<?= asset('storage/' . $product->image) ?>" class="img-fluid" alt="product image">
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <h5>Canon - EOS 5D Mark IV DSLR Camera with 24-70mm f/4L IS USM Lens
+                    <h5><?= $product->name ?>
                     </h5>
                     <p class="text-muted">by Apple</p>
                     <div class="ecommerce-details-price d-flex flex-wrap">
 
-                        <p class="text-primary font-medium-3 mr-1 mb-0">$43.99</p>
+                        <p class="text-primary font-medium-3 mr-1 mb-0">$<?= $product->price ?></p>
                         <span class="pl-1 font-medium-3 border-left">
                             <i class="feather icon-star text-warning"></i>
                             <i class="feather icon-star text-warning"></i>
@@ -41,10 +42,7 @@
                         <span class="ml-50 text-dark font-medium-1">424 ratings</span>
                     </div>
                     <hr>
-                    <p>Shoot professional photos and videos with this Canon EOS 5D Mk V 24-70mm lens kit. A huge 30.4-megapixel
-                        full-frame sensor delivers outstanding image clarity, and 4K video is possible from this DSLR for powerful
-                        films. Ultra-precise autofocus and huge ISO ranges give you the images you want from this Canon EOS 5D Mk V
-                        24-70mm lens kit.</p>
+                    <p><?= $product->Details ?></p>
                     <p class="font-weight-bold mb-25"> <i class="feather icon-truck mr-50 font-medium-2"></i>Free Shipping
                     </p>
                     <p class="font-weight-bold"> <i class="feather icon-dollar-sign mr-50 font-medium-2"></i>EMI options available
@@ -55,37 +53,57 @@
                         <ul class="list-unstyled mb-0 product-color-options">
                             <li class="d-inline-block selected">
                                 <div class="color-option b-primary">
-                                    <div class="filloption bg-primary"></div>
+                                    <div class="filloption bg-gradient-secondary"></div>
                                 </div>
                             </li>
-                            <li class="d-inline-block">
-                                <div class="color-option b-success">
-                                    <div class="filloption bg-success"></div>
-                                </div>
-                            </li>
-                            <li class="d-inline-block">
-                                <div class="color-option b-danger">
-                                    <div class="filloption bg-danger"></div>
-                                </div>
-                            </li>
-                            <li class="d-inline-block">
-                                <div class="color-option b-warning">
-                                    <div class="filloption bg-warning"></div>
-                                </div>
-                            </li>
-                            <li class="d-inline-block">
-                                <div class="color-option b-black">
-                                    <div class="filloption bg-black"></div>
-                                </div>
-                            </li>
+                            <?php foreach ($product->colors as $color): ?>
+
+                                <?php if ($color->color == "Blue"): ?>
+                                    <li class="d-inline-block selected">
+                                        <div class="color-option b-primary">
+                                            <div class="filloption bg-primary"></div>
+                                        </div>
+                                    </li>
+                                <?php elseif ($color->color == "Green"): ?>
+                                    <li class="d-inline-block">
+                                        <div class="color-option b-success">
+                                            <div class="filloption bg-success"></div>
+                                        </div>
+                                    </li>
+                                <?php elseif ($color->color == "Red"): ?>
+                                    <li class="d-inline-block">
+                                        <div class="color-option b-danger">
+                                            <div class="filloption bg-danger"></div>
+                                        </div>
+                                    </li>
+                                <?php elseif ($color->color == "orange"): ?>
+                                    <li class="d-inline-block">
+                                        <div class="color-option b-warning">
+                                            <div class="filloption bg-warning"></div>
+                                        </div>
+                                    </li>
+                                <?php elseif ($color->color == "Black"): ?>
+                                    <li class="d-inline-block">
+                                        <div class="color-option b-black">
+                                            <div class="filloption bg-black"></div>
+                                        </div>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <hr>
                     <p>Available - <span class="text-success">In stock</span></p>
 
                     <div class="d-flex flex-column flex-sm-row">
-                        <button class="btn btn-primary mr-0 mr-sm-1 mb-1 mb-sm-0"><i class="feather icon-shopping-cart mr-25"></i>ADD TO CART</button>
-                        <button class="btn btn-outline-danger"><i class="feather icon-heart mr-25"></i>WISHLIST</button>
+                        <button class="btn btn-primary mr-0 mr-sm-1 mb-1 mb-sm-0">
+                            <a href=""> 
+                                <i class="feather icon-shopping-cart mr-25"></i>
+                                ADD TO CART
+                            </a>
+                        </button>
+                        <button class="btn btn-outline-danger"><i class="feather icon-heart mr-25"></i>WISHLIST
+                        </button>
                     </div>
                     <hr>
                     <button type="button" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><i
@@ -288,14 +306,15 @@
     </div>
 </section>
 <!-- app ecommerce details end -->
-@endsection 
-@section('site-vendor-script')
+@endsection
+
+@section('vendor-script')
 {{-- Vendor js files --}}
 <script src="{{ asset(mix('vendors/js/forms/spinner/jquery.bootstrap-touchspin.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/extensions/swiper.min.js')) }}"></script>
 @endsection
 
-@section('site-page-script')
+@section('page-script')
 {{-- Page js files --}}
 <script src="{{ asset(mix('js/scripts/pages/app-ecommerce-details.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/number-input.js')) }}"></script>

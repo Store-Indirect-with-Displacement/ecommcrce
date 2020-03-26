@@ -144,7 +144,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        heweb\productcart\Providers\ProductCartServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -153,7 +153,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\MenuServiceProvider::class ,
+        App\Providers\MenuServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------
