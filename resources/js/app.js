@@ -31,3 +31,70 @@ const app = new Vue({
     el: '#app',
 });
 
+$(document).on('click', "#list_product #addTocart", function (event) {
+    var item = $(event.currentTarget).parents('#product_item');
+    var id = item.find("#product_id").text();
+    var url = window.Laravel.addTocart;
+    url = url.replace(':id', id);
+    //Real Time
+    $.get('' + url, function (data) {
+        $("#cartcount").text(data.CartItems.length);
+        $("#numberitems").text(data.CartItems.length);
+        $("#item_total").text(data.subtotal);
+        var productList = $("#cart_list");
+        var list = data.CartItems.map(function (Item) {
+            return ProductItem(Item);
+        });
+        productList.append(list);
+    });
+
+});
+
+function ProductItem(Item) {
+    var url = window.Laravel.product_detials;
+    url = url.replace(':id', Item.model_id);
+    var html = `<div class="ps-cart__content">
+                            <div class="ps-cart-item">
+                                        <a id="item_delete"class="ps-cart-item__close" href="javascript::void(0)"></a>
+                                        <div class="ps-cart-item__thumbnail"><a href="` + url + `"></a><img src="` + Item.image + `" alt=""></div>
+                                        <div class="ps-cart-item__content"><a class="ps-cart-item__title" href="` + url + `">` + Item.name + `</a>
+                                            <p><span>Quantity:<i>` + Item.quantity + `</i></span><span>Total:<i>` + Item.quantity * Item.price + `</i></span></p>
+                                        </div>
+                                    </div>
+                                </div>`;
+    return html;
+
+}
+$(document).ready(function () {
+    var url = window.Laravel.getCartData;
+    $.get('' + url, function (data) {
+        $("#cartcount").text(data.CartItems.length);
+        $("#numberitems").text(data.CartItems.length);
+        $("#item_total").text(data.subtotal);
+        var productList = $("#cart_list");
+        var list = data.CartItems.map(function (Item) {
+            return ProductItem(Item);
+        });
+        productList.append(list);
+    });
+
+});
+
+$(document).on('click', '#list_product #item_delete', function (event) {
+    var url = window.Laravel.removeFromcart;
+    var item = $(event.currentTarget).parents('#product_item');
+    var id = item.find("#product_id").text();
+    url = url.replace(':id', id);
+    $.get('' + url, function (data) {
+        $("#cartcount").text(data.CartItems.length);
+        $("#numberitems").text(data.CartItems.length);
+        $("#item_total").text(data.subtotal);
+        var productList = $("#cart_list");
+        var list = data.CartItems.map(function (Item) {
+            return ProductItem(Item);
+        });
+        productList.append(list);
+    });
+});
+
+

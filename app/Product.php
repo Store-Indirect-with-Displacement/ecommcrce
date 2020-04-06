@@ -11,6 +11,8 @@ use App\ProductSize;
 use App\ProductColor;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Heesapp\Productcart\Traits\Cartable;
+
 
 /**
  * App\Product
@@ -74,8 +76,7 @@ use Astrotomic\Translatable\Translatable;
  */
 class Product extends Model implements TranslatableContract {
 
-    use Translatable;
-
+    use Translatable , Cartable;
     public $translatedAttributes = ['name', 'orderStatus','Details'];
     public $fillable = ['name', 'image', 'popularity', 'order_status', 'sub_subcategory_id', 'category_id', 'sub_category_id', 'is_New', 'is_Discount', 'Discount'];
     public $table = "products";

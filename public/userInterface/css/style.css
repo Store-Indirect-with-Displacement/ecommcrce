@@ -2500,6 +2500,30 @@ textarea.form-control {
 .ps-shoe .ps-shoe__price del {
     font-size: 16px;
     color: #bcbcbc; }
+
+.ps-shoe .ps-shoe__cart {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    display: block;
+    width: 35px;
+    height: 35px;
+    z-index: 10000;
+    background-color: #4d4d4d;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    -webkit-transform: scale(0, 0);
+    -moz-transform: scale(0, 0);
+    -ms-transform: scale(0, 0);
+    -o-transform: scale(0, 0);
+    transform: scale(0, 0); }
+
+
 .ps-shoe .ps-shoe__favorite {
     position: absolute;
     top: 10px;
@@ -2531,6 +2555,21 @@ textarea.form-control {
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: #fff; }
+.ps-shoe .ps-shoe__cart i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #fff; 
+}
+.ps-shoe .ps-shoe__cart.active, .ps-shoe .ps-shoe__cart:hover {
+    background-color: #2AC37D; 
+}
+
 .ps-shoe .ps-shoe__favorite.active, .ps-shoe .ps-shoe__favorite:hover {
     background-color: #2AC37D; }
 .ps-shoe .br-theme-fontawesome-stars .br-widget {
@@ -2558,6 +2597,19 @@ textarea.form-control {
     -o-transform: translateY(0);
     transform: translateY(0); }
 .ps-shoe:hover .ps-shoe__favorite {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1); }
+@media (max-width: 1199px) {
+    .ps-shoe:before {
+        display: none; } }
+@media (max-width: 767px) {
+    .ps-shoe {
+        max-width: 480px;
+        margin: 0 auto; } }
+.ps-shoe:hover .ps-shoe__cart {
     -webkit-transform: scale(1, 1);
     -moz-transform: scale(1, 1);
     -ms-transform: scale(1, 1);

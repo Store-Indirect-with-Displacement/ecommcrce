@@ -4,7 +4,18 @@
 <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/slider.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/owl.carousel.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/responsive.css')}}">
-                                    
+<script>
+    window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
+
+</script>
+
+<script type="text/javascript">
+    window.Laravel.addTocart = '<?= route('addTocart', ':id') ?>';
+    window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
+    window.Laravel.getCartData = '<?= route('getcart') ?>';
+    window.Laravel.product_detials = '<?= route('product_details', ':id') ?>';
+</script>
+
 @endsection
 @section('content')
 
@@ -80,10 +91,11 @@
         </div>
         <div class="ps-section__content pb-50">
             <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
-                <div class="ps-masonry">
+                <div class="ps-masonry" id="list_product">
                     <?php foreach ($products as $product): ?>
                         <div class="grid-sizer"></div>
-                        <div class="grid-item <?= $product->category->name ?>">
+                        <div id="product_item" class="grid-item <?= $product->category->name ?>">
+                            <span id="product_id" style="display: none;"><?= $product->id ?></span>
                             <div class="grid-item__content-wrapper">
                                 <div class="ps-shoe mb-30">
                                     <div class="ps-shoe__thumbnail" style="background-color: #DEE2D8">
@@ -99,6 +111,9 @@
                                         <?php endif; ?>
                                         <a class="ps-shoe__favorite" href="#">
                                             <i class="ps-icon-heart"></i>
+                                        </a>
+                                        <a id="addTocart"class="ps-shoe__cart" href="javascript::void(0)">
+                                            <i class="ps-icon-shopping-cart"></i>
                                         </a>
                                         <img id="imageproudect" style="padding: 20px;"src="<?= asset('storage/' . $product->image) ?>" alt="">
                                         <a class="ps-shoe__overlay" href="<?= route('product_details', $product->id) ?>">
@@ -374,7 +389,7 @@
 </div>
 @endsection
 @section('site-page-script')
-
+<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 <script type="text/javascript" src="{{asset('userInterface/js/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('userInterface/js/jquery.sticky.js')}}"></script>
 <script type="text/javascript" src="{{asset('userInterface/js/jquery.easing.1.3.min.js')}}"></script>
@@ -387,10 +402,10 @@
 
 
 <script>window.dataLayer = window.dataLayer || [];
-                function gtag() {
-                    dataLayer.push(arguments);
-                }
-                gtag('js', new Date());
-                gtag('config', 'UA-10146041-25');</script>
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-10146041-25');</script>
 @endsection
 

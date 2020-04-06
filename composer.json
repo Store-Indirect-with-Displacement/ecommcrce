@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "heesapp/product-cart": "^1.0",
         "itsjavi/bootstrap-colorpicker": "^3.2",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
@@ -40,8 +41,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "heweb\\productcart\\": "packages/heweb/productcart/src" 
+            "App\\": "app/"
         },
         "classmap": [
             "database/seeds",
@@ -51,6 +51,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
+
         }
     },
     "minimum-stability": "dev",

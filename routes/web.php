@@ -18,19 +18,10 @@ Route::prefix(LaravelLocalization::setLocale())
         ->middleware('localeSessionRedirect')
         ->group(function() {
 
-
-            Auth::routes();
             Route::get('/', 'HomeController@index')->name('index');
-
-            //authentication Views
-            Route::get('auth-login', 'AuthenticationController@login')->name('auth-login');
-            Route::get('auth-register', 'AuthenticationController@register')->name('auth-register');
-            Route::get('auth-forgot_password', 'AuthenticationController@forgot_password')->name('auth-forgot_password');
-            Route::get('auth-reset_password', 'AuthenticationController@reset_password')->name('auth-reset_password');
-            Route::get('auth-lock_screen', 'AuthenticationController@lock_screen')->name('auth-lock_screen');
             Route::get('data/locales/en.json', 'Controller@getJson_en');
             Route::get('data/locales/ar.json', 'Controller@getJson_ar');
-
+            Auth::routes();
 
 
 
@@ -63,4 +54,9 @@ Route::prefix(LaravelLocalization::setLocale())
             //Proudct Fornt End  
             Route::get('/proudct/{id}/details', 'Ecommerce\ProductController@show')->name('product_details');
             Route::get('/proudct/cart', 'Ecommerce\ProductCartController@index')->name('productcart');
+            Route::get('/product/cart/data', 'Ecommerce\ProductCartController@getCart')->name('getcart');
+            Route::get('/product/{id}/addtocart', 'Ecommerce\ProductCartController@addCart')->name('addTocart');
+            Route::get('/product/{id}/removefromcart', 'Ecommerce\ProductCartController@removeItemCart')->name('removeCart');
+            Route::get('/product/{id}/incrementcart', 'Ecommerce\ProductCartController@IncrementItem')->name('incrementcart');
+            Route::get('/product/{id}/decrementcart', 'Ecommerce\ProductCartController@DecrementItem')->name('decrementcart');
         });

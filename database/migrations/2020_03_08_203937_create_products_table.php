@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration {
             $table->integer('ratings')->nullable();
             $table->boolean('is_New')->nullable();
             $table->boolean('is_Discount')->nullable();
-            $table->decimal('Discount', 2, 2)->nullable();
+            $table->decimal('Discount', 6, 2)->nullable();
             $table->bigInteger('sub_subcategory_id')->unsigned()->nullable();
             $table->foreign('sub_subcategory_id')->references('id')->on('sub_sub_categories')->onDelete('cascade');
             $table->timestamps();

@@ -141,10 +141,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Heesapp\Productcart\ProductCartServiceProvider::class,
         /*
          * Package Service Providers...
          */
-        heweb\productcart\Providers\ProductCartServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -204,5 +205,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Cart'=> Heesapp\Productcart\Facades\Cart::class,
     ],
 ];
