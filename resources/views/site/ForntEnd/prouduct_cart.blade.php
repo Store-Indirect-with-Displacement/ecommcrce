@@ -29,10 +29,14 @@
     window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
     window.Laravel.incrementitem = '<?= route('incrementcart', ':id') ?>';
     window.Laravel.decrementitem = '<?= route('decrementcart', ':id') ?>';
+    window.Laravel.moveTowishList = '<?= route('moveToWishList', ':id') ?>';
+    window.Laravel.moveToCart = '<?= route('moveToCart', ':id') ?>';
+    window.Laravel.removeFromWishList = '<?= route('removeFromWishList', ':id') ?>';
 </script>
 @endsection
 
 @section('content')
+
 <form action="#" class="icons-tab-steps checkout-tab-steps wizard-circle">
     <!-- Checkout Place order starts -->
     <h6><i class="step-icon step feather icon-shopping-cart"></i>Cart</h6>
@@ -40,7 +44,7 @@
         <section id="place-order" class="list-view product-checkout">
             <div class="checkout-items">
                 <?php foreach ($CartItems as $Item): ?>
-                    <div  class="card ecommerce-card">
+                    <div id="cart_item"  class="card ecommerce-card">
                         <span id="item_id"style="display: none"><?= $Item->model_id ?></span>
                         <div class="card-content">
                             <div class="item-img text-center">
@@ -80,10 +84,10 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="wishlist remove-wishlist">
+                                <div id="RemoveFromCat"class="wishlist remove-wishlist">
                                     <i class="feather icon-x align-middle"></i> Remove
                                 </div>
-                                <div class="cart remove-wishlist">
+                                <div id="MoveToWishList" class="cart move-cart">
                                     <i class="fa fa-heart-o mr-25"></i> Wishlist
                                 </div>
                             </div>
@@ -126,6 +130,14 @@
                             </div>
                             <div class="detail">
                                 <div class="detail-title">
+                                    Delivery Charges
+                                </div>
+                                <div id="shipping_charges"class="detail-amt discount-amt">
+                                    <?= $CartData['shipping_charges'] ?>$
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <div class="detail-title">
                                     Net Total
                                 </div>
                                 <div id="net_total" class="detail-amt emi-details">
@@ -141,14 +153,7 @@
                                 </div>
                             </div>
 
-                            <div class="detail">
-                                <div class="detail-title">
-                                    Delivery Charges
-                                </div>
-                                <div id="shipping_charges"class="detail-amt discount-amt">
-                                    <?= $CartData['shipping_charges'] ?>$
-                                </div>
-                            </div>
+
                             <div class="detail">
                                 <div class="detail-title">
                                     Total

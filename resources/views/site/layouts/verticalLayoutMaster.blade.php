@@ -6,11 +6,11 @@
         <div class="header-navbar-shadow"></div>
 
         {{-- Include Navbar --}}
-        @include('panels.navbar')
+        @include('site.layouts.navbar')
 
         <?php if (!empty($configData['contentLayout'])): ?>
             <div class="content-area-wrapper">
-               
+
                 <div class="<?= $configData['contentsidebarClass'] ?>">
                     <div class="content-wrapper">
                         <div class="content-body">
@@ -21,9 +21,7 @@
                 </div>
             </div>
         <?php else: ?>
-        <div class="content-wrapper">
-            
-
+            <div class="content-wrapper">
                 <div class="content-body">
                     {{-- Include Page Content --}}
                     @yield('content')
@@ -37,13 +35,13 @@
     <?php if ($configData['blankPage'] == false): ?>
         @include('Dashborad.pages.customizer')
 
-        @include('Dashborad.pages.buy-now')
+
     <?php endif; ?>
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
     {{-- include footer --}}
-    @include('panels/footer')
+    @include('site/layouts/footer')
 
     {{-- include default scripts --}}
     @include('panels/scripts')

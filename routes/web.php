@@ -52,11 +52,22 @@ Route::prefix(LaravelLocalization::setLocale())
             });
 
             //Proudct Fornt End  
-            Route::get('/proudct/{id}/details', 'Ecommerce\ProductController@show')->name('product_details');
-            Route::get('/proudct/cart', 'Ecommerce\ProductCartController@index')->name('productcart');
+
+            Route::get('/product/cart', 'Ecommerce\ProductCartController@index')->name('productcart');
             Route::get('/product/cart/data', 'Ecommerce\ProductCartController@getCart')->name('getcart');
+            Route::get('/product/wishlist', 'Ecommerce\ProductCartController@wishListIndex')->name('productwishlist');
+            Route::get('/product/wishlist/data', 'Ecommerce\ProductCartController@getWishList')->name('getWishList');
+            Route::get('/profuct/shop', 'Ecommerce\ProductShopController@index')->name('productshop');
+            Route::get('/product/{id}/details', 'Ecommerce\ProductController@show')->name('product_details');
             Route::get('/product/{id}/addtocart', 'Ecommerce\ProductCartController@addCart')->name('addTocart');
             Route::get('/product/{id}/removefromcart', 'Ecommerce\ProductCartController@removeItemCart')->name('removeCart');
             Route::get('/product/{id}/incrementcart', 'Ecommerce\ProductCartController@IncrementItem')->name('incrementcart');
             Route::get('/product/{id}/decrementcart', 'Ecommerce\ProductCartController@DecrementItem')->name('decrementcart');
+            Route::get('/product/{id}/moveTowishList', 'Ecommerce\ProductCartController@moveToWishList')->name('moveToWishList');
+            Route::get('/product/{id}/moveTocart', 'Ecommerce\ProductCartController@moveToCart')->name('moveToCart');
+            Route::get('/product/{id}/addtowishlist', 'Ecommerce\ProductCartController@addToWishList')->name('addTowishList');
+            Route::get('/product/{id}/removewishList', 'Ecommerce\ProductCartController@removeFromWishList')->name('removeFromWishList');
+            Route::get('/poduct/{id}/checkcartitem' ,'Ecommerce\ProductCartController@checkcartItem')->name('checkcartitem');
+             Route::get('/poduct/{id}/checkwishitem' ,'Ecommerce\ProductCartController@checkwishlistItem')->name('checkwishlistItem');
+            
         });

@@ -21,9 +21,15 @@ $(document).ready(function () {
             priceFilter = $(".price-options"),
             gridViewBtn = $(".grid-view-btn"),
             listViewBtn = $(".list-view-btn"),
-            ecommerceProducts = $("#ecommerce-products"),
-            cart = $(".cart"),
-            wishlist = $(".wishlist");
+            ecommerceProducts = $("#ecommerce-products");
+
+
+
+    var cart = $("#cart");
+    var wishlist = $("#wishlist");
+
+
+
 
 
     // show sidebar
@@ -79,30 +85,45 @@ $(document).ready(function () {
         listViewBtn.addClass("active");
     });
 
-    // For View in cart
-    cart.on("click", function () {
-        var $this = $(this),
-                addToCart = $this.find(".add-to-cart"),
-                viewInCart = $this.find(".view-in-cart");
+    cart.each(function (index) {
+        var $this = $(this);
+        var id = $(this).closest("#pro_item").find("#pro_id").text();
+        var url = window.Laravel.checkcartItem;
+        url = url.replace(':id', id);
+        var addToCart = $this.find(".add-to-cart");
+        var viewInCart = $this.find(".view-in-cart");
         if (addToCart.is(':visible')) {
-            addToCart.addClass("d-none");
-            viewInCart.addClass("d-inline-block");
+            $.get('' + url, function (data) {
+                if (data == true) {
+                    addToCart.addClass("d-none");
+                    viewInCart.addClass("d-inline-block");
+                }
+            });
         } else {
             var href = viewInCart.attr('href');
             window.location.href = href;
         }
     });
 
+
+
     $(".view-in-cart").on('click', function (e) {
         e.preventDefault();
     });
 
-    // For Wishlist Icon
-    wishlist.on("click", function () {
-        var $this = $(this)
-        $this.find("i").toggleClass("fa-heart-o fa-heart")
-        $this.toggleClass("added");
-    })
+    wishlist.each(function (index) {
+        var url = window.Laravel.checkwishlistItem;
+        var id = $(this).closest("#pro_item").find("#pro_id").text();
+        url = url.replace(':id', id);
+        var $this = $(this);
+
+        $.get('' + url, function (data) {
+            if (data == true) {
+                $this.find("i").toggleClass("fa-heart-o fa-heart");
+                $this.toggleClass("added");
+            }
+        });
+    });
 
     // Checkout Wizard
     var checkoutWizard = $(".checkout-tab-steps"),
@@ -157,7 +178,7 @@ $(document).ready(function () {
             max: CounterMax
         }).on('touchspin.on.startdownspin', function () {
             var url = window.Laravel.decrementitem;
-            var id = $(this).closest(".ecommerce-card").find("#item_id").text();
+            var id = $(this).closest("#cart_item").find("#item_id").text();
             url = url.replace(':id', id);
             var subtotal = $("#subtotal");
             var discount = $("#discount");
@@ -166,10 +187,10 @@ $(document).ready(function () {
             var shipping_charges = $("#shipping_charges");
             var total = $("#total");
             var payable = $("#payable");
-            var cost = $(this).closest(".ecommerce-card").find("#cost_item");
+            var cost = $(this).closest("#cart_item").find("#cost_item");
 
             var $this = $(this);
-            if ($this.val() >= 1) {
+            if ($this.val() > 1) {
                 $.get('' + url, function (data) {
                     subtotal.text(data.subtotal);
                     discount.text(data.discount);
@@ -181,7 +202,6 @@ $(document).ready(function () {
                     data.CartItems.map(function (Item) {
                         if (id == Item.model_id) {
                             cost.text(Item.price * Item.quantity);
-
                         }
                     });
 
@@ -189,11 +209,12 @@ $(document).ready(function () {
             }
             $('.bootstrap-touchspin-up').removeClass("disabled-max-min");
             if ($this.val() == 1) {
+
                 $(this).siblings().find('.bootstrap-touchspin-down').addClass("disabled-max-min");
             }
         }).on('touchspin.on.startupspin', function () {
             var url = window.Laravel.incrementitem;
-            var id = $(this).closest(".ecommerce-card").find("#item_id").text();
+            var id = $(this).closest("#cart_item").find("#item_id").text();
             url = url.replace(':id', id);
             var $this = $(this);
             var subtotal = $("#subtotal");
@@ -203,8 +224,8 @@ $(document).ready(function () {
             var shipping_charges = $("#shipping_charges");
             var total = $("#total");
             var payable = $("#payable");
-            var cost = $(this).closest(".ecommerce-card").find("#cost_item");
-            if ($this.val() <= 10) {
+            var cost = $(this).closest("#cart_item").find("#cost_item");
+            if ($this.val() < 10) {
                 $.get('' + url, function (data) {
                     subtotal.text(data.subtotal);
                     discount.text(data.discount);
@@ -222,35 +243,76 @@ $(document).ready(function () {
             }
             $('.bootstrap-touchspin-down').removeClass("disabled-max-min");
             if ($this.val() == 10) {
-
                 $(this).siblings().find('.bootstrap-touchspin-up').addClass("disabled-max-min");
             }
         });
     }
 
-    // remove items from wishlist page
-    $(".remove-wishlist , .move-cart").on("click", function () {
-        var url = window.Laravel.removeFromcart;
-        var id = $(this).closest(".ecommerce-card").find("#item_id").text();
-        url = url.replace(':id', id);
-        var subtotal = $("#subtotal");
-        var discount = $("#discount");
-        var net_total = $("#net_total");
-        var tax = $("#tax");
-        var shipping_charges = $("#shipping_charges");
-        var total = $("#total");
-        var payable = $("#payable");
-        $.get('' + url, function (data) {
-            subtotal.text(data.subtotal);
-            discount.text(data.discount);
-            shipping_charges.text(data.shipping_charges);
-            net_total.text(data.net_total);
-            tax.text(data.tax);
-            total.text(data.total);
-            payable.text(data.payable);
-        });
-        $(this).closest(".ecommerce-card").remove();
+
+});
+$("#MoveToWishList").on("click", function () {
+    var url = window.Laravel.moveTowishList;
+    var id = $(this).closest("#cart_item").find("#item_id").text();
+    url = url.replace(':id', id);
+    var subtotal = $("#subtotal");
+    var discount = $("#discount");
+    var net_total = $("#net_total");
+    var tax = $("#tax");
+    var shipping_charges = $("#shipping_charges");
+    var total = $("#total");
+    var payable = $("#payable");
+    $.get('' + url, function (data) {
+        subtotal.text(data.subtotal);
+        discount.text(data.discount);
+        shipping_charges.text(data.shipping_charges);
+        net_total.text(data.net_total);
+        tax.text(data.tax);
+        total.text(data.total);
+        payable.text(data.payable);
     });
+    $(this).closest("#cart_item").remove();
+});
+// remove items from wishlist page
+$("#RemoveFromCat").on("click", function () {
+    var url = window.Laravel.removeFromcart;
+    var id = $(this).closest("#cart_item").find("#item_id").text();
+    url = url.replace(':id', id);
+    var subtotal = $("#subtotal");
+    var discount = $("#discount");
+    var net_total = $("#net_total");
+    var tax = $("#tax");
+    var shipping_charges = $("#shipping_charges");
+    var total = $("#total");
+    var payable = $("#payable");
+    $.get('' + url, function (data) {
+        subtotal.text(data.subtotal);
+        discount.text(data.discount);
+        shipping_charges.text(data.shipping_charges);
+        net_total.text(data.net_total);
+        tax.text(data.tax);
+        total.text(data.total);
+        payable.text(data.payable);
+    });
+    $(this).closest("#cart_item").remove();
+});
+
+
+$("#RemoveFromWitchList").on("click", function () {
+    var id = $(this).closest("#witch_item").find("#Item_w_id").text();
+    var url = window.Laravel.removeFromWishList.replace(':id', id);
+    $.get('' + url, function (data) {
+
+    });
+    $(this).closest("#witch_item").remove();
+});
+
+$("#moveToCart").on("click", function () {
+    var id = $(this).closest("#witch_item").find("#Item_w_id").text();
+    var url = window.Laravel.moveToCart.replace(':id', id);
+    $.get('' + url, function (data) {
+
+    });
+    $(this).closest("#witch_item").remove();
 });
 // on window resize hide sidebar
 $(window).on("resize", function () {
@@ -259,5 +321,40 @@ $(window).on("resize", function () {
         $(".shop-content-overlay").removeClass("show");
     } else {
         $(".sidebar-shop").addClass("show");
+    }
+});
+
+
+// For Wishlist Icon
+$(document).on("click", "#wishlist", function () {
+    var id = $(this).closest("#pro_item").find("#pro_id").text();
+    var url = window.Laravel.addTowishList;
+    url = url.replace(':id', id);
+    var $this = $(this);
+    $this.find("i").toggleClass("fa-heart-o fa-heart");
+    $.get('' + url, function (data) {
+        $this.toggleClass("added");
+
+    });
+});
+
+
+// For View in cart
+$(document).on("click", "#cart", function () {
+    var id = $(this).closest("#pro_item").find("#pro_id").text();
+    var url = window.Laravel.addTocart;
+    url = url.replace(':id', id);
+    var $this = $(this);
+    var addToCart = $this.find(".add-to-cart");
+    var viewInCart = $this.find(".view-in-cart");
+    if (addToCart.is(':visible')) {
+        $.get('' + url, function (data) {
+            addToCart.addClass("d-none");
+            viewInCart.addClass("d-inline-block");
+
+        });
+    } else {
+        var href = viewInCart.attr('href');
+        window.location.href = href;
     }
 });

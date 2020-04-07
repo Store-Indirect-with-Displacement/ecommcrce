@@ -44,7 +44,7 @@ use App\Helpers\Helper; ?>
 
     {{-- Custom RTL Styles --}}
 <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
-     <link rel="stylesheet" href="{{ asset('css-rtl/custom-rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('css-rtl/custom-rtl.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/bootstrap-extended.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/colors.css') }}">

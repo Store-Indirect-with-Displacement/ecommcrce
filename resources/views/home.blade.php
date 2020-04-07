@@ -14,6 +14,8 @@
     window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
     window.Laravel.getCartData = '<?= route('getcart') ?>';
     window.Laravel.product_detials = '<?= route('product_details', ':id') ?>';
+    window.Laravel.addTowishList = '<?= route('addTowishList', ':id') ?>';
+    window.Laravel.getWishListData = '<?= route('getWishList') ?>';
 </script>
 
 @endsection
@@ -31,7 +33,7 @@
                         <span class="primary">6 <strong>Plus</strong></span>
                     </h2>
                     <h4 class="caption subtitle">Dual SIM</h4>
-                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                    <a class="caption button-radius" href="<?=route('productshop')?>"><span class="icon"></span>Shop now</a>
                 </div>
             </li>
             <li><img src="{{asset('images/h4-slide2.png')}}" alt="Slide" pagespeed_url_hash="1094292692" >
@@ -109,7 +111,7 @@
                                                 <span>-<?= $product->Discount ?>%</span>
                                             </div>
                                         <?php endif; ?>
-                                        <a class="ps-shoe__favorite" href="#">
+                                        <a id="addToWishList"class="ps-shoe__favorite" href="javascript::void(0)">
                                             <i class="ps-icon-heart"></i>
                                         </a>
                                         <a id="addTocart"class="ps-shoe__cart" href="javascript::void(0)">
