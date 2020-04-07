@@ -85,15 +85,21 @@ $(document).ready(function () {
         listViewBtn.addClass("active");
     });
 
-    cart.each(function (index) {
-        var $this = $(this);
-        var id = $(this).closest("#pro_item").find("#pro_id").text();
-        var url = window.Laravel.checkcartItem;
-        url = url.replace(':id', id);
-        var addToCart = $this.find(".add-to-cart");
-        var viewInCart = $this.find(".view-in-cart");
+
+    var data = $("#ecommerce-products");
+    data.find('div[id="pro_item"]').each(function (index) {
+        var Item = $(this);
+        var cart = Item.find("#cart");
+        var wishlist = Item.find("#wishlist");
+        var id = Item.find("#pro_id").text();
+        var cartcheckurl = window.Laravel.checkcartItem;
+        var wishcheckurl = window.Laravel.checkwishlistItem;
+        cartcheckurl = cartcheckurl.replace(':id', id);
+        wishcheckurl = wishcheckurl.replace(':id', id);
+        var addToCart = cart.find(".add-to-cart");
+        var viewInCart = cart.find(".view-in-cart");
         if (addToCart.is(':visible')) {
-            $.get('' + url, function (data) {
+            $.get('' + cartcheckurl, function (data) {
                 if (data == true) {
                     addToCart.addClass("d-none");
                     viewInCart.addClass("d-inline-block");
@@ -103,6 +109,12 @@ $(document).ready(function () {
             var href = viewInCart.attr('href');
             window.location.href = href;
         }
+        $.get('' + wishcheckurl, function (data) {
+            if (data == true) {
+                wishlist.find("i").toggleClass("fa-heart-o fa-heart");
+                wishlist.toggleClass("added");
+            }
+        });
     });
 
 
@@ -111,19 +123,7 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    wishlist.each(function (index) {
-        var url = window.Laravel.checkwishlistItem;
-        var id = $(this).closest("#pro_item").find("#pro_id").text();
-        url = url.replace(':id', id);
-        var $this = $(this);
 
-        $.get('' + url, function (data) {
-            if (data == true) {
-                $this.find("i").toggleClass("fa-heart-o fa-heart");
-                $this.toggleClass("added");
-            }
-        });
-    });
 
     // Checkout Wizard
     var checkoutWizard = $(".checkout-tab-steps"),
@@ -250,7 +250,7 @@ $(document).ready(function () {
 
 
 });
-$("#MoveToWishList").on("click", function () {
+$(document).on("click", "#MoveToWishList", function () {
     var url = window.Laravel.moveTowishList;
     var id = $(this).closest("#cart_item").find("#item_id").text();
     url = url.replace(':id', id);
@@ -273,7 +273,7 @@ $("#MoveToWishList").on("click", function () {
     $(this).closest("#cart_item").remove();
 });
 // remove items from wishlist page
-$("#RemoveFromCat").on("click", function () {
+$(document).on("click", "#RemoveFromCat", function () {
     var url = window.Laravel.removeFromcart;
     var id = $(this).closest("#cart_item").find("#item_id").text();
     url = url.replace(':id', id);
@@ -297,7 +297,7 @@ $("#RemoveFromCat").on("click", function () {
 });
 
 
-$("#RemoveFromWitchList").on("click", function () {
+$(document).on("click", "#RemoveFromWitchList", function () {
     var id = $(this).closest("#witch_item").find("#Item_w_id").text();
     var url = window.Laravel.removeFromWishList.replace(':id', id);
     $.get('' + url, function (data) {
@@ -306,7 +306,7 @@ $("#RemoveFromWitchList").on("click", function () {
     $(this).closest("#witch_item").remove();
 });
 
-$("#moveToCart").on("click", function () {
+$(document).on("click", "#moveToCart", function () {
     var id = $(this).closest("#witch_item").find("#Item_w_id").text();
     var url = window.Laravel.moveToCart.replace(':id', id);
     $.get('' + url, function (data) {
@@ -331,11 +331,24 @@ $(document).on("click", "#wishlist", function () {
     var url = window.Laravel.addTowishList;
     url = url.replace(':id', id);
     var $this = $(this);
-    $this.find("i").toggleClass("fa-heart-o fa-heart")
-    $.get('' + url, function (data) {
-        $this.toggleClass("added");
+    $this.find("i").toggleClass("fa-heart-o fa-heart");
+    var wishcheckurl = window.Laravel.checkwishlistItem;
+    var removeWishList = window.Laravel.removeFromWishList;
+    removeWishList = removeWishList.replace(':id', id);
+    wishcheckurl = wishcheckurl.replace(':id', id);
+    $.get('' + wishcheckurl, function (data) {
+        if (data == true) {
+            $.get('' + removeWishList, function (data) {
+                $this.toggleClass("added");
+            });
+        } else {
+            $.get('' + url, function (data) {
+                $this.toggleClass("added");
 
+            });
+        }
     });
+
 });
 
 

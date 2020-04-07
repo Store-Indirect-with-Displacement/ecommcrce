@@ -33,7 +33,7 @@ $configData = Helper::applClasses();
     window.Laravel.getWishList = '<?= route('getWishList') ?>';
     window.Laravel.checkcartItem = '<?= route('checkcartitem', ':id') ?>';
     window.Laravel.checkwishlistItem = '<?= route('checkwishlistItem', ':id') ?>';
-
+    window.Laravel.removeFromWishList = '<?= route('removeFromWishList', ':id') ?>';
 
 </script>
 @endsection
