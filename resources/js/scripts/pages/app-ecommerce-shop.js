@@ -248,7 +248,6 @@ $(document).ready(function () {
         });
     }
 
-
 });
 $(document).on("click", "#MoveToWishList", function () {
     var url = window.Laravel.moveTowishList;
@@ -371,3 +370,27 @@ $(document).on("click", "#cart", function () {
         window.location.href = href;
     }
 });
+
+//price range 
+$(document).on('change', "input:checkbox[name=price-range]:checked", function (event) {
+    var flags = $(this).closest("#price-range").find("input:checkbox[name=price-range]:checked").map(function () {
+        return this.value;
+    }).get();
+    window.console.log(flags);
+});
+//category 
+$(document).on('change', "input:checkbox[name=cat]:checked", function (event) {
+    var flags = $(this).closest("#categories").find("input:checkbox[name=cat]:checked").map(function () {
+        return this.value;
+    }).get();
+    window.console.log(flags);
+});
+//colors
+
+
+//sizes
+
+
+//brands
+
+

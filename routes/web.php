@@ -67,7 +67,8 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('/product/{id}/moveTocart', 'Ecommerce\ProductCartController@moveToCart')->name('moveToCart');
             Route::get('/product/{id}/addtowishlist', 'Ecommerce\ProductCartController@addToWishList')->name('addTowishList');
             Route::get('/product/{id}/removewishList', 'Ecommerce\ProductCartController@removeFromWishList')->name('removeFromWishList');
-            Route::get('/poduct/{id}/checkcartitem' ,'Ecommerce\ProductCartController@checkcartItem')->name('checkcartitem');
-             Route::get('/poduct/{id}/checkwishitem' ,'Ecommerce\ProductCartController@checkwishlistItem')->name('checkwishlistItem');
+            Route::get('/poduct/{id}/checkcartitem', 'Ecommerce\ProductCartController@checkcartItem')->name('checkcartitem');
+            Route::get('/poduct/{id}/checkwishitemEcommerc', 'Ecommerce\ProductCartController@checkwishlistItem')->name('checkwishlistItem');
+            Route::post('/product/fliter/shop', ' Ecommerc\ProductShopController@Fliter')->name('shop_page_fliter');
             
-        });
+                });

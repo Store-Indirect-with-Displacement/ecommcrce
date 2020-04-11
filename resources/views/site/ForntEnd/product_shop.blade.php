@@ -22,6 +22,7 @@ $configData = Helper::applClasses();
 <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
     <link rel="stylesheet" href="{{ asset('css-rtl/plugins/extensions/noui-slider.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/pages/app-ecommerce-shop.css') }}">
+
 <?php endif; ?>
 
 <script>
@@ -34,6 +35,7 @@ $configData = Helper::applClasses();
     window.Laravel.checkcartItem = '<?= route('checkcartitem', ':id') ?>';
     window.Laravel.checkwishlistItem = '<?= route('checkwishlistItem', ':id') ?>';
     window.Laravel.removeFromWishList = '<?= route('removeFromWishList', ':id') ?>';
+    window.Laravel.Filter = '<?= route('shop_page_fliter')?>';
 
 </script>
 @endsection
@@ -189,4 +191,5 @@ $configData = Helper::applClasses();
 @section('page-script')
 <!-- Page js files -->
 <script src="{{ asset(mix('js/scripts/pages/app-ecommerce-shop.js')) }}"></script>
+
 @endsection

@@ -11,7 +11,7 @@ class DashbroadController extends Controller {
     public function dashboradAnalytics() {
         $pageConfigs = [
             'pageHeader' => false,
-            'direction' => env('MIX_CONTENT_DIRECTION' ,LaravelLocalization::getCurrentLocaleDirection()),
+            'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
         ];
         return view('Dashborad.pages.dashborad-analytics', compact('pageConfigs'));
     }

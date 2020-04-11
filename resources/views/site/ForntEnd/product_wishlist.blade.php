@@ -8,28 +8,30 @@
 {{-- Page Css files --}}
 <?php if (LaravelLocalization::getCurrentLocaleDirection() === 'ltr'): ?>
     <link rel="stylesheet" href="{{asset('userInterface/css/style.css')}}">
-   <link rel="stylesheet" href="{{ asset(mix('css/pages/app-ecommerce-shop.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/pages/app-ecommerce-shop.css')) }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}">
 
 <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
     <link rel="stylesheet" href="{{asset('userInterface/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('css-rtl/pages/app-ecommerce-shop.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css-rtl/custom-rtl.css')}}">
-  
+
 
 <?php endif; ?>
 
-    <script>
-        window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
-    </script>
-    <script type="text/javascript">
-        window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
-        window.Laravel.incrementitem = '<?= route('incrementcart', ':id') ?>';
-        window.Laravel.decrementitem = '<?= route('decrementcart', ':id') ?>';
-        window.Laravel.moveTowishList = '<?= route('moveToWishList', ':id') ?>';
-        window.Laravel.moveToCart = '<?= route('moveToCart', ':id') ?>';
-        window.Laravel.removeFromWishList = '<?= route('removeFromWishList', ':id') ?>';
-    </script>
+<script>
+    window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
+</script>
+<script type="text/javascript">
+    window.Laravel.addTocart = '<?= route('addTocart', ':id') ?>';
+    window.Laravel.addTowishList = '<?= route('addTowishList', ':id') ?>';
+    window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
+    window.Laravel.incrementitem = '<?= route('incrementcart', ':id') ?>';
+    window.Laravel.decrementitem = '<?= route('decrementcart', ':id') ?>';
+    window.Laravel.moveTowishList = '<?= route('moveToWishList', ':id') ?>';
+    window.Laravel.moveToCart = '<?= route('moveToCart', ':id') ?>';
+    window.Laravel.removeFromWishList = '<?= route('removeFromWishList', ':id') ?>';
+</script>
 @endsection
 @section('content')
 <!-- Wishlist Starts -->
