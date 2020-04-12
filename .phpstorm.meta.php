@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-04-05 02:11:23.
+    * Generated on 2020-04-11 21:23:25.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -23,6 +23,7 @@ namespace PHPSTORM_META {
         'Faker\Generator' => \Faker\Generator::class,
         'Heesapp\Productcart\Contracts\ProductCartContract' => \Heesapp\Productcart\Controllers\DatabaseController::class,
         'Heesapp\Productcart\ProductCart' => \Heesapp\Productcart\ProductCart::class,
+        'Heesapp\Productcart\ProductWitchList' => \Heesapp\Productcart\ProductWitchList::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Bus\Dispatcher' => \Illuminate\Bus\Dispatcher::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
@@ -186,6 +187,7 @@ namespace PHPSTORM_META {
         'Faker\Generator' => \Faker\Generator::class,
         'Heesapp\Productcart\Contracts\ProductCartContract' => \Heesapp\Productcart\Controllers\DatabaseController::class,
         'Heesapp\Productcart\ProductCart' => \Heesapp\Productcart\ProductCart::class,
+        'Heesapp\Productcart\ProductWitchList' => \Heesapp\Productcart\ProductWitchList::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Bus\Dispatcher' => \Illuminate\Bus\Dispatcher::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
@@ -349,6 +351,7 @@ namespace PHPSTORM_META {
         'Faker\Generator' => \Faker\Generator::class,
         'Heesapp\Productcart\Contracts\ProductCartContract' => \Heesapp\Productcart\Controllers\DatabaseController::class,
         'Heesapp\Productcart\ProductCart' => \Heesapp\Productcart\ProductCart::class,
+        'Heesapp\Productcart\ProductWitchList' => \Heesapp\Productcart\ProductWitchList::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Bus\Dispatcher' => \Illuminate\Bus\Dispatcher::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
@@ -512,6 +515,7 @@ namespace PHPSTORM_META {
         'Faker\Generator' => \Faker\Generator::class,
         'Heesapp\Productcart\Contracts\ProductCartContract' => \Heesapp\Productcart\Controllers\DatabaseController::class,
         'Heesapp\Productcart\ProductCart' => \Heesapp\Productcart\ProductCart::class,
+        'Heesapp\Productcart\ProductWitchList' => \Heesapp\Productcart\ProductWitchList::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Bus\Dispatcher' => \Illuminate\Bus\Dispatcher::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
@@ -675,6 +679,7 @@ namespace PHPSTORM_META {
         'Faker\Generator' => \Faker\Generator::class,
         'Heesapp\Productcart\Contracts\ProductCartContract' => \Heesapp\Productcart\Controllers\DatabaseController::class,
         'Heesapp\Productcart\ProductCart' => \Heesapp\Productcart\ProductCart::class,
+        'Heesapp\Productcart\ProductWitchList' => \Heesapp\Productcart\ProductWitchList::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Bus\Dispatcher' => \Illuminate\Bus\Dispatcher::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
@@ -838,6 +843,7 @@ namespace PHPSTORM_META {
         'Faker\Generator' => \Faker\Generator::class,
         'Heesapp\Productcart\Contracts\ProductCartContract' => \Heesapp\Productcart\Controllers\DatabaseController::class,
         'Heesapp\Productcart\ProductCart' => \Heesapp\Productcart\ProductCart::class,
+        'Heesapp\Productcart\ProductWitchList' => \Heesapp\Productcart\ProductWitchList::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Bus\Dispatcher' => \Illuminate\Bus\Dispatcher::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
@@ -1001,6 +1007,7 @@ namespace PHPSTORM_META {
         'Faker\Generator' => \Faker\Generator::class,
         'Heesapp\Productcart\Contracts\ProductCartContract' => \Heesapp\Productcart\Controllers\DatabaseController::class,
         'Heesapp\Productcart\ProductCart' => \Heesapp\Productcart\ProductCart::class,
+        'Heesapp\Productcart\ProductWitchList' => \Heesapp\Productcart\ProductWitchList::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Bus\Dispatcher' => \Illuminate\Bus\Dispatcher::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
@@ -1164,6 +1171,7 @@ namespace PHPSTORM_META {
         'Faker\Generator' => \Faker\Generator::class,
         'Heesapp\Productcart\Contracts\ProductCartContract' => \Heesapp\Productcart\Controllers\DatabaseController::class,
         'Heesapp\Productcart\ProductCart' => \Heesapp\Productcart\ProductCart::class,
+        'Heesapp\Productcart\ProductWitchList' => \Heesapp\Productcart\ProductWitchList::class,
         'Illuminate\Broadcasting\BroadcastManager' => \Illuminate\Broadcasting\BroadcastManager::class,
         'Illuminate\Bus\Dispatcher' => \Illuminate\Bus\Dispatcher::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,

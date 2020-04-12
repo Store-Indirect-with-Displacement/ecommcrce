@@ -219,14 +219,14 @@
                     "slug": "cards",
                     "submenu": [
                         {
-                            "url": "card-basic",
+                            "url": "blogList",
                             "name": "Basic",
                             "i18n": "Basic",
                             "icon": "feather icon-circle",
                             "slug": "card-basic"
                         },
                         {
-                            "url": "card-advance",
+                            "url": "blogcreate",
                             "name": "Advance",
                             "i18n": "Advance",
                             "icon": "feather icon-circle",
@@ -565,7 +565,7 @@
             "name": "Forms & Tables",
             "icon": "feather icon-edit-2",
             "slug": "Forms & Tables",
-            "i18n": "Dashboard",
+            "i18n": "Forms & Tables",
             "dropdown": "1",
             "submenu": [
                 {
@@ -707,7 +707,7 @@
                     "url": "page-account-settings",
                     "name": "Account Settings",
                     "icon": "feather icon-settings",
-                    "i18n": "nav.page_account_settings"
+                    "i18n": "Account Settings"
                 },
                 {
                     "url": "page-faq",

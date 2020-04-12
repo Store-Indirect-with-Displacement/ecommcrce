@@ -131,6 +131,9 @@
                 <div>
                     <h4 class="text-uppercase">Product View Data</h4>
                 </div>
+                 <div id="app">
+                    @include('layouts.session')
+                </div>
                 <div class="hide-data-sidebar">
                     <i class="feather icon-x"></i>
                 </div>

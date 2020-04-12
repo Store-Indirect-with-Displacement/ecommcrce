@@ -1,6 +1,7 @@
 {{-- For Horizontal submenu --}}
 <ul class="dropdown-menu">
     <?php foreach ($menu as $submenu): ?>
+
         <?php
         $custom_classes = "";
         if (isset($submenu->classlist)) {
@@ -17,7 +18,7 @@
                 <span data-i18n="{{ $submenuTranslation }}">{{ $submenu->name }}</span>
             </a>
             <?php if (isset($submenu->submenu)): ?>
-                @include('panels/horizontalSubmenu', ['menu' => <?= $submenu->submenu ?>])
+                @include('panels/horizontalSubmenu', ['menu' => $submenu->submenu])
             <?php endif; ?>
         </li>
     <?php endforeach; ?>

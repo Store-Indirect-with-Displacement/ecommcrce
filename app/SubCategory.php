@@ -8,7 +8,7 @@ use App\SubSubCategory;
 use App\Product;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
-
+use App\BlogPostions;
 /**
  * App\SubCategory
  *
@@ -62,5 +62,7 @@ class SubCategory extends Model {
     public function products() {
         return $this->hasMany(Product::class);
     }
-
+ public function positions() {
+        return $this->hasMany(BlogPostions::class);
+    }
 }

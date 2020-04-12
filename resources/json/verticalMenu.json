@@ -26,31 +26,32 @@
             "url": "",
             "name": "Apps",
             "navheader": "Apps",
+            "i18n": "Apps",
             "icon": ""
         },
         {
             "url": "app-email",
             "name": "Email",
             "icon": "feather icon-mail",
-            "i18n": "nav.app_email"
+            "i18n": "Email"
         },
         {
             "url": "app-chat",
             "name": "Chat",
             "icon": "feather icon-message-square",
-            "i18n": "nav.app_chat"
+            "i18n": "Chat"
         },
         {
             "url": "app-todo",
             "name": "Todo",
             "icon": "feather icon-check-square",
-            "i18n": "nav.app_todo"
+            "i18n": "Todo"
         },
         {
             "url": "app-calender",
             "name": "Calender",
             "icon": "feather icon-calendar",
-            "i18n": "nav.app_calender"
+            "i18n": "Calender"
         },
         {
             "url": "",
@@ -182,7 +183,7 @@
             "url": "colors",
             "name": "Colors",
             "icon": "feather icon-droplet",
-            "i18n": "nav.colors"
+            "i18n": "Colors"
         },
         {
             "url": "",
@@ -209,13 +210,13 @@
             "icon": "feather icon-credit-card",
             "submenu": [
                 {
-                    "url": "card-basic",
+                    "url": "blogList",
                     "name": "Basic",
                     "icon": "feather icon-circle",
                     "i18n": "nav.card_basic"
                 },
                 {
-                    "url": "card-advance",
+                    "url": "blogcreate",
                     "name": "Advance",
                     "icon": "feather icon-circle",
                     "i18n": "nav.card_advance"
@@ -401,6 +402,7 @@
         {
             "url": "",
             "navheader": "Forms & Tables",
+            "i18n": "Forms & Tables",
             "icon": ""
         },
         {
@@ -468,31 +470,31 @@
             "url": "form-layout",
             "name": "Form Layout",
             "icon": "feather icon-box",
-            "i18n": "nav.form_layout"
+            "i18n": "Form Layout"
         },
         {
             "url": "form-wizard",
             "name": "Form Wizard",
             "icon": "feather icon-package",
-            "i18n": "nav.form_wizard"
+            "i18n": "Form Wizard"
         },
         {
             "url": "form-validation",
             "name": "Form Validation",
             "icon": "feather icon-check-circle",
-            "i18n": "nav.form_validation"
+            "i18n": "Form Validation"
         },
         {
             "url": "table",
             "name": "Table",
             "icon": "feather icon-server",
-            "i18n": "nav.table"
+            "i18n": "Table"
         },
         {
             "url": "table-datatable",
             "name": "Datatable",
             "icon": "feather icon-grid",
-            "i18n": "nav.table_datatable"
+            "i18n": "Datatable"
         },
         {
             "url": "table-ag-grid",
@@ -505,35 +507,37 @@
         {
             "url": "",
             "navheader": "Pages",
+            "i18n": "Pages",
             "icon": ""
         },
         {
             "url": "page-user-profile",
             "name": "Profile",
             "icon": "feather icon-user",
-            "i18n": "nav.page_user_profile"
+            "i18n": "Profile"
         },
         {
             "url": "page-account-settings",
             "name": "Account Settings",
             "icon": "feather icon-settings",
-            "i18n": "nav.page_account_settings"
+            "i18n": "Account Settings"
         },
         {
             "url": "page-faq",
             "name": "FAQ",
             "icon": "feather icon-help-circle",
-            "i18n": "nav.page_faq"
+            "i18n": "FAQ"
         },
         {
             "url": "page-knowledge-base",
             "name": "Knowledge Base",
             "icon": "feather icon-info",
-            "i18n": "nav.page_knowledge_base"
+            "i18n": "Knowledge Base"
         },
         {
             "url": "page-search",
             "name": "Search",
+            "i18n": "Search",
             "icon": "feather icon-search",
             "i18n": "nav.page_search"
         },
@@ -541,42 +545,43 @@
             "url": "page-invoice",
             "name": "Invoice",
             "icon": "feather icon-file",
-            "i18n": "nav.page_invoice"
+            "i18n": "Invoice"
         },
         {
             "url": "",
             "name": "Authentication",
             "icon": "feather icon-unlock",
+            "i18n": "Authentication",
             "submenu": [
                 {
                     "url": "auth-login",
                     "name": "Login",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.auth_login"
+                    "i18n": "Login",
+                    "icon": "feather icon-circle"
                 },
                 {
                     "url": "auth-register",
                     "name": "Register",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.auth_register"
+                    "i18n": "Register"
                 },
                 {
                     "url": "auth-forgot-password",
                     "name": "Forgot Password",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.auth_forgot_password"
+                    "i18n": "Forgot Password"
                 },
                 {
                     "url": "auth-reset-password",
                     "name": "Reset Password",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.auth_reset_password"
+                    "i18n": "Reset Password"
                 },
                 {
                     "url": "auth-lock-screen",
                     "name": "Lock Screen",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.auth_lock_screen"
+                    "i18n": "Lock Screen"
                 }
             ]
         },
@@ -584,16 +589,18 @@
             "url": "",
             "name": "Miscellaneous",
             "icon": "feather icon-unlock",
+            "i18n": "Miscellaneous",
             "submenu": [
                 {
                     "url": "page-coming-soon",
                     "name": "Coming Soon",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.page_coming_soon"
+                    "i18n": "Coming Soon"
                 },
                 {
                     "url": "",
                     "name": "Error",
+                    "i18n": "Error",
                     "icon": "feather icon-circle",
                     "submenu": [
                         {
@@ -614,19 +621,20 @@
                     "url": "page-not-authorized",
                     "name": "Not Authorized",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.page_not_authorized"
+                    "i18n": "Not Authorized"
                 },
                 {
                     "url": "page-maintenance",
                     "name": "Maintenance",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.page_maintenance"
+                    "i18n": "Maintenance"
                 }
             ]
         },
         {
             "url": "",
             "navheader": "Charts & Maps",
+            "i18n": "Charts & Maps",
             "icon": ""
         },
         {
@@ -634,25 +642,26 @@
             "name": "Charts",
             "icon": "feather icon-pie-chart",
             "badge": "3",
+            "i18n": "Charts",
             "badgeClass": "badge badge-pill badge-success float-right mr-2",
             "submenu": [
                 {
                     "url": "chart-apex",
                     "name": "Apex",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.chart_apex"
+                    "i18n": "Apex"
                 },
                 {
                     "url": "chart-chartjs",
                     "name": "Chartjs",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.chart_chartjs"
+                    "i18n": "Chartjs"
                 },
                 {
                     "url": "chart-echarts",
                     "name": "Echarts",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.chart_echarts"
+                    "i18n": "Echarts"
                 }
             ]
         },
@@ -660,11 +669,13 @@
             "url": "maps-google",
             "name": "Google Maps",
             "icon": "feather icon-map",
-            "i18n": "nav.maps_google"
+             "i18n": "Google Maps"
+            
         },
         {
             "url": "",
             "navheader": "Extensions",
+            
             "icon": ""
         },
         {

@@ -41,7 +41,7 @@ $configData = Helper::applClasses();
                             <span data-i18n="<?= $translation ?>"><?= $menu->name ?></span>
                         </a>
                         <?php if (isset($menu->submenu)): ?>
-                            @include('panels/horizontalSubmenu', ['menu' => <?= $menu->submenu ?>])
+                            @include('panels/horizontalSubmenu', ['menu'=>$menu->submenu])
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>

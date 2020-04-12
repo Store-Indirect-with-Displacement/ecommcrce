@@ -48,6 +48,11 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::post('uploadproductimage', 'Ecommerce\ProductController@uploadImage')->name('uploadImage');
                     Route::post('removeprouct', 'Ecommerce\ProductController@removeImage')->name('removeImage');
                     Route::post('saveproduct', 'Ecommerce\ProductController@store')->name('storeproduct');
+
+                    //Blogs 
+                    Route::get('blogList', 'Ecommerce\BlogController@index')->name('blogList');
+                    Route::get('blogcreate', 'Ecommerce\BlogController@create')->name('blogcreate');
+                    Route::post('blogstore', 'Ecommerce\BlogController@store')->name('store_blog');
                 });
             });
 
@@ -70,5 +75,4 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('/poduct/{id}/checkcartitem', 'Ecommerce\ProductCartController@checkcartItem')->name('checkcartitem');
             Route::get('/poduct/{id}/checkwishitemEcommerc', 'Ecommerce\ProductCartController@checkwishlistItem')->name('checkwishlistItem');
             Route::post('/product/fliter/shop', ' Ecommerc\ProductShopController@Fliter')->name('shop_page_fliter');
-            
-                });
+        });

@@ -20,6 +20,7 @@ class CreateBlogsTable extends Migration {
             $table->boolean('is_archive')->nullable();
             $table->boolean('is_resent')->nullable();
             $table->timestamps();
+            $table->foreign('blogger_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

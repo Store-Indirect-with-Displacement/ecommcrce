@@ -20,16 +20,17 @@ class LayoutController extends Controller {
                 'name' => "Content Layout"
             ]
         ];
-        return view('Dashborad.pages.content-layout' , compact('breadcrumbs'));
+        return view('Dashborad.pages.content-layout', compact('breadcrumbs'));
     }
-    
+
     public function full() {
-        $pageConfigs =[
-           'bodyClass' => "bg-full-screen-image",
-            'blankPage' => true  ,
-            'direction' => env('MIX_CONTENT_DIRECTION' ,LaravelLocalization::getCurrentLocaleDirection()),
+        $pageConfigs = [
+            'bodyClass' => "bg-full-screen-image",
+            'blankPage' => true,
+            'mainLayoutType' => 'horizontal',
+            'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
         ];
-        return view('Dashborad.pages.full-layout' , compact('pageConfigs'));
+        return view('Dashborad.pages.full-layout', compact('pageConfigs'));
     }
 
 }

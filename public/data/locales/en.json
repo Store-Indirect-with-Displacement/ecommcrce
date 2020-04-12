@@ -39,9 +39,9 @@
     "Icons": "Icons",
     "Feather": "Feather",
     "Font Awesome": "Font Awesome",
-    "Cards": "Cards",
-    "Basic": "Basic",
-    "Advance": "Advance",
+    "Cards": "Blogs",
+    "Basic": "Main Blogs",
+    "Advance": "Create Blogs",
     "Statistics": "Statistics",
     "Card Actions": "Card Actions",
     "Table": "Table",
@@ -130,7 +130,9 @@
     "User Settings": "User Settings",
     "SKIP": "SKIP",
     "NEXT": "NEXT",
-    "Categoires": "Categoires",
-    "Product List": "Product List",
-    "Product Thumb List": "Product Thumb List"
+    "Categories": "Categories",
+    "product List": "Product List",
+    "Product Thumb List": "Product Thumb List",
+    "Details": "Details",
+    "Forms & Tables":"Forms & Tables"
 }

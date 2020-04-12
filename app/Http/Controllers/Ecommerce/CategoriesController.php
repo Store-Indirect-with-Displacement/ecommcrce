@@ -18,10 +18,15 @@ class CategoriesController extends Controller {
      */
     public function index() {
         $categories = Category::all();
+        $pageConfigs = [
+            'pageHeader' => false,
+            'mainLayoutType' => 'horizontal',
+            'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
+        ];
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
         ];
-        return view('Dashborad.pages.categories-list-view', compact('categories', 'breadcrumbs'));
+        return view('Dashborad.pages.categories-list-view', compact('categories', 'breadcrumbs','pageConfigs'));
     }
 
     /**

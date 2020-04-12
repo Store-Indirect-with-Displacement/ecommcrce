@@ -1,5 +1,7 @@
 <?php
+
 use App\Helpers\Helper;
+
 $configData = Helper::applClasses();
 ?>
 <div class="main-menu menu-fixed {{($configData['theme'] === 'light') ? "menu-light" : "menu-dark"}} menu-accordion menu-shadow" data-scroll-to-active="true">
@@ -33,13 +35,13 @@ $configData = Helper::applClasses();
                         $translation = $menu->i18n;
                     }
                     ?>
-                    <li class="nav-item {{ (request()->is($menu->url)) ? 'active' : '' }} {{ $custom_classes }}">
-                        <a href="{{ $menu->url }}">
-                            <i class="{{ $menu->icon }}"></i>
-                            <span class="menu-title" data-i18n="{{ $translation }}">{{ $menu->name }}</span>
+                    <li class="nav-item <?= (request()->is($menu->url)) ? 'active' : '' ?> <?= $custom_classes ?>">
+                        <a href="<?= $menu->url ?>">
+                            <i class="<?= $menu->icon ?>"></i>
+                            <span class="menu-title" data-i18n="<?= $translation ?>"><?= $menu->name ?></span>
                             <?php if (isset($menu->badge)): ?>
                                 <?php $badgeClasses = "badge badge-pill badge-primary float-right" ?>
-                                <span class="{{ isset($menu->badgeClass) ? $menu->badgeClass.' test' : $badgeClasses.' notTest' }} ">{{$menu->badge}}</span>
+                                <span class="<?= isset($menu->badgeClass) ? $menu->badgeClass . ' test' : $badgeClasses . ' notTest' ?>"><?= $menu->badge ?></span>
                             <?php endif; ?>
                         </a>
                         <?php if (isset($menu->submenu)): ?>

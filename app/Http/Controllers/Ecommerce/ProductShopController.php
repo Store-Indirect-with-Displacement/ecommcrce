@@ -18,6 +18,7 @@ class ProductShopController extends Controller {
         $pageConfigs = [
             'contentLayout' => "content-detached-left-sidebar",
             'bodyClass' => 'ecommerce-application',
+            'mainLayoutType' => 'horizontal',
         ];
 
         $breadcrumbs = [

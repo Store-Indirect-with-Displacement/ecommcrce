@@ -7,6 +7,7 @@ use App\SubCategory;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use App\BlogPostions;
 
 /**
  * App\SubSubCategory
@@ -56,6 +57,8 @@ class SubSubCategory extends Model {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 
- 
+    public function positions() {
+        return $this->hasMany(BlogPostions::class);
+    }
 
 }

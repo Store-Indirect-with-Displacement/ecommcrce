@@ -8,7 +8,7 @@ if (isset($pageConfigs)) {
 ?>
 
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}"  dir="<?= LaravelLocalization::getCurrentLocaleDirection()?>"data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}">
+<html lang="{{ app()->getLocale() }}"  dir="<?= LaravelLocalization::getCurrentLocaleDirection() ?>"data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@ if (isset($pageConfigs)) {
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title') - E-Commerce DashBorad</title>
-        <link rel="shortcut icon" type="image/x-icon" href="<?= asset('images/logo/favicon.ico')?>">
+        <link rel="shortcut icon" type="image/x-icon" href="<?= asset('images/logo/favicon.ico') ?>">
 
         {{-- Include core + vendor Styles --}}
         @include('panels/styles')
@@ -24,7 +24,7 @@ if (isset($pageConfigs)) {
     </head>
 
     {{-- {!! Helper::applClasses() !!} --}}
-<?php $configData = Helper::applClasses(); ?>
+    <?php $configData = Helper::applClasses(); ?>
 
     <body class="horizontal-layout horizontal-menu navbar-floating <?= $configData['blankPageClass'] ?> <?= $configData['bodyClass'] ?>  <?= ($configData['theme'] === 'light') ? '' : $configData['theme'] ?> <?= $configData['sidebarClass'] ?> <?= $configData['navbarType'] ?> <?= $configData['footerType'] ?> footer-light" data-menu="horizontal-menu" data-col="2-columns" data-open="hover"  data-layout="<?= $configData['theme'] ?>">
 
@@ -48,7 +48,7 @@ if (isset($pageConfigs)) {
                 {{-- Include Breadcrumb --}}
                 <?php if ($configData['pageHeader'] == true): ?>
                     @include('panels.breadcrumb')
-<?php endif; ?>
+                <?php endif; ?>
                 <div class="<?= $configData['sidebarPositionClass'] ?>">
                     <div class="sidebar">
                         {{-- Include Sidebar Content --}}
@@ -66,9 +66,9 @@ if (isset($pageConfigs)) {
         <!-- End: Content-->
 
         <?php if ($configData['blankPage'] == false): ?>
-            @include('pages/customizer')
-            @include('pages/buy-now')
-<?php endif; ?>
+            @include('Dashborad.pages.customizer')
+            @include('Dashborad.pages.buy-now')
+        <?php endif; ?>
 
         <div class="sidenav-overlay"></div>
         <div class="drag-target"></div>

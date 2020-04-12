@@ -16,6 +16,7 @@ class ProductCartController extends Controller {
     public function index() {
         $pageConfigs = [
             'bodyClass' => 'ecommerce-application',
+            'mainLayoutType' => 'horizontal',
         ];
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "eCommerce"], ['name' => "Checkout"]

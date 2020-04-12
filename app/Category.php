@@ -7,6 +7,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use App\SubCategory;
 use App\Product;
+use App\BlogPostions;
 
 /**
  * App\Category
@@ -55,6 +56,9 @@ class Category extends Model implements TranslatableContract {
 
     public function products() {
         return $this->hasMany(Product::class);
+    }
+    public function positions() {
+        return $this->hasMany(BlogPostions::class);
     }
 
 }
