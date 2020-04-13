@@ -41,6 +41,8 @@ use App\BlogPostions;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereIsNavbar($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
  * @property-read int|null $products_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\BlogPostions[] $positions
+ * @property-read int|null $positions_count
  */
 class Category extends Model implements TranslatableContract {
 

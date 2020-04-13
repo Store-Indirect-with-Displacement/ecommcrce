@@ -53,11 +53,12 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::get('blogList', 'Ecommerce\BlogController@index')->name('blogList');
                     Route::get('blogcreate', 'Ecommerce\BlogController@create')->name('blogcreate');
                     Route::post('blogstore', 'Ecommerce\BlogController@store')->name('store_blog');
+                    Route::get('editblog/{id}', 'Ecommerce\BlogController@edit')->name('editblog');
+                    Route::post('updateblog/{id}', 'Ecommerce\BlogController@update')->name('updateblog');
                 });
             });
 
             //Proudct Fornt End  
-
             Route::get('/product/cart', 'Ecommerce\ProductCartController@index')->name('productcart');
             Route::get('/product/cart/data', 'Ecommerce\ProductCartController@getCart')->name('getcart');
             Route::get('/product/wishlist', 'Ecommerce\ProductCartController@wishListIndex')->name('productwishlist');

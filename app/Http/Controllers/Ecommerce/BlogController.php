@@ -29,8 +29,8 @@ class BlogController extends Controller {
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
         ];
-        $blogs = Blog::all();
-        return view('Dashborad.pages.blogs.blog', compact('breadcrumbs', 'pageConfigs','blogs'));
+        $blogs = Blog::latest()->paginate(10);
+        return view('Dashborad.pages.blogs.blog', compact('breadcrumbs', 'pageConfigs', 'blogs'));
     }
 
     /**
@@ -183,7 +183,19 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-//
+        $pageConfigs = [
+            'pageHeader' => false,
+            'mainLayoutType' => 'horizontal',
+            'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
+        ];
+        $breadcrumbs = [
+            ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
+        ];
+        $blog = Blog::where('id', $id)->first();
+        $blogPos = BlogPostions::where('blog_id', $blog->id)->get();
+        $categires = Category::all();
+
+        return view('Dashborad.pages.blogs.edit_blog', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos'));
     }
 
     /**
@@ -194,7 +206,94 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-//
+        $rules = [
+            'title_en' => 'required|string|max:255',
+            'title_ar' => 'required|string|max:255',
+            'body_en' => 'required|max:1000',
+            'body_ar' => 'required|max:1000',
+            'content_en' => 'required|max:1000',
+            'content_ar' => 'required|max:1000',
+            'Image' => 'nullable|mimes:jpg,jpeg,png,gif,mp4,mwv,wma,webm'
+        ];
+        $request->validate($rules);
+        $blog = Blog::where('id', $id)->first();
+        $blog->translateOrNew('en')->title = $request->input('title_en');
+        $blog->translateOrNew('ar')->title = $request->input('title_ar');
+        $blog->translateOrNew('en')->body = $request->input('body_en');
+        $blog->translateOrNew('ar')->body = $request->input('body_ar');
+        $blog->translateOrNew('en')->content = $request->input('content_en');
+        $blog->translateOrNew('ar')->content = $request->input('content_en');
+        $blog->date = $this->setdate();
+        if ($request->hasFile('Image')) {
+            $imagepath = 'images/pages/bloglist/blogmainImages';
+            $path = $request->file('Image')->storeAs($imagepath, $request->file('Image')->getClientOriginalName(), ['disk' => 'public']);
+            $blog->image = $path;
+        }
+        $user = auth()->user();
+        $blog->user()->associate($user);
+        $blog->update();
+        //update positison
+        $blogpos = BlogPostions::where('blog_id', $blog->id)->get();
+
+
+        foreach ($blogpos as $pos) {
+            if ($request->has('positions_categories')) {
+                foreach ($request->input('positions_categories') as $cat_id) {
+                    $cat = Category::where('id', $cat_id)->first();
+                    $pos->blog()->associate($blog);
+                    $pos->Category()->associate($cat);
+                    $pos->update();
+                }
+            }
+
+            if ($request->has('positions_subcategories')) {
+                foreach ($request->input('positions_subcategories')as $subcat_id) {
+                    $subCategory = SubCategory::where('id', $subcat_id)->first();
+                    $cat = Category::where('id', $subCategory->category_id)->first();
+                    $blogpostions = BlogPostions::where('category_id', $cat->id)
+                            ->where('blog_id', $blog->id)
+                            ->first();
+                    if ($blogpostions) {
+                        $blogpostions->blog()->associate($blog);
+                        $blogpostions->SubCategory()->associate($subCategory);
+                        $blogpostions->update();
+                    } else {
+                        $pos->blog()->associate($blog);
+                        $pos->Category()->associate($cat);
+                        $pos->SubCategory()->associate($subCategory);
+                        $pos->update();
+                    }
+                }
+            }
+
+
+            if ($request->has('positions_subsubcategories')) {
+                foreach ($request->input('positions_subsubcategories')as $subsubcat_id) {
+                    $subsubCategory = SubSubCategory::where('id', $subsubcat_id)->first();
+                    //find subCategory
+                    $subCategory = SubCategory::where('id', $subsubCategory->sub_category_id)->first();
+                    //find category 
+                    $cat = Category::where('id', $subCategory->category_id)->first();
+                    //find blogs by category and subcategory
+                    $blogpostions = BlogPostions::where('category_id', $cat->id)
+                            ->where('sub_category_id', $subCategory->id)
+                            ->where('blog_id', $blog->id)
+                            ->first();
+                    if ($blogpostions) {
+                        $blogpostions->blog()->associate($blog);
+                        $blogpostions->SubSubCategory()->associate($subsubCategory);
+                        $blogpostions->update();
+                    } else {
+                        $pos->blog()->associate($blog);
+                        $pos->Category()->associate($cat);
+                        $pos->SubCategory()->associate($subCategory);
+                        $pos->SubSubCategory()->associate($subsubCategory);
+                        $pos->update();
+                    }
+                }
+            }
+        }
+        return redirect()->route('blogList');
     }
 
     /**
@@ -204,7 +303,12 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-//
+        $blog = Blog::where('id', $id)->first();
+        $blogpos = BlogPostions::where('blog_id', $blog->id)->get();
+        foreach ($blogpos as $pos) {
+            BlogPostions::where('id', $pos->id)->delete();
+        }
+        return $blog->delete();
     }
 
 }

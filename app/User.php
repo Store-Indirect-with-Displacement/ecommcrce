@@ -34,6 +34,8 @@ use App\Blog;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Blog[] $blogs
+ * @property-read int|null $blogs_count
  */
 class User extends Authenticatable {
 

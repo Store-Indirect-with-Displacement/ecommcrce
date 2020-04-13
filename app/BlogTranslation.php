@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogTranslation whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogTranslation whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $content
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogTranslation whereContent($value)
  */
 class BlogTranslation extends Model {
 

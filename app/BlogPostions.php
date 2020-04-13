@@ -23,6 +23,17 @@ use App\SubSubCategory;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogPostions whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogPostions whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $blog_id
+ * @property int $category_id
+ * @property int|null $sub_category_id
+ * @property int|null $sub_subcategory_id
+ * @property-read \App\Category $Category
+ * @property-read \App\SubCategory|null $SubCategory
+ * @property-read \App\SubSubCategory|null $SubSubCategory
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogPostions whereBlogId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogPostions whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogPostions whereSubCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BlogPostions whereSubSubcategoryId($value)
  */
 class BlogPostions extends Model {
 

@@ -42,6 +42,8 @@ use App\BlogPostions;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
  * @property-read int|null $products_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\BlogPostions[] $positions
+ * @property-read int|null $positions_count
  */
 class SubCategory extends Model {
 

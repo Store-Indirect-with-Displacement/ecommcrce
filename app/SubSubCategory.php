@@ -40,6 +40,8 @@ use App\BlogPostions;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SubSubCategory whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\SubSubCategory withTranslation()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\BlogPostions[] $positions
+ * @property-read int|null $positions_count
  */
 class SubSubCategory extends Model {
 

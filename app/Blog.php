@@ -44,6 +44,9 @@ use App\BlogPostions;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog withTranslation()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\BlogPostions[] $positions
+ * @property-read int|null $positions_count
+ * @property-read \App\User $user
  */
 class Blog extends Model {
 
