@@ -191,9 +191,8 @@
                             <i class="feather icon-message-square"></i>
                         </div>
                     </div>
-                    <fieldset class="form-label-group mb-50">
-                        <textarea class="form-control" id="label-textarea" rows="3" placeholder="Add Comment"></textarea>
-                        <label for="label-textarea">Add Comment</label>
+                    <fieldset class="form-group">
+                        <input type="text" id="roundText" class="form-control round" placeholder="ADD Comment">
                     </fieldset>
                     <button type="button" class="btn btn-sm btn-primary">Post Comment</button>
                 </div>
