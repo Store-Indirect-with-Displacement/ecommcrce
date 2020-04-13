@@ -180,8 +180,11 @@ class BlogController extends Controller {
         ];
         $blog = Blog::where('id', $id)->first();
         $blogPos = BlogPostions::where('blog_id', $blog->id)->get();
-        $categires = Category::all();
-        return view('Dashborad.pages.blogs.show_blog', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos'));
+        $blogarchiveCount = Blog::where('is_archive', 1)->count();
+        $blogunarchiveCount=$blogunarchive = Blog::where('is_archive', 0)->count();
+        $blogarchive = Blog::where('is_archive', 1)->paginate(5);
+        $blogunarchive = Blog::where('is_archive', 0)->paginate(5);
+        return view('Dashborad.pages.blogs.show_blog', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos', 'blogarchive', 'blogunarchive','blogarchiveCount','blogunarchiveCount'));
     }
 
     /**
@@ -317,6 +320,20 @@ class BlogController extends Controller {
             BlogPostions::where('id', $pos->id)->delete();
         }
         return $blog->delete();
+    }
+
+    public function addToArchive($id) {
+        $blog = Blog::where('id', $id)->first();
+        $blog->is_archive = 1;
+        $blog->update();
+        return redirect()->route('showblog', $id);
+    }
+
+    public function removetoArchive($id) {
+        $blog = Blog::where('id', $id)->first();
+        $blog->is_archive = 0;
+        $blog->update();
+        return redirect()->route('showblog', $id);
     }
 
 }

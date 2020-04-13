@@ -57,6 +57,8 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::post('updateblog/{id}', 'Ecommerce\BlogController@update')->name('updateblog');
                     Route::delete('destroyblog/{id}', 'Ecommerce\BlogController@destroy')->name('destroyblog');
                     Route::get('showblog/{id}', 'Ecommerce\BlogController@show')->name('showblog');
+                    Route::get('addtoArchive/{id}', 'Ecommerce\BlogController@addToArchive')->name('addtoArchive');
+                    Route::get('removetoArchive\{id}', 'Ecommerce\BlogController@removetoArchive')->name('removetoArchive');
                 });
             });
 

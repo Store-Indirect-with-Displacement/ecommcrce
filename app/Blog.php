@@ -52,7 +52,7 @@ class Blog extends Model {
 
     use Translatable;
 
-    public $fillable = ['blogger_id', 'date', 'is_archive', 'is_resnt', 'image'];
+    public $fillable = ['blogger_id', 'date', 'is_archive', 'is_resent', 'image'];
     public $translatedAttributes = ['title', 'body', 'content'];
 
     /**

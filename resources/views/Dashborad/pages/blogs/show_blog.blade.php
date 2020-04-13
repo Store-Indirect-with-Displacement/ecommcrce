@@ -26,37 +26,78 @@
                         <p><?= $blog->user->name ?></p>
                     </div>
                     <div class="mt-1">
-                        <h6 class="mb-0">Posted:</h6>
+                        <h6 class="mb-0">Posted At:</h6>
                         <p><?= $blog->date ?></p>
                     </div>
                     <div class="mt-1">
-                        <h6 class="mb-0">Lives:</h6>
-                        <p>New York, USA</p>
+                        <h6 class="mb-0">Post in:</h6>
+                        <?php foreach ($blogPos as $key => $pos): ?>
+                            <?php if ($pos->category_id != null): ?>
+                                <p>
+
+                                    - <?= App\Category::where('id', $pos->category_id)->first()->name ?> 
+                                    <?php if ($pos->sub_category_id != null) : ?>
+                                        ,<?= \App\SubCategory::where('id', $pos->sub_category_id)->first()->name ?>
+                                    <?php endif; ?>
+
+                                    <?php if ($pos->sub_subcategory_id != null) : ?>
+                                        ,<?= App\SubSubCategory::where('id', $pos->sub_subcategory_id)->first()->name ?>
+                                    <?php endif; ?>
+                                </p>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
 
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Archive(231)</h4>
-                </div>
-                <div class="card-body suggested-block">
-                    <div class="d-flex justify-content-start align-items-center mb-1">
-                        <div class=" mr-50">
-                            <a href="#">
-                                <img src="{{ asset('images/portrait/small/avatar-s-5.jpg') }}" alt="avtar img holder" height="60" width="60">
-                            </a> 
-                        </div>
-                        <div class="user-page-info">
-                            <h6 class="mb-0"><?= $blog->title ?></h6>
-                            <span class="font-small-2"><?= $blog->date ?></span>
-                        </div>
-
+            <?php if ($blog->is_archive == 0): ?>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Archive(<?= $blogarchiveCount ?>)</h4>
                     </div>
+                    <div class="card-body suggested-block">
+                        <?php foreach ($blogarchive as $arc): ?>
+                            <div class="d-flex justify-content-start align-items-center mb-1">
+                                <div class=" mr-50">
+                                    <a href="<?= route('showblog', $arc->id) ?>">
+                                        <img src="<?= asset('storage/' . $arc->image) ?>" alt="avtar img holder" height="60" width="60">
+                                    </a> 
+                                </div>
+                                <div class="user-page-info">
+                                    <h6 class="mb-0"><a href="<?= route('showblog', $arc->id) ?>"><?= $arc->title ?></a></h6>
 
-                    <button type="button" class="btn btn-primary w-100 mt-1"><i class="feather icon-plus mr-25"></i>Load More</button>
+                                    <span class="font-small-2"><?= $arc->date ?></span>
+                                </div>
+
+                            </div>
+                        <?php endforeach; ?>
+                        <button type="button" class="btn btn-primary w-100 mt-1"><i class="feather icon-plus mr-25"></i>Load More</button>
+                    </div>
                 </div>
-            </div>
+            <?php else: ?>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Blogs(<?= $blogunarchiveCount ?>)</h4>
+                    </div>
+                    <div class="card-body suggested-block">
+                        <?php foreach ($blogunarchive as $unarc): ?>
+                            <div class="d-flex justify-content-start align-items-center mb-1">
+                                <div class=" mr-50">
+                                    <a href="<?= route('showblog', $unarc->id) ?>">
+                                        <img src="<?= asset('storage/' . $unarc->image) ?>" alt="avtar img holder" height="60" width="60">
+                                    </a> 
+                                </div>
+                                <div class="user-page-info">
+                                    <h6 class="mb-0"><a href="<?= route('showblog', $unarc->id) ?>"><?= $unarc->title ?></a></h6>
+                                    <span class="font-small-2"><?= $unarc->date ?></span>
+                                </div>
+
+                            </div>
+                        <?php endforeach; ?>
+                        <button type="button" class="btn btn-primary w-100 mt-1"><i class="feather icon-plus mr-25"></i>Load More</button>
+                    </div>
+                </div>
+            <?php endif; ?>
 
         </div>
         <div class="col-lg-6 col-12">
@@ -70,7 +111,11 @@
                             <p class="mb-0"><?= $blog->title ?></p>
                             <span class="font-small-2"><?= $blog->date ?></span>
                         </div>
-                        <div class="ml-auto user-like text-danger"><button type="button" class="btn btn-sm btn-primary">Add To Archive</button></div>
+                        <?php if ($blog->is_archive == 0): ?>
+                            <div class="ml-auto user-like text-danger"><a href="<?= route('addtoArchive', $blog->id) ?>" class="btn btn-sm btn-primary">Add To Archive</a></div>
+                        <?php else: ?>
+                            <div class="ml-auto user-like text-danger"><a href="<?= route('removetoArchive', $blog->id) ?>" class="btn btn-sm btn-danger">Remove From Archive</a></div>
+                        <?php endif; ?>
                     </div>
                     <p><?= $blog->body ?><code id="headingCollapse1" data-toggle="collapse" role="button" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
 
@@ -197,26 +242,26 @@
                     <i class="feather icon-more-horizontal cursor-pointer"></i>
                 </div>
                 <div class="card-body">
-                 <div class="card-body suggested-block">
-                    <div class="d-flex justify-content-start align-items-center mb-1">
-                        <div class=" mr-50">
-                            <a href="#">
-                                <img src="{{ asset('images/portrait/small/avatar-s-5.jpg') }}" alt="avtar img holder" height="60" width="60">
-                            </a> 
-                        </div>
-                        <div class="user-page-info">
-                            <h6 class="mb-0"><?= $blog->title ?></h6>
-                            <span class="font-small-2"><?= $blog->date ?></span>
+                    <div class="card-body suggested-block">
+                        <div class="d-flex justify-content-start align-items-center mb-1">
+                            <div class=" mr-50">
+                                <a href="#">
+                                    <img src="{{ asset('images/portrait/small/avatar-s-5.jpg') }}" alt="avtar img holder" height="60" width="60">
+                                </a> 
+                            </div>
+                            <div class="user-page-info">
+                                <h6 class="mb-0"><?= $blog->title ?></h6>
+                                <span class="font-small-2"><?= $blog->date ?></span>
+                            </div>
+
                         </div>
 
+                        <button type="button" class="btn btn-primary w-100 mt-1"><i class="feather icon-plus mr-25"></i>Load More</button>
                     </div>
 
-                    <button type="button" class="btn btn-primary w-100 mt-1"><i class="feather icon-plus mr-25"></i>Load More</button>
-                </div>
-                   
                 </div>
             </div>
-         
+
         </div>
     </div>
 

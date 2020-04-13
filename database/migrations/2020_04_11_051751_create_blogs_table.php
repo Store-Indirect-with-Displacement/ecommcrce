@@ -17,8 +17,8 @@ class CreateBlogsTable extends Migration {
             $table->bigInteger('blogger_id')->unsigned();
             $table->string('image')->nullable();
             $table->string('date');
-            $table->boolean('is_archive')->nullable();
-            $table->boolean('is_resent')->nullable();
+            $table->boolean('is_archive')->default(0);
+            $table->boolean('is_resent')->default(0);
             $table->timestamps();
             $table->foreign('blogger_id')->references('id')->on('users')->onDelete('cascade');
         });
