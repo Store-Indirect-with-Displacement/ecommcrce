@@ -27,7 +27,7 @@ class BlogsTableSeeder extends Seeder {
             $blog->translateOrNew('en')->content = "It seems from the moment you begin to take your love of astronomy seriously, the thing that is on your mind is what kind of telescope will you get. And there is no question, investing in a good telescope can really enhance your enjoyment of your new passion in astronomy.";
             $blog->translateOrNew('ar')->content = "يبدو أنه منذ اللحظة التي بدأت فيها تأخذ حبك لعلم الفلك على محمل الجد ، فإن الشيء الذي يدور في ذهنك هو نوع التلسكوب الذي ستحصل عليه. ولا شك أن الاستثمار في مقراب جيد يمكن أن يعزز استمتاعك بشغفك الجديد في علم الفلك.";
             $blog->date = $this->setdate();
-            //create deflaut image
+//create deflaut image
             if ($i == 0) {
                 $defaultpath = public_path('images/pages/card-img-overlay.jpg');
                 $imagepath = 'images/pages/bloglist/blogmainImages';
@@ -282,7 +282,7 @@ class BlogsTableSeeder extends Seeder {
 
     private function setdate() {
         $date = now()->timezone('egypt');
-        $format = "D , j M  \A\T H:i ";
+        $format = "d F Y  \a\t\ h:i a ";
         $dateFormat = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format($format);
         $DateTime = strtoupper($dateFormat);
         return $DateTime;

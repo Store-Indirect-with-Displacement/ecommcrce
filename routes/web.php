@@ -46,7 +46,7 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::get('getsubcategorirs/{id}', 'Ecommerce\ProductController@getsubcategories')->name('getsubcategories');
                     Route::get('getsubsubcategorirs/{id}', 'Ecommerce\ProductController@getsubsubcategories')->name('getsubsubcategories');
                     Route::post('uploadproductimage', 'Ecommerce\ProductController@uploadImage')->name('uploadImage');
-                    Route::post('removeprouct', 'Ecommerce\ProductController@removeImage')->name('removeImage');
+                    Route::post('removeprouctimage', 'Ecommerce\ProductController@removeImage')->name('removeImage');
                     Route::post('saveproduct', 'Ecommerce\ProductController@store')->name('storeproduct');
 
                     //Blogs 
@@ -55,6 +55,8 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::post('blogstore', 'Ecommerce\BlogController@store')->name('store_blog');
                     Route::get('editblog/{id}', 'Ecommerce\BlogController@edit')->name('editblog');
                     Route::post('updateblog/{id}', 'Ecommerce\BlogController@update')->name('updateblog');
+                    Route::delete('destroyblog/{id}', 'Ecommerce\BlogController@destroy')->name('destroyblog');
+                    Route::get('showblog/{id}', 'Ecommerce\BlogController@show')->name('showblog');
                 });
             });
 

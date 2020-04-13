@@ -3,7 +3,6 @@
 
 @section('title', 'Create Blog')
 
-@section('content')
 <?php if (LaravelLocalization::getCurrentLocaleDirection() === 'ltr'): ?>
     @section('page-style')
     <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/validation/form-validation.css')}}">
@@ -15,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('vendors/css/forms/select/select2.min.css')}}">
     @endsection
 <?php endif; ?>
+@section('content')
+
 <!-- // Basic multiple Column Form section start -->
 <section id="multiple-column-form" class="simple-validation">
     <div class="row match-height">

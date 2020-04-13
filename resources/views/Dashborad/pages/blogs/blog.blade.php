@@ -4,23 +4,39 @@
 
 @section('page-style')
 {{-- Page Css files --}}
-<link rel="stylesheet" href="{{ asset(mix('css/pages/dashboard-ecommerce.css')) }}">
+<?php if (LaravelLocalization::getCurrentLocaleDirection() === 'ltr'): ?>
+    <link rel="stylesheet" href="{{ asset(mix('css/pages/dashboard-ecommerce.css')) }}">
+<?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
+    <link rel="stylesheet" href="{{ asset('css-rtl/pages/dashboard-ecommerce.css') }}">
+<?php endif; ?>
+<script>
+    window.Laravel = <?= json_encode(['csrfToken' => csrf_token()]); ?>
+
+</script>
+<?php if (!auth()->guest()): ?>
+    <script>
+        window.Laravel.removeblog = '<?= route('destroyblog', ':id') ?>';
+    </script>
+<?php endif; ?>
+
+
 @endsection
 @section('content')
 <section id="card-caps">
-
-    <div class="row my-3">
+    <div class="row my-3" id="blogs">
         <?php if (!empty($blogs) && $blogs->count()): ?>
             <?php foreach ($blogs as $blog): ?>
-                <div class="col-xl-6 col-md-6 col-sm-12">
+                <div class="col-xl-6 col-md-6 col-sm-12" id="blogItem">
                     <div class="card">
                         <div class="card-content">
-
-                            <img class="card-img-top img-fluid" src="<?= asset('storage/' . $blog->image) ?>" alt="Card image cap">
+                            <span id="blogId" style="display: none"><?= $blog->id ?></span>
+                            <a href="<?= route('showblog', $blog->id) ?>">
+                                <img class="card-img-top img-fluid" src="<?= asset('storage/' . $blog->image) ?>" alt="Card image cap">
+                            </a>
                             <div class="card-body">
                                 <div class="card-btns d-flex justify-content-between">
                                     <div class="d-flex justify-content-start mt-2">
-                                        <a href="#"><h4 class="card-title"><?= $blog->title ?></h4></a>
+                                        <a href="<?= route('showblog', $blog->id) ?>"><h4 class="card-title"><?= $blog->title ?></h4></a>
                                     </div>
                                     <div class="d-flex justify-content-start mt-2">
                                         <div class="btn-group">
@@ -30,8 +46,8 @@
                                                 </button>
                                                 <div class="dropdown-menu" x-placement="top-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -140px, 0px);">
                                                     <a class="dropdown-item" href="<?= route('editblog', $blog->id) ?>">{{__('main.Edit')}}</a>
-                                                    <a class="dropdown-item" href="#">{{__('main.Delete')}}</a>
-                                                    <a class="dropdown-item" href="#">Option 3</a>
+                                                    <a class="dropdown-item" id="blogdelete" href="javascript:void(0)">{{__('main.Delete')}}</a>
+                                                    <a class="dropdown-item" href="<?= route('showblog', $blog->id) ?>">{{__('main.Show')}}</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -104,7 +104,6 @@ class BlogController extends Controller {
                 $blogpos->save();
             }
         }
-
         if ($request->has('positions_subcategories')) {
             foreach ($request->input('positions_subcategories')as $subcat_id) {
                 $subCategory = SubCategory::where('id', $subcat_id)->first();
@@ -123,8 +122,6 @@ class BlogController extends Controller {
                 }
             }
         }
-
-
         if ($request->has('positions_subsubcategories')) {
             foreach ($request->input('positions_subsubcategories')as $subsubcat_id) {
                 $subsubCategory = SubSubCategory::where('id', $subsubcat_id)->first();
@@ -160,7 +157,7 @@ class BlogController extends Controller {
      */
     private function setdate() {
         $date = now()->timezone('egypt');
-        $format = "D , j M  \A\T H:i ";
+        $format = "d F Y  \at h:i a ";
         $dateFormat = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format($format);
         $DateTime = strtoupper($dateFormat);
         return $DateTime;
@@ -173,7 +170,18 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-//
+        $pageConfigs = [
+            'pageHeader' => false,
+            'mainLayoutType' => 'horizontal',
+            'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
+        ];
+        $breadcrumbs = [
+            ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
+        ];
+        $blog = Blog::where('id', $id)->first();
+        $blogPos = BlogPostions::where('blog_id', $blog->id)->get();
+        $categires = Category::all();
+        return view('Dashborad.pages.blogs.show_blog', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos'));
     }
 
     /**
@@ -193,9 +201,9 @@ class BlogController extends Controller {
         ];
         $blog = Blog::where('id', $id)->first();
         $blogPos = BlogPostions::where('blog_id', $blog->id)->get();
-        $categires = Category::all();
 
-        return view('Dashborad.pages.blogs.edit_blog', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos'));
+
+        return view('Dashborad.pages.blogs.edit_blog', compact('pageConfigs', 'breadcrumbs', 'blog', 'blogPos'));
     }
 
     /**
