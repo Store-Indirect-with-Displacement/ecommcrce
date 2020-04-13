@@ -181,10 +181,10 @@ class BlogController extends Controller {
         $blog = Blog::where('id', $id)->first();
         $blogPos = BlogPostions::where('blog_id', $blog->id)->get();
         $blogarchiveCount = Blog::where('is_archive', 1)->count();
-        $blogunarchiveCount=$blogunarchive = Blog::where('is_archive', 0)->count();
+        $blogunarchiveCount = $blogunarchive = Blog::where('is_archive', 0)->count();
         $blogarchive = Blog::where('is_archive', 1)->paginate(5);
         $blogunarchive = Blog::where('is_archive', 0)->paginate(5);
-        return view('Dashborad.pages.blogs.show_blog', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos', 'blogarchive', 'blogunarchive','blogarchiveCount','blogunarchiveCount'));
+        return view('Dashborad.pages.blogs.show_blog', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos', 'blogarchive', 'blogunarchive', 'blogarchiveCount', 'blogunarchiveCount'));
     }
 
     /**
@@ -334,6 +334,54 @@ class BlogController extends Controller {
         $blog->is_archive = 0;
         $blog->update();
         return redirect()->route('showblog', $id);
+    }
+
+    //Site 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function _index() {
+        $pageConfigs = [
+            'pageHeader' => false,
+            'mainLayoutType' => 'horizontal',
+            'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
+        ];
+        $breadcrumbs = [
+            ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
+        ];
+        $blogarchiveCount = Blog::where('is_archive', 1)->count();
+        $blogunarchiveCount = $blogunarchive = Blog::where('is_archive', 0)->count();
+        $blogarchive = Blog::where('is_archive', 1)->paginate(5);
+        $blogunarchive = Blog::where('is_archive', 0)->paginate(5);
+        $blogs = Blog::all();
+        return view('site.ForntEnd.blogs.blog_index', compact('pageConfigs', 'breadcrumbs', 'blogs', 'blogarchive', 'blogunarchive', 'blogarchiveCount', 'blogunarchiveCount'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function _show($id) {
+        $pageConfigs = [
+            'pageHeader' => false,
+            'mainLayoutType' => 'horizontal',
+            'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
+        ];
+        $breadcrumbs = [
+            ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"]
+        ];
+        $blog = Blog::where('id', $id)->first();
+        $blogPos = BlogPostions::where('blog_id', $blog->id)->get();
+        $blogarchiveCount = Blog::where('is_archive', 1)->count();
+        $blogunarchiveCount = $blogunarchive = Blog::where('is_archive', 0)->count();
+        $blogarchive = Blog::where('is_archive', 1)->paginate(5);
+        $blogunarchive = Blog::where('is_archive', 0)->paginate(5);
+        return view('site.ForntEnd.blogs.blog_show', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos', 'blogarchive', 'blogunarchive', 'blogarchiveCount', 'blogunarchiveCount'));
     }
 
 }

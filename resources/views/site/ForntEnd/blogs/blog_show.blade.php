@@ -1,4 +1,4 @@
-@extends('Dashborad/layouts/contentLayoutMaster')
+@extends('site/layouts/contentLayoutMaster')
 
 @section('title', 'blog')
 
@@ -6,8 +6,10 @@
 {{-- Page Css files --}}
 <?php if (LaravelLocalization::getCurrentLocaleDirection() === 'ltr'): ?>
     <link rel="stylesheet" href="{{ asset(mix('css/pages/users.css')) }}">
+    <link rel="stylesheet" href="{{asset('userInterface/css/style.css')}}">
 <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
     <link rel="stylesheet" href="{{ asset('css-rtl/pages/users.css') }}">
+    <link rel="stylesheet" href="{{asset('userInterface/css/style.css')}}">
 <?php endif; ?>
 @endsection
 @section('content')

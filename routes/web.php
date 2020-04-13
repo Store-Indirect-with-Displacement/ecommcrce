@@ -80,4 +80,9 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('/poduct/{id}/checkcartitem', 'Ecommerce\ProductCartController@checkcartItem')->name('checkcartitem');
             Route::get('/poduct/{id}/checkwishitemEcommerc', 'Ecommerce\ProductCartController@checkwishlistItem')->name('checkwishlistItem');
             Route::post('/product/fliter/shop', ' Ecommerc\ProductShopController@Fliter')->name('shop_page_fliter');
+
+
+            //Blog
+            Route::get('siteblogList', 'Ecommerce\BlogController@_index')->name('siteblogList');
+            Route::get('siteblogshow\{id}', 'Ecommerce\BlogController@_show')->name('siteblogshow');
         });
