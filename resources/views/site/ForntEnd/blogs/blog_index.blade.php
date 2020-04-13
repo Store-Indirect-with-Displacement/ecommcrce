@@ -163,35 +163,25 @@
                                 </p>
                             </div>
                             <div class="d-flex justify-content-start align-items-center mb-1">
-                                <div class="avatar mr-50">
-                                    <img src="{{ asset('images/portrait/small/avatar-s-6.jpg') }}" alt="Avatar" height="30" width="30">
+
+                                <div class="fonticon-container">
+                                    <div class="fonticon-wrap" style="width: 20px;height: 20px"><i class="fa fa-heart" style="font-size: 20px"></i></div>
+
                                 </div>
-                                <div class="user-page-info">
-                                    <h6 class="mb-0">Kitty Allanson</h6>
-                                    <span class="font-small-2">orthoplumbate morningtide naphthaline exarteritis</span>
+
+                                <div class="ml-auto">
+                                    <div class=" fonticon-container">
+                                        <div class="fonticon-wrap" style="width: 20px;height: 20px"><i class="fa fa-envelope-o" style="font-size: 20px"></i></div>
+
+                                    </div>
                                 </div>
-                                <div class="ml-auto cursor-pointer">
-                                    <i class="feather icon-heart mr-50"></i>
-                                    <i class="feather icon-message-square"></i>
+                                <p class="ml-auto d-flex align-items-center">
+                                <div class=" fonticon-container">
+                                    <div style="width: 20px;height: 20px" class="fonticon-wrap"><i class="fa fa-share"style="font-size: 20px"></i></div>
+
                                 </div>
+                                </p>
                             </div>
-                            <div class="d-flex justify-content-start align-items-center mb-2">
-                                <div class="avatar mr-50">
-                                    <img src="{{ asset('images/portrait/small/avatar-s-8.jpg') }}" alt="Avatar" height="30" width="30">
-                                </div>
-                                <div class="user-page-info">
-                                    <h6 class="mb-0">Jeanie Bulgrin</h6>
-                                    <span class="font-small-2">blockiness pandemy metaxylene speckle coppy</span>
-                                </div>
-                                <div class="ml-auto cursor-pointer">
-                                    <i class="feather icon-heart mr-50"></i>
-                                    <i class="feather icon-message-square"></i>
-                                </div>
-                            </div>
-                            <fieldset class="form-group">
-                                <input type="text" id="roundText" class="form-control round" placeholder="ADD Comment">
-                            </fieldset>
-                            <button type="button" class="btn btn-sm btn-primary">Post Comment</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
