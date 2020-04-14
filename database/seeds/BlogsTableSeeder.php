@@ -38,6 +38,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 1)->first();
+                $blog->user()->associate($user);
             }
             if ($i == 1) {
                 $defaultpath = public_path('images/pages/content-img-1.jpg');
@@ -49,6 +51,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 2)->first();
+                $blog->user()->associate($user);
             }
             if ($i == 2) {
                 $defaultpath = public_path('images/pages/card-img-overlay.jpg');
@@ -60,6 +64,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 3)->first();
+                $blog->user()->associate($user);
             }
 
             if ($i == 3) {
@@ -72,6 +78,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 4)->first();
+                $blog->user()->associate($user);
             }
             if ($i == 4) {
                 $defaultpath = public_path('images/pages/content-img-3.jpg');
@@ -83,6 +91,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 5)->first();
+                $blog->user()->associate($user);
             }
             if ($i == 5) {
                 $defaultpath = public_path('images/pages/content-img-4.jpg');
@@ -94,6 +104,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 1)->first();
+                $blog->user()->associate($user);
             }
             if ($i == 6) {
                 $defaultpath = public_path('images/pages/search-result.jpg');
@@ -105,6 +117,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 2)->first();
+                $blog->user()->associate($user);
             }
 
             if ($i == 7) {
@@ -117,6 +131,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 3)->first();
+                $blog->user()->associate($user);
             }
             if ($i == 8) {
                 $defaultpath = public_path('images/pages/faq.jpg');
@@ -128,6 +144,8 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 4)->first();
+                $blog->user()->associate($user);
             }
             if ($i == 9) {
                 $defaultpath = public_path('images/pages/card-img-overlay.jpg');
@@ -139,10 +157,10 @@ class BlogsTableSeeder extends Seeder {
                     $path = Storage::get($defaultpath);
                     $blog->image = $path;
                 }
+                $user = User::where('id', 5)->first();
+                $blog->user()->associate($user);
             }
 
-            $user = User::where('id', 1)->first();
-            $blog->user()->associate($user);
             $blog->save();
 
 

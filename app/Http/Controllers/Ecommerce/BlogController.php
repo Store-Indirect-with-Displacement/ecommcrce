@@ -384,4 +384,24 @@ class BlogController extends Controller {
         return view('site.ForntEnd.blogs.blog_show', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos', 'blogarchive', 'blogunarchive', 'blogarchiveCount', 'blogunarchiveCount'));
     }
 
+    public function _addToArchive($id) {
+        $blog = Blog::where('id', $id)->first();
+        if (!auth()->check()) {
+            $blog->user()->dissociate();
+        }
+        $blog->is_archive = 1;
+        $blog->update();
+        return redirect()->route('showblog', $id);
+    }
+
+    public function _removetoArchive($id) {
+        $blog = Blog::where('id', $id)->first();
+        if (!auth()->check()) {
+            $blog->user()->dissociate();
+        }
+        $blog->is_archive = 0;
+        $blog->update();
+        return redirect()->route('showblog', $id);
+    }
+
 }

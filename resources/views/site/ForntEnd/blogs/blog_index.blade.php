@@ -102,9 +102,9 @@
                                 </div>
 
                                 <?php if ($blog->is_archive == 0): ?>
-                                    <div class="ml-auto user-like text-danger"><a href="<?= route('addtoArchive', $blog->id) ?>" class="btn btn-sm btn-primary">Add To Archive</a></div>
+                                    <div class="ml-auto user-like text-danger"><a href="<?= route('siteaddtoArchive', $blog->id) ?>" class="btn btn-sm btn-primary">Add To Archive</a></div>
                                 <?php else: ?>
-                                    <div class="ml-auto user-like text-danger"><a href="<?= route('removetoArchive', $blog->id) ?>" class="btn btn-sm btn-danger">Remove From Archive</a></div>
+                                    <div class="ml-auto user-like text-danger"><a href="<?= route('siteremovetoArchive', $blog->id) ?>" class="btn btn-sm btn-danger">Remove From Archive</a></div>
                                 <?php endif; ?>
 
                             </div>

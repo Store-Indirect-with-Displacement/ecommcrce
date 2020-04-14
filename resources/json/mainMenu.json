@@ -1,0 +1,120 @@
+{
+    "menu": [
+        {
+            "url": "",
+            "name": "Home",
+            "slug": "home",
+            "icon": "feather icon-home",
+            "i18n": "Home",
+            "submenu": [
+
+                {
+                    "url": "",
+                    "name": "Homepage #1",
+                    "slug": "homepage #1",
+                    "icon": "feather icon-home",
+                    "i18n": "Homepage #1"
+                },
+                {
+                    "url": "",
+                    "name": "Homepage #2",
+                    "slug": "homepage #2",
+                    "icon": "feather icon-home",
+                    "i18n": "Homepage #2"
+                },
+                {
+                    "url": "",
+                    "name": "Homepage #3",
+                    "slug": "homepage #3",
+                    "icon": "feather icon-home",
+                    "i18n": "Homepage #3"
+                }
+            ]
+        },
+        {
+            "url": "",
+            "name": "Categories",
+            "slug": "categories",
+            "icon": "feather icon-home",
+            "i18n": "Categories",
+            "submenu": [
+
+            ]
+        },
+        {
+            "url": "",
+            "name": "Products",
+            "slug": "products",
+            "icon": "feather icon-home",
+            "i18n": "Products",
+            "submenu": [
+                {
+                    "url": "/product/shop",
+                    "name": "Product Shop",
+                    "slug": "Product Shop",
+                    "icon": "feather icon-home",
+                    "i18n": "Product Shop"
+                },
+                {
+                    "url": "/product/cart",
+                    "name": "Cart",
+                    "slug": "Cart",
+                    "icon": "feather icon-home",
+                    "i18n": "Cart"
+                },
+                {
+                    "url": "/product/wishlist",
+                    "name": "WishList",
+                    "slug": "WishList",
+                    "icon": "feather icon-home",
+                    "i18n": "WishList"
+                }
+            ]
+        },
+        {
+            "url": "",
+            "name": "Blogs",
+            "slug": "blogs",
+            "icon": "feather icon-home",
+            "i18n": "Blogs",
+            "submenu": [
+                {
+                    "url": "siteblogList",
+                    "name": "Blog List ",
+                    "slug": "bomepagelist ",
+                    "icon": "feather icon-home",
+                    "i18n": "BlogList"
+                }
+            ]
+        },
+        {
+            "url": "",
+            "name": "Contact",
+            "slug": "contact",
+            "icon": "feather icon-home",
+            "i18n": "Contact",
+            "submenu": [
+                {
+                    "url": "#",
+                    "name": "Contact #1 ",
+                    "slug": "contact #1",
+                    "icon": "feather icon-home",
+                    "i18n": "Contact #1"
+                }, {
+                    "url": "#",
+                    "name": "Contact #2 ",
+                    "slug": "contact #2",
+                    "icon": "feather icon-home",
+                    "i18n": "Contact #2"
+                }
+            ]
+        }, {
+
+            "url": "",
+            "name": "About",
+            "slug": "about",
+            "icon": "feather icon-home",
+            "i18n": "About"
+        }
+    ]
+}

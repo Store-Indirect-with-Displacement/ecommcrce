@@ -30,4 +30,6 @@ if (isset($pageConfigs))
 
     {{-- {!! Helper::applClasses() !!} --}}
     <?php $configData = Helper::applClasses(); ?>
-    @extends('site.layouts.verticalLayoutMaster' )
+ {{-- {!! Helper::applClasses() !!} --}}
+    <?php $configData = Helper::applClasses(); ?>
+    @extends((( $configData["mainLayoutType"] === 'horizontal') ? 'site.layouts.horizontalLayoutMaster' : 'site.layouts.verticalLayoutMaster' ))

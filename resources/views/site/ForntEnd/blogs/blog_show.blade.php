@@ -112,9 +112,9 @@
                             <span class="font-small-2"><?= $blog->date ?></span>
                         </div>
                         <?php if ($blog->is_archive == 0): ?>
-                            <div class="ml-auto user-like text-danger"><a href="<?= route('addtoArchive', $blog->id) ?>" class="btn btn-sm btn-primary">Add To Archive</a></div>
+                            <div class="ml-auto user-like text-danger"><a href="<?= route('siteaddtoArchive', $blog->id) ?>" class="btn btn-sm btn-primary">Add To Archive</a></div>
                         <?php else: ?>
-                            <div class="ml-auto user-like text-danger"><a href="<?= route('removetoArchive', $blog->id) ?>" class="btn btn-sm btn-danger">Remove From Archive</a></div>
+                            <div class="ml-auto user-like text-danger"><a href="<?= route('siteremovetoArchive', $blog->id) ?>" class="btn btn-sm btn-danger">Remove From Archive</a></div>
                         <?php endif; ?>
                     </div>
                     <p><?= $blog->body ?><code id="headingCollapse1" data-toggle="collapse" role="button" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">

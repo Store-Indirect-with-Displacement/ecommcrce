@@ -58,7 +58,7 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::delete('destroyblog/{id}', 'Ecommerce\BlogController@destroy')->name('destroyblog');
                     Route::get('showblog/{id}', 'Ecommerce\BlogController@show')->name('showblog');
                     Route::get('addtoArchive/{id}', 'Ecommerce\BlogController@addToArchive')->name('addtoArchive');
-                    Route::get('removetoArchive\{id}', 'Ecommerce\BlogController@removetoArchive')->name('removetoArchive');
+                    Route::get('removetoArchive/{id}', 'Ecommerce\BlogController@removetoArchive')->name('removetoArchive');
                 });
             });
 
@@ -67,7 +67,7 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('/product/cart/data', 'Ecommerce\ProductCartController@getCart')->name('getcart');
             Route::get('/product/wishlist', 'Ecommerce\ProductCartController@wishListIndex')->name('productwishlist');
             Route::get('/product/wishlist/data', 'Ecommerce\ProductCartController@getWishList')->name('getWishList');
-            Route::get('/profuct/shop', 'Ecommerce\ProductShopController@index')->name('productshop');
+            Route::get('/product/shop', 'Ecommerce\ProductShopController@index')->name('productshop');
             Route::get('/product/{id}/details', 'Ecommerce\ProductController@show')->name('product_details');
             Route::get('/product/{id}/addtocart', 'Ecommerce\ProductCartController@addCart')->name('addTocart');
             Route::get('/product/{id}/removefromcart', 'Ecommerce\ProductCartController@removeItemCart')->name('removeCart');
@@ -85,4 +85,6 @@ Route::prefix(LaravelLocalization::setLocale())
             //Blog
             Route::get('siteblogList', 'Ecommerce\BlogController@_index')->name('siteblogList');
             Route::get('siteblogshow\{id}', 'Ecommerce\BlogController@_show')->name('siteblogshow');
+            Route::get('siteaddtoArchive/{id}', 'Ecommerce\BlogController@_addToArchive')->name('siteaddtoArchive');
+            Route::get('siteremovetoArchive/{id}', 'Ecommerce\BlogController@_removetoArchive')->name('siteremovetoArchive');
         });
