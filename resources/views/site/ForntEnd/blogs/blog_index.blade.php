@@ -101,11 +101,6 @@
                                     <span class="font-small-2"><?= $blog->date ?></span>
                                 </div>
 
-                                <?php if ($blog->is_archive == 0): ?>
-                                    <div class="ml-auto user-like text-danger"><a href="<?= route('siteaddtoArchive', $blog->id) ?>" class="btn btn-sm btn-primary">Add To Archive</a></div>
-                                <?php else: ?>
-                                    <div class="ml-auto user-like text-danger"><a href="<?= route('siteremovetoArchive', $blog->id) ?>" class="btn btn-sm btn-danger">Remove From Archive</a></div>
-                                <?php endif; ?>
 
                             </div>
                             <div class="user-page-info ">
@@ -171,16 +166,10 @@
 
                                 <div class="ml-auto">
                                     <div class=" fonticon-container">
-                                        <div class="fonticon-wrap" style="width: 20px;height: 20px"><i class="fa fa-envelope-o" style="font-size: 20px"></i></div>
+                                        <div class="fonticon-wrap" style="width: 20px;height: 20px"><a href="<?= route('siteblogshow', $blog->id) ?>"><i class="fa fa-envelope-o" style="font-size: 20px"></i></a></div>
 
                                     </div>
                                 </div>
-                                <p class="ml-auto d-flex align-items-center">
-                                <div class=" fonticon-container">
-                                    <div style="width: 20px;height: 20px" class="fonticon-wrap"><i class="fa fa-share"style="font-size: 20px"></i></div>
-
-                                </div>
-                                </p>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 {
     "menu": [
         {
-            "url": "",
+            "url": "#",
             "name": "Home",
             "slug": "home",
             "icon": "feather icon-home",
@@ -9,21 +9,21 @@
             "submenu": [
 
                 {
-                    "url": "",
+                    "url": "index",
                     "name": "Homepage #1",
                     "slug": "homepage #1",
                     "icon": "feather icon-home",
                     "i18n": "Homepage #1"
                 },
                 {
-                    "url": "",
+                    "url": "#",
                     "name": "Homepage #2",
                     "slug": "homepage #2",
                     "icon": "feather icon-home",
                     "i18n": "Homepage #2"
                 },
                 {
-                    "url": "",
+                    "url": "#",
                     "name": "Homepage #3",
                     "slug": "homepage #3",
                     "icon": "feather icon-home",
@@ -32,7 +32,7 @@
             ]
         },
         {
-            "url": "",
+            "url": "#",
             "name": "Categories",
             "slug": "categories",
             "icon": "feather icon-home",
@@ -42,28 +42,28 @@
             ]
         },
         {
-            "url": "",
+            "url": "#",
             "name": "Products",
             "slug": "products",
             "icon": "feather icon-home",
             "i18n": "Products",
             "submenu": [
                 {
-                    "url": "/product/shop",
+                    "url": "productshop",
                     "name": "Product Shop",
                     "slug": "Product Shop",
                     "icon": "feather icon-home",
                     "i18n": "Product Shop"
                 },
                 {
-                    "url": "/product/cart",
+                    "url": "productcart",
                     "name": "Cart",
                     "slug": "Cart",
                     "icon": "feather icon-home",
                     "i18n": "Cart"
                 },
                 {
-                    "url": "/product/wishlist",
+                    "url": "productwishlist",
                     "name": "WishList",
                     "slug": "WishList",
                     "icon": "feather icon-home",
@@ -72,7 +72,7 @@
             ]
         },
         {
-            "url": "",
+            "url": "#",
             "name": "Blogs",
             "slug": "blogs",
             "icon": "feather icon-home",
@@ -88,7 +88,7 @@
             ]
         },
         {
-            "url": "",
+            "url": "#",
             "name": "Contact",
             "slug": "contact",
             "icon": "feather icon-home",
@@ -110,7 +110,7 @@
             ]
         }, {
 
-            "url": "",
+            "url": "#",
             "name": "About",
             "slug": "about",
             "icon": "feather icon-home",

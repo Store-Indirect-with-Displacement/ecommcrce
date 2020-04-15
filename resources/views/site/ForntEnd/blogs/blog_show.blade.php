@@ -9,6 +9,17 @@
 <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
     <link rel="stylesheet" href="{{ asset('css-rtl/pages/users.css') }}">
 <?php endif; ?>
+
+<script>
+    window.Laravel = <?= json_encode(['csrfToken' => csrf_token()]) ?>;
+    window.Laravel.addComment = '<?= route('addComment') ?>';
+
+</script>
+<?php if (auth()->check()): ?>
+    <script>
+        window.Laravel.userId = <?= auth()->user()->id ?>
+    </script>
+<?php endif; ?>
 @endsection
 @section('content')
 
@@ -102,7 +113,7 @@
         </div>
         <div class="col-lg-6 col-12">
             <div class="card">
-                <div class="card-body">
+                <div id="card_comment"class="card-body">
                     <div class="d-flex justify-content-start align-items-center mb-1">
                         <div class="avatar mr-1">
                             <img src="{{ asset('images/profile/user-uploads/user-01.jpg') }}" alt="avtar img holder" height="45" width="45">
@@ -111,22 +122,18 @@
                             <p class="mb-0"><?= $blog->title ?></p>
                             <span class="font-small-2"><?= $blog->date ?></span>
                         </div>
-                        <?php if ($blog->is_archive == 0): ?>
-                            <div class="ml-auto user-like text-danger"><a href="<?= route('siteaddtoArchive', $blog->id) ?>" class="btn btn-sm btn-primary">Add To Archive</a></div>
-                        <?php else: ?>
-                            <div class="ml-auto user-like text-danger"><a href="<?= route('siteremovetoArchive', $blog->id) ?>" class="btn btn-sm btn-danger">Remove From Archive</a></div>
-                        <?php endif; ?>
+
                     </div>
                     <p><?= $blog->body ?><code id="headingCollapse1" data-toggle="collapse" role="button" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
 
                             Read More
 
-                        </code>
+                        </code></p>
                     <div id="collapse1" role="tabpanel" aria-labelledby="headingCollapse1" class="collapse" style="">
                         <?= $blog->content ?>
                     </div>
 
-                    </p>
+
 
                     <img class="img-fluid card-img-top rounded-sm mb-2" src="{{ asset('storage/'.$blog->image) }}" alt="avtar img holder">
                     <div class="d-flex justify-content-start align-items-center mb-1">
@@ -191,10 +198,17 @@
                             <i class="feather icon-message-square"></i>
                         </div>
                     </div>
-                    <fieldset class="form-group">
-                        <input type="text" id="roundText" class="form-control round" placeholder="ADD Comment">
-                    </fieldset>
-                    <button type="button" class="btn btn-sm btn-primary">Post Comment</button>
+                    <div id="preappen"class="new"></div>
+                    <?php if (auth()->check()): ?>
+                        <fieldset class="form-group">
+                            <textarea type="text" id="roundText" class="form-control round" placeholder="ADD Comment"></textarea>
+                        </fieldset>
+                        <button type="button" class="btn btn-sm btn-primary">Post Comment</button>
+                    <?php else: ?>
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#inlineForm">
+                            Post Comment
+                        </button>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -261,6 +275,43 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    {{-- Modal --}}
+    <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel33" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel33">ADD Comment</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addComment"action="javacript:void(0)">
+                    @csrf
+                    <div class="modal-body">
+                        <label>Your Name: </label>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" name="name" class="form-control">
+                        </div>
+                        <input type="hidden" name="blog_id" value="<?= $blog->id ?>" class="form-control">
+                        <label>Email: </label>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" name="email" class="form-control">
+                        </div>
+
+                        <label>Comment: </label>
+                        <div class="form-group">
+                            <textarea type="text" name="comment"id="roundText" class="form-control round" placeholder="ADD Comment"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer form-group">
+                        <button id="submit"type="submit" name="submit" class="btn btn-primary" form="addComment">ADD Comment</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

@@ -85,6 +85,5 @@ Route::prefix(LaravelLocalization::setLocale())
             //Blog
             Route::get('siteblogList', 'Ecommerce\BlogController@_index')->name('siteblogList');
             Route::get('siteblogshow\{id}', 'Ecommerce\BlogController@_show')->name('siteblogshow');
-            Route::get('siteaddtoArchive/{id}', 'Ecommerce\BlogController@_addToArchive')->name('siteaddtoArchive');
-            Route::get('siteremovetoArchive/{id}', 'Ecommerce\BlogController@_removetoArchive')->name('siteremovetoArchive');
+            Route::post('addComment', 'Ecommerce\BlogController@PostComment')->name('addComment');
         });

@@ -7,6 +7,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use App\User;
 use App\BlogPostions;
+use App\Comment;
 
 /**
  * App\Blog
@@ -67,4 +68,7 @@ class Blog extends Model {
         return $this->hasMany(BlogPostions::class);
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

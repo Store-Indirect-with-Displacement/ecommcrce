@@ -12,6 +12,8 @@ use App\SubCategory;
 use App\SubSubCategory;
 use Carbon\Carbon;
 use Storage;
+use App\Comment;
+use App\User;
 
 class BlogController extends Controller {
 
@@ -384,24 +386,50 @@ class BlogController extends Controller {
         return view('site.ForntEnd.blogs.blog_show', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos', 'blogarchive', 'blogunarchive', 'blogarchiveCount', 'blogunarchiveCount'));
     }
 
-    public function _addToArchive($id) {
-        $blog = Blog::where('id', $id)->first();
-        if (!auth()->check()) {
-            $blog->user()->dissociate();
-        }
-        $blog->is_archive = 1;
-        $blog->update();
-        return redirect()->route('showblog', $id);
-    }
+    //add Comment 
 
-    public function _removetoArchive($id) {
-        $blog = Blog::where('id', $id)->first();
-        if (!auth()->check()) {
-            $blog->user()->dissociate();
+    public function PostComment(Request $request) {
+        $rules = [
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255',
+            'comment' => 'required|max:1000',
+            'blog_id' => 'required'
+        ];
+        $blog = Blog::where('id', $request->input('blog_id'))->first();
+        $request->validate($rules);
+        $comment = new Comment();
+        if (auth()->check()) {
+            $comment->comment = $request->input('comment');
+            $comment->Blog()->associate($blog);
+            $comment->user()->associate(auth()->user());
+            $comment->save();
+        } else {
+            $user = User::where('email', $request->input('email'))->first();
+            if ($user) {
+                $comment->comment = $request->input('comment');
+                $comment->Blog()->associate($blog);
+                $comment->user()->associate($user);
+                $comment->save();
+            } else {
+                $comment->name = $request->input('name');
+                $comment->email = $request->input('email');
+                $comment->comment = $request->input('comment');
+                $comment->Blog()->associate($blog);
+
+                //create deflaut image
+                $defaultpath = public_path('userInterface/images/blog/user.jpg');
+                $imagepath = 'images/users/profile/userImages';
+                if (!Storage::exists($defaultpath)) {
+                    $path = Storage::disk('public')->putFileAs($imagepath, $defaultpath, 'user.jpg');
+                    $comment->image = $path;
+                } else {
+                    $path = Storage::get($defaultpath);
+                    $comment->image = $path;
+                }
+            }
+            $comment->save();
         }
-        $blog->is_archive = 0;
-        $blog->update();
-        return redirect()->route('showblog', $id);
+        return response()->json($comment);
     }
 
 }
