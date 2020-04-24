@@ -4,8 +4,8 @@ return [
         'theme' => 'light',					    // options[String]: 'light'(default), 'dark', 'semi-dark'
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
-        'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'menuType' => 'static',			  // options[String]: fixed(default) / static
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -19,7 +19,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -33,7 +33,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -47,7 +47,7 @@ return [
         'sidebarCollapsed' => true,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -61,7 +61,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -75,7 +75,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -89,7 +89,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -103,7 +103,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -117,7 +117,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -131,7 +131,7 @@ return [
         'sidebarCollapsed' => true,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -145,7 +145,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)
@@ -173,7 +173,7 @@ return [
         'sidebarCollapsed' => false,		// options[Boolean]: true, false(default)
         'navbarColor' => '',			      // options[String]: bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark (default: '' for #fff)
         'menuType' => 'fixed',			  // options[String]: fixed(default) / static
-        'navbarType' => 'floating',			// options[String]: floating(default) / static / sticky / hidden
+        'navbarType' => 'static',			// options[String]: floating(default) / static / sticky / hidden
         'footerType' => 'static',				// options[String]: static(default) / sticky / hidden
         'bodyClass' => '',              // add custom class
         'pageHeader' => true,           // options[Boolean]: true(default), false (Page Header for Breadcrumbs)

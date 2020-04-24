@@ -17,6 +17,7 @@ class ProductCartController extends Controller {
         $pageConfigs = [
             'bodyClass' => 'ecommerce-application',
             'mainLayoutType' => 'horizontal',
+            'isMain' => '0',
         ];
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "eCommerce"], ['name' => "Checkout"]
@@ -74,6 +75,8 @@ class ProductCartController extends Controller {
     public function wishListIndex() {
         $pageConfigs = [
             'bodyClass' => 'ecommerce-application',
+            'isMain' => '0',
+            'mainLayoutType' => 'horizontal',
         ];
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "eCommerce"], ['name' => "Checkout"]

@@ -235,6 +235,7 @@
     });
     // changes to Static navbar
     $("#navbar-static").on("click", function () {
+        $("#aSearch").css('top', 0);
         if (body.hasClass('horizontal-menu')) {
             horizontalNavbar
                     .removeClass("d-none floating-nav fixed-top navbar-fixed");
@@ -249,7 +250,9 @@
     });
     // change to floating navbar
     $("#navbar-floating").on("click", function () {
+        $("#aSearch").css('top', 120);
         if (body.hasClass('horizontal-menu')) {
+
             horizontalNavbar
                     .removeClass("d-none fixed-top static-top")
                     .addClass("floating-nav");
@@ -264,6 +267,7 @@
     });
     // changes to Static navbar
     $("#navbar-sticky").on("click", function () {
+        $("#aSearch").css('top', 120);
         if (body.hasClass('horizontal-menu')) {
             horizontalNavbar
                     .removeClass("d-none floating-nav static-top navbar-fixed")

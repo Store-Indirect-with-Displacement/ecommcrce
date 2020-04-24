@@ -14,7 +14,7 @@ if (isset($pageConfigs)) {
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title') - E-Commerce DashBorad</title>
+        <title>@yield('title') - E-Commerce</title>
         <link rel="shortcut icon" type="image/x-icon" href="<?= asset('images/logo/favicon.ico') ?>">
 
         {{-- Include core + vendor Styles --}}
@@ -32,8 +32,12 @@ if (isset($pageConfigs)) {
         {{-- Include Navbar --}}
         @include('site.layouts.navbar')
 
+
         {{-- Include Sidebar --}}
         @include('site.layouts.horizontalMenu')
+         @include('site.layouts.serachbar')
+     
+
 
         <!-- BEGIN: Content-->
         <div class="app-content content">
@@ -42,8 +46,10 @@ if (isset($pageConfigs)) {
             <div class="header-navbar-shadow"></div>
 
             <div class="content-wrapper">
+
                 <div class="<?= $configData['sidebarPositionClass'] ?>">
                     <div class="sidebar">
+
                         {{-- Include Sidebar Content --}}
                         @yield('content-sidebar')
                     </div>

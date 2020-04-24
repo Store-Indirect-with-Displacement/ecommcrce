@@ -13,6 +13,7 @@ use App\SubSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use LaravelLocalization;
+
 class ProductController extends Controller {
 
     /**
@@ -22,15 +23,16 @@ class ProductController extends Controller {
      */
     public function index(Request $request) {
         $products = Product::all();
-           $pageConfigs = [
+        $pageConfigs = [
             'pageHeader' => false,
             'mainLayoutType' => 'horizontal',
+           
             'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
         ];
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"],
         ];
-        return view('Dashborad.pages.product', compact('products', 'breadcrumbs','pageConfigs'));
+        return view('Dashborad.pages.product', compact('products', 'breadcrumbs', 'pageConfigs'));
     }
 
     /**
@@ -123,6 +125,8 @@ class ProductController extends Controller {
     public function show($id) {
         $pageConfigs = [
             'bodyClass' => 'ecommerce-application',
+            'mainLayoutType' => 'horizontal',
+             'isMain' => '0',
         ];
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "eCommerce"], ['name' => "Checkout"]

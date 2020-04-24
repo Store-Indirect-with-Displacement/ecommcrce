@@ -349,6 +349,7 @@ class BlogController extends Controller {
         $pageConfigs = [
             'pageHeader' => false,
             'mainLayoutType' => 'horizontal',
+             'isMain' => '0',
             'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
         ];
         $breadcrumbs = [
@@ -372,6 +373,7 @@ class BlogController extends Controller {
         $pageConfigs = [
             'pageHeader' => false,
             'mainLayoutType' => 'horizontal',
+            'isMain' => '0',
             'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
         ];
         $breadcrumbs = [

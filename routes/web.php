@@ -19,6 +19,7 @@ Route::prefix(LaravelLocalization::setLocale())
         ->group(function() {
 
             Route::get('/', 'HomeController@index')->name('index');
+            Route::get('/home2', 'HomeController@home3')->name('index2');
             Route::get('data/locales/en.json', 'Controller@getJson_en');
             Route::get('data/locales/ar.json', 'Controller@getJson_ar');
             Auth::routes();

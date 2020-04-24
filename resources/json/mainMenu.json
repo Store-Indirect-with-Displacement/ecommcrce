@@ -23,7 +23,7 @@
                     "i18n": "Homepage #2"
                 },
                 {
-                    "url": "#",
+                    "url": "index2",
                     "name": "Homepage #3",
                     "slug": "homepage #3",
                     "icon": "feather icon-home",

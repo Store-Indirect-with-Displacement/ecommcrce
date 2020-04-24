@@ -1,0 +1,122 @@
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+/* app ecommerce details css */
+/*---------------*/
+
+
+/* swiper slide shadow */
+.swiper-container .swiper-shadow {
+    box-shadow : -2px 8px 10px 0 rgba(25, 42, 70, 0.13) !important;
+}
+
+.swiper-responsive-breakpoints.swiper-container .swiper-slide {
+    text-align : center;
+    font-weight : 500;
+    cursor : pointer;
+}
+
+.swiper-button-prev, .swiper-button-next, .swiper-container-rtl .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    background-image : none;
+    width : 35px;
+    font-size : 2rem;
+}
+.swiper-button-prev:focus, .swiper-button-next:focus, .swiper-container-rtl .swiper-button-prev:focus, .swiper-container-rtl .swiper-button-next:focus {
+    outline : none;
+}
+.swiper-button-prev:after, .swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
+    font-family : 'feather';
+}
+
+.swiper-button-prev {
+    right : 0;
+}
+.swiper-button-prev:after {
+    content : '\e843';
+}
+
+.swiper-button-next {
+    left : 0;
+}
+.swiper-button-next:after {
+    content : '\e844';
+}
+
+.swiper-container-rtl .swiper-button-prev:after {
+    content : '\e844';
+}
+
+.swiper-container-rtl .swiper-button-next:after {
+    content : '\e843';
+}
+
+.badgeX1 {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    z-index: 10;
+}
+
+.badgeX2{
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 80px;
+    z-index: 10;
+}
+.badgeY{
+    position: absolute;
+    top: 5px;
+    left: -10px;
+    display: block;
+    width: 35px;
+    height: 35px;
+    z-index: 10;
+    border-radius: 50%;
+    text-align: center;
+
+}
+.badgeY2{
+    position: absolute;
+    top: 43px;
+    left: -10px;
+    display: block;
+    width: 35px;
+    height: 35px;
+    z-index: 10;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.badgeX3 {
+    display: inline-block;
+    position: absolute;
+    bottom: -14px;
+    left: -14px;
+    text-align: center;
+    font-weight: 500;
+    border-top-right-radius: 5px;
+    width: 60px;
+    z-index: 10;
+}
+
+.badgeX4 {
+    display: inline-block;
+    position: absolute;
+    bottom: -14px;
+    right: 0;
+    text-align: center;
+    font-weight: 500;
+    border-top-left-radius: 5px;
+
+    width: 60px;
+    z-index: 10;
+}
+
+
+
+
+

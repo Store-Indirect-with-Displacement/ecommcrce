@@ -35,6 +35,8 @@ if (isset($pageConfigs))
 
             {{-- Include Navbar --}}
             @include('site.layouts.navbar')
+            @include('site.layouts.serachbar')
+
 
             <div class="content-wrapper">
                 <div class="{{ $configData['sidebarPositionClass'] }}">

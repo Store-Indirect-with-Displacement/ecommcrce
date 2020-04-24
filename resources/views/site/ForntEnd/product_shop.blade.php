@@ -2,7 +2,7 @@
 <?php
 $configData = Helper::applClasses();
 ?>
-@extends((( $configData["mainLayoutType"] === 'horizontal') ? 'site/layouts/hproductshop' : 'site/layouts/productshop' ))
+@extends((( $configData["mainLayoutType"] == 'horizontal') ? 'site/layouts/productshop' : 'site/layouts/hproductshop' ))
 
 @section('title', 'Shop')
 

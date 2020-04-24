@@ -7,6 +7,7 @@
 
         {{-- Include Navbar --}}
         @include('site.layouts.navbar')
+        @include('site.layouts.serachbar')
 
         <?php if (!empty($configData['contentLayout'])): ?>
             <div class="content-area-wrapper">
