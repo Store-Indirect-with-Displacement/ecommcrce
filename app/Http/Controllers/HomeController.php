@@ -35,7 +35,7 @@ class HomeController extends Controller {
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "Data List"], ['name' => "List View"],
         ];
         $categoires = Category::where('is_navbar', 1)->get();
-        $blogs = Blog::latest()->paginate(3);
+        $blogs = Blog::latest()->paginate(6);
         $allcategories = Category::all();
         $products = Product::all();
         return view('welcome', compact('categoires', 'products', 'allcategories', 'pageConfigs', 'breadcrumbs','blogs'));

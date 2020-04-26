@@ -1,3 +1,20 @@
+@section('nav_script')
+<script>
+    window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
+</script>
+
+<script type="text/javascript">
+    window.Laravel.addTocart = '<?= route('addTocart', ':id') ?>';
+    window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
+   window.Laravel.removeFromWishList = '<?=route('removeFromWishList', ':id')?>'
+    window.Laravel.getCartData = '<?= route('getcart') ?>';
+    window.Laravel.product_detials = '<?= route('product_details', ':id') ?>';
+    window.Laravel.addTowishList = '<?= route('addTowishList', ':id') ?>';
+    window.Laravel.getWishListData = '<?= route('getWishList') ?>';
+    window.Laravel.setImage = '<?= url('setimage') ?>';
+</script>
+
+
 <?php if ($configData["mainLayoutType"] == 'horizontal'): ?>
     <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu <?= $configData['navbarColor'] ?> navbar-fixed">
         <div class="navbar-header d-xl-block d-none">
@@ -76,115 +93,39 @@
                         <li class = "dropdown dropdown-notification nav-item">
                             <a class = "nav-link nav-link-label" href = "#" data-toggle = "dropdown">
                                 <i class = "ficon feather icon-shopping-cart"></i>
-                                <span class = "badge badge-pill badge-primary badge-up">0</span>
+                                <span id="cart_count"class = "badge badge-pill badge-danger badge-up">0</span>
                             </a>
-                            <ul class = "dropdown-menu dropdown-menu-media dropdown-menu-right">
-                                <li class = "dropdown-menu-header">
+                            <ul  id="cart_list"  class = "dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                <li id="cart_totoal_count" class = "dropdown-menu-header">
                                     <div class = "dropdown-header m-0 p-2">
-                                        <h3 class = "white">0 {{__('main.new')}}</h3><span class = "grey darken-2">{{__('main.Notificication')}}</span>
+                                        <h3 id="numberitems" class = "white">0 Items </h3><span class = "grey darken-2">In Your Cart</span>
                                     </div>
                                 </li>
-                                <li class = "scrollable-container media-list">
-                                    <a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-plus-square font-medium-5 primary"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "primary media-heading">You have new order!</h6><small class = "notification-text"> Are your going to meet me tonight?</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">9 hours ago</time></small>
-                                        </div>
-                                    </a><a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-download-cloud font-medium-5 success"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "success media-heading red darken-1">99% Server load</h6><small class = "notification-text">You got new order of goods.</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">5 hour ago</time></small>
-                                        </div>
-                                    </a><a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-alert-triangle font-medium-5 danger"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "danger media-heading yellow darken-3">Warning notifixation</h6><small class = "notification-text">Server have 99% CPU usage.</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">Today</time></small>
-                                        </div>
-                                    </a><a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-check-circle font-medium-5 info"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "info media-heading">Complete the task</h6><small class = "notification-text">Cake sesame snaps cupcake</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">Last week</time></small>
-                                        </div>
-                                    </a><a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-file font-medium-5 warning"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "warning media-heading">Generate monthly report</h6><small class = "notification-text">Chocolate cake oat cake tiramisu marzipan</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">Last month</time></small>
-                                        </div>
-                                    </a>
+                                <li id="cart_item" class = "scrollable-container media-list">
+                                    
+                                   
                                 </li>
-                                <li class = "dropdown-menu-footer"><a class = "dropdown-item p-1 text-center" href = "javascript:void(0)">Read all notifications</a></li>
+
+
+
+
+                                <li id="cart_list_footer" class = "dropdown-menu-footer"><a class = "dropdown-item p-1 text-center" href = "<?= route('productcart') ?>">Check out Now</a></li>
                             </ul>
                         </li>
                         <li class = "dropdown dropdown-notification nav-item">
                             <a class = "nav-link nav-link-label" href = "#" data-toggle = "dropdown">
                                 <i class = "ficon feather icon-heart"></i>
-                                <span class = "badge badge-pill badge-primary badge-up">0</span>
+                                <span id="wishlist_count"class = "badge badge-pill badge-danger badge-up">0</span>
                             </a>
-                            <ul class = "dropdown-menu dropdown-menu-media dropdown-menu-right">
-                                <li class = "dropdown-menu-header">
+                            <ul  id="wishlist_list"  class = "dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                <li id="cart_totoal_count" class = "dropdown-menu-header">
                                     <div class = "dropdown-header m-0 p-2">
-                                        <h3 class = "white">0 {{__('main.new')}}</h3><span class = "grey darken-2">{{__('main.Notificication')}}</span>
+                                        <h3 id="wishlist_numberItems" class = "white">0 Items </h3><span class = "grey darken-2">In Your WishList</span>
                                     </div>
                                 </li>
-                                <li class = "scrollable-container media-list">
-                                    <a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-plus-square font-medium-5 primary"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "primary media-heading">You have new order!</h6><small class = "notification-text"> Are your going to meet me tonight?</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">9 hours ago</time></small>
-                                        </div>
-                                    </a><a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-download-cloud font-medium-5 success"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "success media-heading red darken-1">99% Server load</h6><small class = "notification-text">You got new order of goods.</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">5 hour ago</time></small>
-                                        </div>
-                                    </a><a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-alert-triangle font-medium-5 danger"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "danger media-heading yellow darken-3">Warning notifixation</h6><small class = "notification-text">Server have 99% CPU usage.</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">Today</time></small>
-                                        </div>
-                                    </a><a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-check-circle font-medium-5 info"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "info media-heading">Complete the task</h6><small class = "notification-text">Cake sesame snaps cupcake</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">Last week</time></small>
-                                        </div>
-                                    </a><a class = "d-flex justify-content-between" href = "javascript:void(0)">
-                                        <div class = "media d-flex align-items-start">
-                                            <div class = "media-left"><i class = "feather icon-file font-medium-5 warning"></i></div>
-                                            <div class = "media-body">
-                                                <h6 class = "warning media-heading">Generate monthly report</h6><small class = "notification-text">Chocolate cake oat cake tiramisu marzipan</small>
-                                            </div><small>
-                                                <time class = "media-meta" datetime = "2015-06-11T18:29:20+08:00">Last month</time></small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class = "dropdown-menu-footer"><a class = "dropdown-item p-1 text-center" href = "javascript:void(0)">Read all notifications</a></li>
+                                <li id="wishlist_item" class = "scrollable-container media-list"></li>
+                                <li id="wishlist_list_footer" class = "dropdown-menu-footer">
+                                    <a class = "dropdown-item p-1 text-center" href = "<?= route('productwishlist') ?>">WishList View </a></li>
                             </ul>
                         </li>
                         <?php if (auth()->check()): ?>
@@ -278,16 +219,16 @@
                             </li>
                         <?php else: ?>
 
-                      
+
                         <?php endif; ?>
 
                     </ul>
                 </div>
-                
+
             </div>
-                    
+
         </div>
-   
+
     </nav>
 
     {{--Search Start Here--}}
@@ -384,4 +325,8 @@
     </ul>
     {{--Search Ends--}}
     <!--END: Header-->
-     
+
+    @section('nav_script_end')
+    <script src="<?= asset('js/scripts/navs/nav_site.js') ?>"></script>
+    @endsection
+

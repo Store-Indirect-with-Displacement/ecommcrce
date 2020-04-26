@@ -126,6 +126,7 @@
     "/js/scripts/forms/validation/form-validation.js": "/js/scripts/forms/validation/form-validation.js",
     "/js/scripts/forms/wizard-steps.js": "/js/scripts/forms/wizard-steps.js",
     "/js/scripts/modal/components-modal.js": "/js/scripts/modal/components-modal.js",
+    "/js/scripts/navs/nav_site.js": "/js/scripts/navs/nav_site.js",
     "/js/scripts/navs/navs.js": "/js/scripts/navs/navs.js",
     "/js/scripts/pages/3-columns-left-sidebar.js": "/js/scripts/pages/3-columns-left-sidebar.js",
     "/js/scripts/pages/account-setting.js": "/js/scripts/pages/account-setting.js",

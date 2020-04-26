@@ -19,7 +19,7 @@ if (isset($pageConfigs)) {
 
         {{-- Include core + vendor Styles --}}
         @include('panels/styles')
-
+        @yield('nav_script')
     </head>
 
     {{-- {!! Helper::applClasses() !!} --}}
@@ -35,8 +35,8 @@ if (isset($pageConfigs)) {
 
         {{-- Include Sidebar --}}
         @include('site.layouts.horizontalMenu')
-         @include('site.layouts.serachbar')
-     
+        @include('site.layouts.serachbar')
+
 
 
         <!-- BEGIN: Content-->
@@ -76,6 +76,7 @@ if (isset($pageConfigs)) {
 
         {{-- include default scripts --}}
         @include('panels/scripts')
+        @yield('nav_script_end')
     </body>
 </html>
 

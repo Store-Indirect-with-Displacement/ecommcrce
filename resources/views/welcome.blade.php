@@ -24,8 +24,6 @@
 @endsection
 @section('content')
 
-
-
 <!-- Background variants section start -->
 <section id="bg-variants">
     <div class="row">
@@ -37,172 +35,71 @@
 
         <?php foreach ($products as $key => $product): ?>
 
-            <?php if ($product->is_New == 1): ?>
-                <div class = "col-lg-4 col-md-6 col-sm-12">
-                    <div class = "card text-white bg-gradient-dark text-center">
-                        <div class = "card-content d-flex">
-                            <div class = "card-body">
-                                <?php if ($product->is_New == 1): ?>
-                                    <div  class=" badgeX1 badge badge-square badge-md badge-success mr-1 mb-1">
-                                        <span>New</span>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if ($product->is_Discount == 1): ?>
-                                    <div  class=" badgeX2 badge badge-square badge-md badge-danger mr-1 mb-1">
-                                        <span>-<?= $product->Discount ?>%</span>
-                                    </div>
-                                <?php endif; ?>
-                                <a href="<?= route('product_details', $product->id) ?>">
-                                    <img src = "<?= asset('storage/' . $product->image) ?>" alt = "element 03" width = "150" height = "150"
-                                         class = "float-right px-1">
-                                </a>
-                                <button type="button" class="badgeY btn btn-icon btn-icon rounded-circle btn-flat-danger mr-1 mb-1 waves-effect waves-light"><i class="feather icon-heart"></i></button>
-                                <button type="button" class="badgeY2 btn btn-icon btn-icon rounded-circle btn-flat-success mr-1 mb-1 waves-effect waves-light"><i class="feather icon-shopping-cart"></i></button>
+
+            <div id="Product_item" class = "col-lg-4 col-md-6 col-sm-12">
+
+                <div class = "card text-white 
+                <?php if ($product->is_New == 1): ?>
+                         bg-gradient-dark 
+                     <?php elseif ($product->is_Discount): ?>
+                         bg-gradient-danger 
+                     <?php else: ?>
+                         bg-gradient-primary
+                     <?php endif; ?>
+                     text-center ">
+                    <div class = "card-content d-flex">
+                        <div class = "card-body">
+                            <span id="product_id"style="display: none"><?= $product->id ?></span>
+                            <?php if ($product->is_New == 1): ?>
+                                <div  class=" badgeX1 badge badge-square badge-md badge-success mr-1 mb-1">
+                                    <span>New</span>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($product->is_Discount == 1): ?>
+                                <div  class=" badgeX2 badge badge-square badge-md badge-danger mr-1 mb-1">
+                                    <span>-<?= $product->Discount ?>%</span>
+                                </div>
+                            <?php endif; ?>
+                            <a href="<?= route('product_details', $product->id) ?>">
+                                <img src = "<?= asset('storage/' . $product->image) ?>" alt = "element 03" width = "150" height = "150"
+                                     class = "float-right px-1">
+                            </a>
+                            <button id="addToWishList" type="button" class="badgeY btn btn-icon btn-icon rounded-circle btn-flat-danger mr-1 mb-1 waves-effect waves-light"><i class="feather icon-heart"></i></button>
+                            <button id="addToCart" type="button" class="badgeY2 btn btn-icon btn-icon rounded-circle btn-flat-success mr-1 mb-1 waves-effect waves-light"><i class="feather icon-shopping-cart"></i></button>
 
 
-                                <?php
-                                $pieces = explode(" ", $product->name);
-                                $length = count($pieces);
-                                ?>
-                                <a href="<?= route('product_details', $product->id) ?>">
-                                    <?php if ($length > 2): ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] . ' ' . $pieces[1] . ' ' . $pieces[2] ?></h4>
-                                        <p class = "card-text">
-                                            <?php for ($i = 3; $i < $length; $i++): ?>
-                                                <?= $pieces[$i] ?>
-                                            <?php endfor; ?>
-                                        </p>
-                                    <?php elseif ($length <= 1): ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] . ' ' . $pieces[1] ?></h4>
-                                        <p class = "card-text">Donut toffee candy brownie.</p>
-                                    <?php else: ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] ?></h4>
-                                        <p class = "card-text">Donut toffee candy brownie.</p>
-                                    <?php endif; ?>
-                                </a>
-                                <div  class=" badgeX3 badge-square  badge-md badge-danger mr-1 mb-1">
-                                    <span><?= $product->price ?>$</span>
-                                </div>
-                                <div  class=" badgeX4 badge-square  badge-md badge-danger mr-1 mb-1">
-                                    <span>4</span>
-                                    <i class="feather icon-star"></i>
-                                </div>
+                            <?php
+                            $pieces = explode(" ", $product->name);
+                            $length = count($pieces);
+                            ?>
+                            <a href="<?= route('product_details', $product->id) ?>">
+                                <?php if ($length > 2): ?>
+                                    <h4 class = "card-title text-white mt-3"><?= $pieces[0] . ' ' . $pieces[1] . ' ' . $pieces[2] ?></h4>
+                                    <p class = "card-text">
+                                        <?php for ($i = 3; $i < $length; $i++): ?>
+                                            <?= $pieces[$i] ?>
+                                        <?php endfor; ?>
+                                    </p>
+                                <?php elseif ($length <= 1): ?>
+                                    <h4 class = "card-title text-white mt-3"><?= $pieces[0] . ' ' . $pieces[1] ?></h4>
+                                    <p class = "card-text">Donut toffee candy brownie.</p>
+                                <?php else: ?>
+                                    <h4 class = "card-title text-white mt-3"><?= $pieces[0] ?></h4>
+                                    <p class = "card-text">Donut toffee candy brownie.</p>
+                                <?php endif; ?>
+                            </a>
+                            <div  class=" badgeX3 badge-square  badge-md badge-danger mr-1 mb-1">
+                                <span><?= $product->price ?>$</span>
+                            </div>
+                            <div  class=" badgeX4 badge-square  badge-md badge-danger mr-1 mb-1">
+                                <span>4</span>
+                                <i class="feather icon-star"></i>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php elseif ($product->is_Discount): ?>
-                <div class = "col-lg-4 col-md-6 col-sm-12">
-                    <div class = "card text-white bg-gradient-danger text-center">
-                        <div class = "card-content d-flex">
-                            <div class = "card-body">
-                                <?php if ($product->is_New == 1): ?>
-                                    <div  class=" badgeX1 badge badge-square badge-md badge-success mr-1 mb-1">
-                                        <span>New</span>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if ($product->is_Discount == 1): ?>
-                                    <div  class=" badgeX2 badge badge-square badge-md badge-primary mr-1 mb-1">
-                                        <span>-<?= $product->Discount ?>%</span>
-                                    </div>
-                                <?php endif; ?>
-                                <a href="<?= route('product_details', $product->id) ?>">
-                                    <img src = "<?= asset('storage/' . $product->image) ?>" alt = "element 03" width = "150" height = "150"
-                                         class = "float-right px-1">
-                                </a>
-                                <button type="button" class="badgeY btn btn-icon btn-icon rounded-circle btn-flat-primary mr-1 mb-1 waves-effect waves-light"><i class="feather icon-heart"></i></button>
-                                <button type="button" class="badgeY2 btn btn-icon btn-icon rounded-circle btn-flat-success mr-1 mb-1 waves-effect waves-light"><i class="feather icon-shopping-cart"></i></button>
+            </div>
 
-
-                                <?php
-                                $pieces = explode(" ", $product->name);
-                                $length = count($pieces);
-                                ?>
-                                <a href="<?= route('product_details', $product->id) ?>">
-                                    <?php if ($length > 2): ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] . ' ' . $pieces[1] . ' ' . $pieces[2] ?></h4>
-                                        <p class = "card-text">
-                                            <?php for ($i = 3; $i < $length; $i++): ?>
-                                                <?= $pieces[$i] ?>
-                                            <?php endfor; ?>
-                                        </p>
-                                    <?php elseif ($length <= 1): ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] . ' ' . $pieces[1] ?></h4>
-                                        <p class = "card-text">Donut toffee candy brownie.</p>
-                                    <?php else: ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] ?></h4>
-                                        <p class = "card-text">Donut toffee candy brownie.</p>
-                                    <?php endif; ?>
-                                </a>
-                                <div  class=" badgeX3 badge-square  badge-md badge-danger mr-1 mb-1">
-                                    <span><?= $product->price ?>$</span>
-                                </div>
-                                <div  class=" badgeX4 badge-square  badge-md badge-danger mr-1 mb-1">
-                                    <span>4</span>
-                                    <i class="feather icon-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php else: ?>
-
-                <div class = "col-lg-4 col-md-6 col-sm-12">
-
-                    <div class = "card text-white bg-gradient-primary text-center">
-                        <div class = "card-content d-flex">
-                            <div class = "card-body">
-                                <?php if ($product->is_New == 1): ?>
-                                    <div  class=" badgeX1 badge badge-square badge-md badge-success mr-1 mb-1">
-                                        <span>New</span>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if ($product->is_Discount == 1): ?>
-                                    <div  class=" badgeX2 badge badge-square badge-md badge-danger mr-1 mb-1">
-                                        <span>-<?= $product->Discount ?>%</span>
-                                    </div>
-                                <?php endif; ?>
-                                <a href="<?= route('product_details', $product->id) ?>">
-                                    <img src = "<?= asset('storage/' . $product->image) ?>" alt = "element 03" width = "150" height = "150"
-                                         class = "float-right px-1">
-                                </a>
-                                <button type="button" class="badgeY btn btn-icon btn-icon rounded-circle btn-flat-danger mr-1 mb-1 waves-effect waves-light"><i class="feather icon-heart"></i></button>
-                                <button type="button" class="badgeY2 btn btn-icon btn-icon rounded-circle btn-flat-success mr-1 mb-1 waves-effect waves-light"><i class="feather icon-shopping-cart"></i></button>
-
-
-                                <?php
-                                $pieces = explode(" ", $product->name);
-                                $length = count($pieces);
-                                ?>
-                                <a href="<?= route('product_details', $product->id) ?>">
-                                    <?php if ($length > 2): ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] . ' ' . $pieces[1] . ' ' . $pieces[2] ?></h4>
-                                        <p class = "card-text">
-                                            <?php for ($i = 3; $i < $length; $i++): ?>
-                                                <?= $pieces[$i] ?>
-                                            <?php endfor; ?>
-                                        </p>
-                                    <?php elseif ($length <= 1): ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] . ' ' . $pieces[1] ?></h4>
-                                        <p class = "card-text">Donut toffee candy brownie.</p>
-                                    <?php else: ?>
-                                        <h4 class = "card-title text-white mt-3"><?= $pieces[0] ?></h4>
-                                        <p class = "card-text">Donut toffee candy brownie.</p>
-                                    <?php endif; ?>
-                                </a>
-                                <div  class=" badgeX3 badge-square  badge-md badge-danger mr-1 mb-1">
-                                    <span> <?= $product->price ?>$</span>
-                                </div>
-                                <div  class=" badgeX4 badge-square  badge-md badge-danger mr-1 mb-1">
-                                    <span>4</span>
-                                    <i class="feather icon-star"></i>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
         <?php endforeach; ?>
 
     </div>
@@ -353,17 +250,21 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="card border-danger  bg-transparent">
                             <div class="card-content">
-                                <img class="img-fluid imageblog" src="<?= asset('storage/'.$blog->image)?>" alt="Card image cap">
+                                <a href="<?= route('siteblogshow', $blog->id) ?> "class="card-link ">
+                                    <img class="img-fluid imageblog" src="<?= asset('storage/' . $blog->image) ?>" alt="Card image cap">
+                                </a>
                                 <div class="card-body">
-                                    <h5 class="mt-1 text-center"><?=$blog->title?></h5>
-                                    <p class="card-text">Posted By <?=$blog->user->name?></p>
-                                    <p class="card-text"><?=$blog->body?></p>
+                                    <a href="<?= route('siteblogshow', $blog->id) ?>" class="card-link">
+                                        <h5 class="mt-1 text-center"><?= $blog->title ?></h5>
+                                    </a>
+                                    <p class="card-text">Posted By: <?= $blog->user->name ?></p>
+                                    <p class="card-text"><?= $blog->body ?></p>
                                 </div>
                             </div>
                             <div class="card-footer text-muted">
                                 <span class="float-left"><?= $blog->date ?></span>
                                 <span class="float-right">
-                                    <a href="<?=route('siteblogshow', $blog->id)?>" class="card-link">Read More <i class="fa fa-angle-right"></i></a>
+                                    <a href="<?= route('siteblogshow', $blog->id) ?>" class="card-link">Read More <i class="fa fa-angle-right"></i></a>
                                 </span>
                             </div>
                         </div>
