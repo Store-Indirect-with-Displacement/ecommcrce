@@ -39,7 +39,10 @@
 
 <form action="#" class="icons-tab-steps checkout-tab-steps wizard-circle">
     <!-- Checkout Place order starts -->
-    <h6><i class="step-icon step feather icon-shopping-cart"></i>Cart</h6>
+    <h6>
+        <i class="step-icon step feather icon-shopping-cart"></i>
+        Cart
+    </h6>
     <fieldset class="checkout-step-1 px-0">
         <section id="place-order" class="list-view product-checkout">
             <div class="checkout-items">

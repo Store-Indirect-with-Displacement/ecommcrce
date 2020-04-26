@@ -6,14 +6,48 @@
 <script type="text/javascript">
     window.Laravel.addTocart = '<?= route('addTocart', ':id') ?>';
     window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
-   window.Laravel.removeFromWishList = '<?=route('removeFromWishList', ':id')?>'
+    window.Laravel.removeFromWishList = '<?= route('removeFromWishList', ':id') ?>'
     window.Laravel.getCartData = '<?= route('getcart') ?>';
     window.Laravel.product_detials = '<?= route('product_details', ':id') ?>';
     window.Laravel.addTowishList = '<?= route('addTowishList', ':id') ?>';
     window.Laravel.getWishListData = '<?= route('getWishList') ?>';
     window.Laravel.setImage = '<?= url('setimage') ?>';
 </script>
+<style>
+    .login_li{
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 5px;
+    }
+    .login{
+        padding-left: 10px;
+        padding-right: 10px;
+        left: 10px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .login:hover{
+        background: whitesmoke;
+    }
 
+    .resgiter_li{
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+
+    .resgiter{
+        padding-left: 5px;
+        padding-right: 10px;
+        left: 10px;
+        font-size: 14px;
+        font-weight: 500;  
+    }
+
+    .resgiter:hover{
+        background: whitesmoke;
+    }
+
+</style>
 
 <?php if ($configData["mainLayoutType"] == 'horizontal'): ?>
     <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu <?= $configData['navbarColor'] ?> navbar-fixed">
@@ -102,8 +136,8 @@
                                     </div>
                                 </li>
                                 <li id="cart_item" class = "scrollable-container media-list">
-                                    
-                                   
+
+
                                 </li>
 
 
@@ -129,7 +163,8 @@
                             </ul>
                         </li>
                         <?php if (auth()->check()): ?>
-                            <li class = "dropdown dropdown-notification nav-item"><a class = "nav-link nav-link-label" href = "#" data-toggle = "dropdown"><i class = "ficon feather icon-bell"></i><span class = "badge badge-pill badge-primary badge-up">5</span></a>
+                            <li class = "dropdown dropdown-notification nav-item">
+                                <a class = "nav-link nav-link-label" href = "#" data-toggle = "dropdown"><i class = "ficon feather icon-bell"></i><span class = "badge badge-pill badge-primary badge-up">5</span></a>
                                 <ul class = "dropdown-menu dropdown-menu-media dropdown-menu-right">
                                     <li class = "dropdown-menu-header">
                                         <div class = "dropdown-header m-0 p-2">
@@ -219,6 +254,12 @@
                             </li>
                         <?php else: ?>
 
+                            <li  class="login_li" >
+                                <a class="login" href="<?= route('login') ?>"  data-i18n="Login">Login</a>
+                            </li>
+                            <li   class="resgiter_li">
+                                <a class="resgiter" href="<?= route('register') ?>"  data-i18n="Register">Register</a>
+                            </li>
 
                         <?php endif; ?>
 
