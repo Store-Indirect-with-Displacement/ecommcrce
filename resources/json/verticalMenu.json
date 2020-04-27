@@ -1,6 +1,11 @@
 {
     "menu": [
-
+        {
+            "url": "#",
+            "navheader": "Main",
+            "i18n": "Main",
+            "icon": ""
+        },
         {
             "url": "#",
             "name": "Home",
@@ -53,65 +58,55 @@
         },
         {
             "url": "#",
-            "name": "Apps",
-            "navheader": "Apps",
-            "i18n": "Apps",
+            "navheader": "Applections",
+            "i18n": "Applections",
             "icon": ""
         },
         {
             "url": "#",
-            "name": "Email",
-            "icon": "feather icon-mail",
-            "i18n": "Email"
-        },
-        {
-            "url": "#",
-            "name": "Chat",
-            "icon": "feather icon-message-square",
-            "i18n": "Chat"
-        },
-        {
-            "url": "#",
-            "name": "Todo",
-            "icon": "feather icon-check-square",
-            "i18n": "Todo"
-        },
-        {
-            "url": "#",
-            "name": "Calender",
-            "icon": "feather icon-calendar",
-            "i18n": "Calender"
-        },
-        {
-            "url": "#",
-            "name": "Ecommerce",
-            "icon": "feather icon-shopping-cart",
+            "name": "Apps",
+            "slug": "apps",
+            "icon": "feather icon-package",
+            "i18n": "Apps",
+            "dropdown": "1",
             "submenu": [
                 {
                     "url": "#",
-                    "name": "Shop",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.app_ecommerce_shop"
+                    "name": "Email",
+                    "i18n": "Email",
+                    "icon": "feather icon-mail",
+                    "slug": "email-application"
                 },
                 {
                     "url": "#",
-                    "name": "Details",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.app_ecommerce_details"
+                    "name": "Chat",
+                    "i18n": "Chat",
+                    "icon": "feather icon-message-square",
+                    "slug": "chat-application"
                 },
                 {
                     "url": "#",
-                    "name": "Wish List",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.app_ecommerce_wishlist"
+                    "name": "Todo",
+                    "i18n": "Todo",
+                    "icon": "feather icon-check-square",
+                    "slug": "app-todo"
                 },
                 {
                     "url": "#",
-                    "name": "Checkout",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.app_ecommerce_checkout"
+                    "name": "Calender",
+                    "i18n": "Calender",
+                    "icon": "feather icon-calendar",
+                    "slug": "app-calender"
                 }
+
+
             ]
+        },
+        {
+            "url": "#",
+            "navheader": "E-Commerce",
+            "i18n": "E-Commerce",
+            "icon": ""
         },
         {
             "url": "#",
@@ -135,33 +130,42 @@
                     "name": "Edit",
                     "icon": "feather icon-circle",
                     "i18n": "nav.app_user_edit"
+                },
+                {
+                    "url": "#",
+                    "name": "Subscribers",
+                    "icon": "feather icon-circle",
+                    "i18n": "nav.app_user_edit"
                 }
             ]
         },
         {
             "url": "#",
-            "navheader": "UI Elements",
-            "icon": ""
-        },
-        {
-            "url": "#",
-            "name": "Data List",
-            "badge": "New",
-            "badgeClass": "badge badge-primary badge-pill float-right mr-2",
-            "icon": "feather icon-list",
+            "name": "Ecommerce",
+            "icon": "feather icon-shopping-cart",
             "submenu": [
                 {
-                    "url": "productList",
-                    "name": "Product List",
+                    "url": "#",
+                    "name": "Orders",
+                    "i18n": "Orders",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.data_list_view"
+                    "slug": "app-ecommerce-shop"
                 },
+
                 {
                     "url": "#",
-                    "name": "Product Thumb List",
+                    "name": "Invoices",
+                    "i18n": "invoices",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.data_thumb_view"
+                    "slug": "app-ecommerce-checkout"
+                }, {
+                    "url": "productList",
+                    "name": "Products",
+                    "i18n": "products",
+                    "icon": "feather icon-circle",
+                    "slug": "data-list-view"
                 },
+
                 {
                     "url": "categorieslist",
                     "name": "Categories",
@@ -171,7 +175,6 @@
                 }
             ]
         },
-
         {
             "url": "",
             "name": "Cards",
@@ -209,7 +212,6 @@
                 }
             ]
         },
-
         {
             "url": "#",
             "navheader": "Pages",
@@ -218,40 +220,49 @@
         },
         {
             "url": "#",
-            "name": "Profile",
-            "icon": "feather icon-user",
-            "i18n": "Profile"
-        },
-        {
-            "url": "#",
-            "name": "Account Settings",
-            "icon": "feather icon-settings",
-            "i18n": "Account Settings"
-        },
-        {
-            "url": "#",
-            "name": "FAQ",
-            "icon": "feather icon-help-circle",
-            "i18n": "FAQ"
-        },
-        {
-            "url": "#",
-            "name": "Knowledge Base",
-            "icon": "feather icon-info",
-            "i18n": "Knowledge Base"
-        },
-        {
-            "url": "#",
-            "name": "Search",
-            "i18n": "Search",
-            "icon": "feather icon-search",
-            "i18n": "nav.page_search"
-        },
-        {
-            "url": "#",
-            "name": "Invoice",
+            "name": "Pages",
             "icon": "feather icon-file",
-            "i18n": "Invoice"
+            "slug": "pages",
+            "i18n": "Pages",
+            "dropdown": "1",
+            "submenu": [
+                {
+                    "url": "#",
+                    "name": "Profile",
+                    "i18n": "Profile",
+                    "icon": "feather icon-user",
+                    "slug": "user-profile"
+                },
+                {
+                    "url": "#",
+                    "name": "Account Settings",
+                    "icon": "feather icon-settings",
+                    "i18n": "Account Settings"
+                },
+                {
+                    "url": "#",
+                    "name": "FAQ",
+                    "i18n": "FAQ",
+                    "icon": "feather icon-help-circle",
+                    "slug": "faq"
+                },
+                {
+                    "url": "#",
+                    "name": "Knowledge Base",
+                    "i18n": "Knowledge Base",
+                    "icon": "feather icon-info",
+                    "slug": "knowledge-base"
+                },
+                {
+                    "url": "#",
+                    "name": "Search",
+                    "i18n": "Search",
+                    "icon": "feather icon-search",
+                    "slug": "search-page"
+                }
+
+
+            ]
         }
     ]
 }
