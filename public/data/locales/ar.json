@@ -166,7 +166,11 @@
     "Contact #1": "التواصل بنا ",
     "Contact #2": "التواصل مع الشركة  ",
     "About": "من نحن",
-    "Product Shop":"التسوق",
-    "Cart":"السلة",
-    "WishList":" الرغبات"
+    "Product Shop": "التسوق",
+    "Cart": "السلة",
+    "WishList": " الرغبات",
+    "Invoices": "الفواتير",
+    "Products": "المنتجات",
+    "Orders": "الطلبات",
+    "Subscribers": "المشتركين"
 }

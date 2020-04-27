@@ -144,5 +144,9 @@
     "About": "About",
     "Product Shop": "Product Shop",
     "Cart": "Cart",
-    "WishList": "WishList"
+    "WishList": "WishList",
+    "Invoices": "Invoices",
+    "Products": "Products",
+    "Orders": "Orders",
+    "Subscribers": "Subscribers"
 }

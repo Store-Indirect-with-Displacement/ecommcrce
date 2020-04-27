@@ -139,20 +139,13 @@
             
                 {
                     "url": "#",
-                    "name": "Tickets",
-                    "i18n": "Tickets",
-                    "icon": "feather icon-circle",
-                    "slug": "app-ecommerce-wishlist"
-                },
-                {
-                    "url": "#",
-                    "name": "Marketing",
-                    "i18n": "Marketing",
+                    "name": "Invoices",
+                    "i18n": "invoices",
                     "icon": "feather icon-circle",
                     "slug": "app-ecommerce-checkout"
                 }, {
                     "url": "productList",
-                    "name": "products",
+                    "name": "Products",
                     "i18n": "products",
                     "icon": "feather icon-circle",
                     "slug": "data-list-view"
@@ -236,18 +229,10 @@
                     "i18n": "Search",
                     "icon": "feather icon-search",
                     "slug": "search-page"
-                },
-                {
-                    "url": "#",
-                    "name": "Invoice",
-                    "i18n": "Invoice",
-                    "icon": "feather icon-file",
-                    "slug": "invoice"
                 }
+              
 
             ]
         }
-
-
     ]
 }
