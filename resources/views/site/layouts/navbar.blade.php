@@ -52,7 +52,7 @@
 <?php if ($configData["mainLayoutType"] == 'horizontal'): ?>
     <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu <?= $configData['navbarColor'] ?> navbar-fixed">
         <div class="navbar-header d-xl-block d-none">
-            <ul class="nav navbar-nav flex-row">
+            <ul class="nav navbar-nav flex-row ">
                 <li class="nav-item"><a class="navbar-brand" href="<?= route('dashborad-analytics') ?>">
                         <div class="brand-logo"></div></a></li>
             </ul>

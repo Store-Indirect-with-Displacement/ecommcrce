@@ -20,7 +20,7 @@ use App\Helpers\Helper; ?>
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/slider.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/owl.carousel.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/responsive.css')}}">
-      <link rel="stylesheet" href="{{ asset(mix('css/pages/knowledge-base.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/pages/knowledge-base.css')) }}">
     {{-- Layout Styles works when don't use customizer --}}
     <?php if ($configData['theme'] == 'dark-layout'): ?>
         <link rel="stylesheet" href="{{ asset('css/themes/dark-layout.css') }}">
@@ -43,8 +43,6 @@ use App\Helpers\Helper; ?>
     {{-- Laravel Style --}}
     <link rel="stylesheet" href="{{ asset('css/custom-laravel.css') }}">
 
-
-
     {{-- Custom RTL Styles --}}
 <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
     <link rel="stylesheet" href="{{ asset('css-rtl/custom-rtl.css') }}">
@@ -55,7 +53,10 @@ use App\Helpers\Helper; ?>
     <link rel="stylesheet" href="{{ asset('css-rtl/components.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/themes/dark-layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/themes/semi-dark-layout.css') }}">
-    <link rel="stylesheet" href="{{ asset('css-rtl/pages/knowledge-base.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/slider.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/owl.carousel.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('css-rtl/pages/knowledge-base.css')}}">
     {{-- Layout Styles works when don't use customizer --}}
     <?php if ($configData['theme'] == 'dark-layout'): ?>
         <link rel="stylesheet" href="{{ asset('css-rtl/themes/dark-layout.css') }}">

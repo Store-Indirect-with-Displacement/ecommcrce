@@ -36,7 +36,13 @@ $configData = Helper::applClasses();
                                                                                            }
                                                                                            ?>
                                                                                            <li class="dropdown nav-item <?= (request()->is($menu->url)) ? 'active' : '' ?> <?= $custom_classes ?>" data-menu="dropdown">
-                                                                                               <a href="<?= $menu->url ?>" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                                                                               <a 
+                                                                                                  <?php if ($menu->url != "#"): ?>
+                                                                                                   href="<?= route($menu->url) ?>" 
+                                                                                                   <?php else:?>
+                                                                                                    href="<?= url($menu->url) ?>" 
+                                                                                                   <?php endif;?>
+                                                                                                   class="dropdown-toggle nav-link" data-toggle="dropdown">
                                                                                                    <i class="<?= $menu->icon ?>"></i>
                                                                                                    <span data-i18n="<?= $translation ?>"><?= $menu->name ?></span>
                                                                                                </a>
