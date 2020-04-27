@@ -27,7 +27,7 @@ class ProductCartController extends Controller {
         }
         $CartData = ProductCart()->data();
         $CartItems = ProductCart()->toArray(true)['CartItems'];
-
+      
         return view('site.ForntEnd.prouduct_cart', compact('pageConfigs', 'breadcrumbs', 'CartData', 'CartItems'));
     }
 

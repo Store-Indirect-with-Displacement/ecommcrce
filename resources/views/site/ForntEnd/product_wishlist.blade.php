@@ -34,6 +34,7 @@
 </script>
 @endsection
 @section('content')
+<?php if(!$wishListData['WitchListItems']->isEmpty()):?>
 <!-- Wishlist Starts -->
 
 <section id="wishlist" class="grid-view wishlist-items">
@@ -81,6 +82,25 @@
     <?php endforeach; ?>
 </section>
 <!-- Wishlist Ends -->
+<?php else:?>
+<section class="row flexbox-container">
+  <div class="col-12 d-flex justify-content-center">
+    <div class="card auth-card bg-transparent shadow-none rounded-0 mb-0 w-100">
+      <div class="card-content">
+        <div class="card-body text-center">
+          <img src="{{ asset('images/pages/maintenance-2.png') }}" class="img-fluid align-self-center" alt="branding logo">
+          <h1 class="font-large-2 my-1">WishList is Empty!</h1>
+          <p class="px-2">
+            paraphonic unassessable foramination Caulopteris worral Spirophyton encrimson esparcet aggerate chondrule
+            restate whistler shallopy biosystematy area bertram plotting unstarting quarterstaff.
+          </p>
+          <a class="btn btn-primary btn-lg mt-1" href="<?=route('index')?>">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<?php endif;?>
 @endsection
 
 
