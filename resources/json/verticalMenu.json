@@ -121,18 +121,6 @@
                 },
                 {
                     "url": "#",
-                    "name": "View",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.app_user_view"
-                },
-                {
-                    "url": "#",
-                    "name": "Edit",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.app_user_edit"
-                },
-                {
-                    "url": "#",
                     "name": "Subscribers",
                     "icon": "feather icon-circle",
                     "i18n": "nav.app_user_edit"

@@ -3,7 +3,10 @@
         <div class="navbar-header d-xl-block d-none">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item"><a class="navbar-brand" href="<?= route('dashborad-analytics') ?>">
-                        <div class="brand-logo"></div></a></li>
+                        <div class="brand-logo"></div>
+                        <h2 class="brand-text mb-0 primary">{{__('main.E-Commerce')}}</h2>
+                    </a>
+                </li>
             </ul>
         </div>
     <?php else: ?>
@@ -136,7 +139,7 @@
                                 <?php if (auth()->check()): ?>
                                     <div class = "user-nav d-sm-flex d-none"><span class = "user-name text-bold-600"><?= auth()->user()->name ?></span><span class = "user-status">Available</span></div><span><img class = "round" src = "{{asset('images/portrait/small/avatar-s-11.jpg') }}" alt = "avatar" height = "40" width = "40" /></span>
                                 <?php else: ?>
-                                       <div class = "user-nav d-sm-flex d-none"><span class = "user-name text-bold-600">Guest</span><span class = "user-status">Available</span></div><span><img class = "round" src = "{{asset('images/portrait/small/avatar-s-11.jpg') }}" alt = "avatar" height = "40" width = "40" /></span>
+                                    <div class = "user-nav d-sm-flex d-none"><span class = "user-name text-bold-600">Guest</span><span class = "user-status">Available</span></div><span><img class = "round" src = "{{asset('images/portrait/small/avatar-s-11.jpg') }}" alt = "avatar" height = "40" width = "40" /></span>
                                 <?php endif; ?>
                             </a>
                             <div class = "dropdown-menu dropdown-menu-right">
@@ -157,11 +160,11 @@
                                     {{__('main.chats')}}
                                 </a>
                                 <div class = "dropdown-divider"></div>
-                                <a class = "dropdown-item" href = "<?=route('logout')?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a class = "dropdown-item" href = "<?= route('logout') ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class = "feather icon-power"></i> 
                                     {{__('main.Logout')}}
                                 </a>
-                              
+
                                 <form id = "logout-form" action = "<?= route('logout') ?>" method = "POST" style = "display: none;">
                                     @csrf
                                 </form>

@@ -96,25 +96,14 @@
             "icon": "feather icon-unlock",
             "submenu": [
                 {
-                    "url": "#",
+                    "url": "users.index",
                     "name": "List",
                     "icon": "feather icon-circle",
                     "i18n": "nav.app_user_list"
                 },
-                {
+                    {
                     "url": "#",
-                    "name": "View",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.app_user_view"
-                },
-                {
-                    "url": "#",
-                    "name": "Edit",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.app_user_edit"
-                },{
-                "url":"#",
-                    "name":"Subscribers",
+                    "name": "Subscribers",
                     "icon": "feather icon-circle",
                     "i18n": "nav.app_user_edit"
                 }
@@ -136,7 +125,7 @@
                     "icon": "feather icon-circle",
                     "slug": "app-ecommerce-shop"
                 },
-            
+
                 {
                     "url": "#",
                     "name": "Invoices",
@@ -229,7 +218,7 @@
                     "icon": "feather icon-search",
                     "slug": "search-page"
                 }
-              
+
 
             ]
         }

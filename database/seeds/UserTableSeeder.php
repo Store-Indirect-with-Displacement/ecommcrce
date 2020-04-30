@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserTableSeeder extends Seeder {
 
@@ -16,6 +18,7 @@ class UserTableSeeder extends Seeder {
         $admin->email = 'hassanelsaied80@gmail.com';
         $admin->password = bcrypt('12345678');
         $admin->isAdmin = 1;
+        $admin->is_verified = 1;
         $defaultpath = public_path('images/profile/user-uploads/user-09.jpg');
         $imagepath = 'images/users/profile/userImages';
         if (!Storage::exists($defaultpath)) {
@@ -26,6 +29,13 @@ class UserTableSeeder extends Seeder {
             $admin->image = $path;
         }
         $admin->save();
+        $role = Role::create(['name' => 'Admin']);
+        $permissions = Permission::all();
+        $role->syncPermissions($permissions);
+        $admin->assignRole([$role->id]);
+
+
+
 
 
 
@@ -43,6 +53,9 @@ class UserTableSeeder extends Seeder {
             $path1 = Storage::get($defaultpath1);
             $user1->image = $path1;
         }
+        $user1->save();
+        $models = ['blog', 'category', 'product', 'subcategory', 'subsubcategory'];
+
 
 
         $user2 = new User;
@@ -78,6 +91,12 @@ class UserTableSeeder extends Seeder {
         }
         $user3->save();
 
+        $role2 = Role::create(['name' => 'Company']);
+        foreach ($models as $model) {
+            $role2->givePermissionTo(['create_' . $model, 'edit_' . $model, 'show_' . $model, 'delete_' . $model, 'index_' . $model]);
+        }
+        $user3->assignRole([$role2->id]);
+
         $admin1 = new User;
         $admin1->name = 'AbdElhimmed Elsayed ';
         $admin1->email = 'adbelhimedelisaed80@gmail.com';
@@ -93,9 +112,12 @@ class UserTableSeeder extends Seeder {
             $admin1->image = $path4;
         }
         $admin1->save();
+        $admin1->assignRole([$role->id]);
+
 
         $user4 = new User;
         $user4->name = 'Esraa Khalel';
+        $user4->is_verified = 1;
         $user4->email = 'esraaebrahemkhale123456@gmail.com';
         $user4->password = bcrypt('12345678');
         $user4->isAdmin = 0;

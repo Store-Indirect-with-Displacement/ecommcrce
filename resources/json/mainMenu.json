@@ -38,15 +38,15 @@
             "submenu": [
                 {
                     "url": "dashborad-analytics",
-                    "name": "Analytics",
+                    "name": "horizontal Menu Dashboard",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.dashboard_analytics"
+                    "i18n": "nav.horizontal Menu Dashboard"
                 },
                 {
-                    "url": "#",
-                    "name": "eCommerce",
+                    "url": "dashborad-analytics2",
+                    "name": "Vertical Menu Dashbord",
                     "icon": "feather icon-circle",
-                    "i18n": "nav.dashboard_ecommerce"
+                    "i18n": "nav.Vertical Menu Dashbord"
                 }
             ]
         },

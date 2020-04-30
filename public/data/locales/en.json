@@ -2,6 +2,7 @@
     "Dashboard": "Dashboard",
     "Analytics": "Analytics",
     "eCommerce": "eCommerce",
+     "E-Commerce": "E-Commerce",
     "Apps": "Apps",
     "Account Settings": "Account Settings",
     "UI Elements": "UI Elements",
@@ -148,5 +149,7 @@
     "Invoices": "Invoices",
     "Products": "Products",
     "Orders": "Orders",
-    "Subscribers": "Subscribers"
+    "Subscribers": "Subscribers",
+    "horizontal Menu Dashboard": "horizontal Menu Dashboard",
+    "Vertical Menu Dashbord": "Vertical Menu Dashbord"
 }

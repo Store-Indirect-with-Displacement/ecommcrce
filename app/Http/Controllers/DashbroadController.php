@@ -11,7 +11,16 @@ class DashbroadController extends Controller {
     public function dashboradAnalytics() {
         $pageConfigs = [
             'pageHeader' => false,
-             'mainLayoutType' => 'horizontal',
+            'mainLayoutType' => 'horizontal',
+            'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
+        ];
+        return view('Dashborad.pages.dashborad-analytics', compact('pageConfigs'));
+    }
+
+    // Dashboard - Analytics
+    public function dashboradAnalytics2() {
+        $pageConfigs = [
+            'pageHeader' => false,
             'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
         ];
         return view('Dashborad.pages.dashborad-analytics', compact('pageConfigs'));

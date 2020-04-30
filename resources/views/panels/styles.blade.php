@@ -68,7 +68,7 @@ use App\Helpers\Helper; ?>
 
     {{-- Page Styles --}}
     <?php if ($configData['mainLayoutType'] === 'horizontal'): ?>
-        <link rel="stylesheet" href="{{ asset('css-rtl/core/menu/menu-types/horizontal-menu.css')}}">
+        <link rel="stylesheet" href="<?= asset('css-rtl/core/menu/menu-types/horizontal-menu.css') ?>">
     <?php endif; ?>
     <link rel="stylesheet" href="{{ asset('css-rtl/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css-rtl/core/colors/palette-gradient.css') }}">

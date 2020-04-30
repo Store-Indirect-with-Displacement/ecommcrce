@@ -29,6 +29,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    
 });
 
 $(document).on('click', "#list_product #addTocart", function (event) {

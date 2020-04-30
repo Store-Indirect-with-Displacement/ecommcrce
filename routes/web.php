@@ -31,6 +31,7 @@ Route::prefix(LaravelLocalization::setLocale())
                 //Dashborad
                 Route::group(['middleware' => ['admin']], function () {
                     Route::get('dashborad-analytics', 'DashbroadController@dashboradAnalytics')->name('dashborad-analytics');
+                    Route::get('dashborad-analytics2', 'DashbroadController@dashboradAnalytics2')->name('dashborad-analytics2');
                     // Categories
 
                     Route::get('categorieslist', 'Ecommerce\CategoriesController@index')->name('categorieslist');
@@ -60,6 +61,13 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::get('showblog/{id}', 'Ecommerce\BlogController@show')->name('showblog');
                     Route::get('addtoArchive/{id}', 'Ecommerce\BlogController@addToArchive')->name('addtoArchive');
                     Route::get('removetoArchive/{id}', 'Ecommerce\BlogController@removetoArchive')->name('removetoArchive');
+
+                    /**
+                     * users Actions 
+                     */
+                    Route::get('users/getUserData', 'Users\UserController@getUserData')->name('getuserData');
+                    
+                    Route::resource('users', 'Users\UserController');
                 });
             });
 
@@ -80,7 +88,7 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('/product/{id}/removewishList', 'Ecommerce\ProductCartController@removeFromWishList')->name('removeFromWishList');
             Route::get('/poduct/{id}/checkcartitem', 'Ecommerce\ProductCartController@checkcartItem')->name('checkcartitem');
             Route::get('/poduct/{id}/checkwishitemEcommerc', 'Ecommerce\ProductCartController@checkwishlistItem')->name('checkwishlistItem');
-            Route::post('/product/fliter/shop', ' Ecommerc\ProductShopController@Fliter')->name('shop_page_fliter');
+            Route::post('/product/fliter/shop', 'Ecommerce\ProductShopController@Fliter')->name('shop_page_fliter');
 
 
             //Blog

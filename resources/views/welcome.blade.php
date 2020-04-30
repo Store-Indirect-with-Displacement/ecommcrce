@@ -12,13 +12,16 @@
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/slider.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/owl.carousel.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/responsive.css')}}">
+    
     <link rel="stylesheet" href="{{ asset('css/pages/welcome.css') }}">
 
 <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
+  
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/slider.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/owl.carousel.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/responsive.css')}}">
     <link rel="stylesheet" href="{{ asset('css-rtl/pages/welcome.css') }}">
+    
 
 <?php endif; ?>
 @endsection
@@ -37,7 +40,6 @@
 
 
             <div id="Product_item" class = "col-lg-4 col-md-6 col-sm-12">
-
                 <div class = "card text-white 
                 <?php if ($product->is_New == 1): ?>
                          bg-gradient-dark 
@@ -57,7 +59,11 @@
                             <?php endif; ?>
                             <?php if ($product->is_Discount == 1): ?>
                                 <div  class=" badgeX2 badge badge-square badge-md badge-danger mr-1 mb-1">
-                                    <span>-<?= $product->Discount ?>%</span>
+                                    <?php if (LaravelLocalization::getCurrentLocaleDirection() === 'ltr'): ?> 
+                                        <span>-<?= $product->Discount ?>%</span>
+                                    <?php elseif (LaravelLocalization::getCurrentLocaleDirection() === 'rtl'): ?>
+                                        <span><?= $product->Discount ?>%-</span>
+                                    <?php endif; ?>
                                 </div>
                             <?php endif; ?>
                             <a href="<?= route('product_details', $product->id) ?>">

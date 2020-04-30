@@ -9,6 +9,7 @@
     "User": "المستخدمين",
     "List": "قائمة المستخدمين",
     "View": "عرض مستخدم",
+    "Create":"انشاء مستخدم",
     "Edit": "تعديل مستخدم",
     "UI Elements": "الواجهات",
     "Forms & Tables": "الجداول",
@@ -172,5 +173,7 @@
     "Invoices": "الفواتير",
     "Products": "المنتجات",
     "Orders": "الطلبات",
-    "Subscribers": "المشتركين"
+    "Subscribers": "المشتركين",
+    "horizontal Menu Dashboard":"لوحة تحكم افقية ",
+    "Vertical Menu Dashbord":"لوحة تحكم راسية "
 }
