@@ -24,7 +24,7 @@ $configData = Helper::applClasses();
                                                                                <div class="navbar-container main-menu-content" data-menu="menu-container">
                                                                                    <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                                                                                        {{-- Foreach menu item starts --}}
-                                                                                       <?php foreach ($menuData[2]->menu as $menu): ?>
+                                                                                       <?php foreach ($menuData[2]->menu as $key => $menu): ?>
                                                                                            <?php
                                                                                            $custom_classes = "";
                                                                                            if (isset($menu->classlist)) {
@@ -35,13 +35,53 @@ $configData = Helper::applClasses();
                                                                                                $translation = $menu->i18n;
                                                                                            }
                                                                                            ?>
+                                                                                           <?php if ($key == 1): ?>
+                                                                                               <li class="dropdown nav-item" data-menu="dropdown">
+                                                                                                   <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                                                                                       <i class="feather icon-grid"></i>
+                                                                                                       <span data-i18n="Categories">Categories</span>
+                                                                                                   </a>
+                                                                                                   <ul class="dropdown-menu">
+                                                                                                       <?php foreach ($categories[1] as $cat): ?>
+                                                                                                           <li class="dropdown dropdown-submenu">
+                                                                                                               <a href=" #" class="dropdown-item dropdown-toggle" data-toggle="dropdown">
+                                                                                                                   <span data-i18n=""><?= $cat->name ?></span>
+                                                                                                               </a>
+                                                                                                               <?php if ($cat->subCategories->count()): ?>
+                                                                                                                   <ul class="dropdown-menu">
+                                                                                                                       <?php foreach ($cat->subCategories as $subcat): ?>
+                                                                                                                           <li class="dropdown dropdown-submenu">
+                                                                                                                               <a href=" #" class="dropdown-item dropdown-toggle" data-toggle="dropdown">
+
+                                                                                                                                   <span data-i18n=""><?= $subcat->name ?></span>
+                                                                                                                               </a>
+                                                                                                                               <?php if ($subcat->subsubCategories->count()): ?>
+                                                                                                                                   <ul class="dropdown-menu">
+                                                                                                                                       <?php foreach ($subcat->subsubCategories as $subsubcat): ?>
+                                                                                                                                           <li class="">
+                                                                                                                                               <a href=" #" class="dropdown-item ">
+                                                                                                                                                   <span data-i18n=""><?= $subsubcat->name ?></span>
+                                                                                                                                               </a>
+                                                                                                                                           </li>
+                                                                                                                                       <?php endforeach; ?>
+                                                                                                                                   </ul>  
+                                                                                                                               <?php endif; ?>
+                                                                                                                           </li>
+                                                                                                                       <?php endforeach; ?>
+                                                                                                                   </ul>   
+                                                                                                               <?php endif; ?>
+                                                                                                           </li>
+                                                                                                       <?php endforeach; ?>
+                                                                                                   </ul>                                                                                                                                                                                        
+                                                                                               </li>
+                                                                                           <?php endif; ?>
                                                                                            <li class="dropdown nav-item <?= (request()->is($menu->url)) ? 'active' : '' ?> <?= $custom_classes ?>" data-menu="dropdown">
                                                                                                <a 
-                                                                                                  <?php if ($menu->url != "#"): ?>
-                                                                                                   href="<?= route($menu->url) ?>" 
-                                                                                                   <?php else:?>
-                                                                                                    href="<?= url($menu->url) ?>" 
-                                                                                                   <?php endif;?>
+                                                                                               <?php if ($menu->url != "#"): ?>
+                                                                                                       href="<?= route($menu->url) ?>" 
+                                                                                                   <?php else: ?>
+                                                                                                       href="<?= url($menu->url) ?>" 
+                                                                                                   <?php endif; ?>
                                                                                                    class="dropdown-toggle nav-link" data-toggle="dropdown">
                                                                                                    <i class="<?= $menu->icon ?>"></i>
                                                                                                    <span data-i18n="<?= $translation ?>"><?= $menu->name ?></span>
@@ -51,6 +91,30 @@ $configData = Helper::applClasses();
                                                                                                <?php endif; ?>
                                                                                            </li>
                                                                                        <?php endforeach; ?>
+
+
+                                                                                       <?php if (auth()->check() && auth()->user()->isAdmin == 1): ?>
+                                                                                           <li class="dropdown nav-item show" data-menu="dropdown">
+                                                                                               <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                                                                                   <i class="feather icon-settings"></i>
+                                                                                                   <span data-i18n="">Dashboard</span>
+                                                                                               </a>
+                                                                                               <ul class="dropdown-menu">
+                                                                                                   <li class="">
+                                                                                                       <a href="<?= route('dashborad-analytics') ?>" class="dropdown-item ">
+                                                                                                           <i class="feather icon-circle"></i>
+                                                                                                           <span data-i18n="horizontal Menu Dashboard">horizontal Menu Dashboard</span>
+                                                                                                       </a>
+                                                                                                   </li>
+                                                                                                   <li class="dashborad-analytics2">
+                                                                                                       <a href="" class="dropdown-item ">
+                                                                                                           <i class="feather icon-circle"></i>
+                                                                                                           <span data-i18n="Vertical Menu Dashbord">Vertical Menu Dashbord</span>
+                                                                                                       </a>
+                                                                                                   </li>
+                                                                                               </ul>  
+                                                                                           </li>
+                                                                                       <?php endif; ?>
                                                                                        {{-- Foreach menu item ends --}}
                                                                                    </ul>
 

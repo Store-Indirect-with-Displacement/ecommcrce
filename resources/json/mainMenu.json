@@ -30,38 +30,6 @@
         },
         {
             "url": "#",
-            "name": "Dashboard",
-            "slug": "dashboard",
-            "badge": "2",
-            "badgeClass": "badge badge-warning badge-pill float-right mr-2",
-            "icon": "feather icon-settings",
-            "submenu": [
-                {
-                    "url": "dashborad-analytics",
-                    "name": "horizontal Menu Dashboard",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.horizontal Menu Dashboard"
-                },
-                {
-                    "url": "dashborad-analytics2",
-                    "name": "Vertical Menu Dashbord",
-                    "icon": "feather icon-circle",
-                    "i18n": "nav.Vertical Menu Dashbord"
-                }
-            ]
-        },
-        {
-            "url": "#",
-            "name": "Categories",
-            "slug": "categories",
-            "icon": "feather icon-grid",
-            "i18n": "Categories",
-            "submenu": [
-
-            ]
-        },
-        {
-            "url": "#",
             "name": "Products",
             "slug": "products",
             "icon": "feather icon-shopping-cart",

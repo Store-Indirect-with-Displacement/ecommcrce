@@ -19,9 +19,9 @@
                 <div class="footer-menu">
                     <h2 class="footer-wid-title">User Navigation </h2>
                     <ul>
-                        <li><a href="#">My account</a></li>
+                        <li><a href="#">My Profile</a></li>
                         <li><a href="#">Order history</a></li>
-                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="<?= route('productwishlist')?>">Wishlist</a></li>
                         <li><a href="#">Vendor contact</a></li>
                         <li><a href="#">Front page</a></li>
                     </ul>                        
@@ -30,13 +30,11 @@
 
             <div class="col-md-3 col-sm-6">
                 <div class="footer-menu">
-                    <h2 class="footer-wid-title">Categories</h2>
+                    <h2 class="footer-wid-title" data-i18n="Last Categories">Last Categories</h2>
                     <ul>
-                        <li><a href="#">Mobile Phone</a></li>
-                        <li><a href="#">Home accesseries</a></li>
-                        <li><a href="#">LED TV</a></li>
-                        <li><a href="#">Computer</a></li>
-                        <li><a href="#">Gadets</a></li>
+                        <?php foreach ($categories[0] as $cat): ?>
+                            <li><a href="#"><?=$cat->name?></a></li>
+                        <?php endforeach;?>
                     </ul>                        
                 </div>
             </div>
