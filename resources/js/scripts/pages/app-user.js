@@ -55,25 +55,25 @@ $(document).ready(function () {
         deleteIconHTML.setAttributeNode(attr);
         // selected row delete functionality
         deleteIconHTML.addEventListener("click", function () {
-            
+
             deleteArr = [
                 params.data
             ];
-            
-                     $.ajaxSetup({
+
+            $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
             var UserDelete = window.Laravel.UserDelete;
-            UserDelete =UserDelete.replace(':id', id);
-            $.post(''+UserDelete,{_method: 'delete'} ,function(data){
-         // var selectedData = gridOptions.api.getSelectedRows();
-            gridOptions.api.updateRowData({
-                remove: deleteArr
+            UserDelete = UserDelete.replace(':id', id);
+            $.post('' + UserDelete, {_method: 'delete'}, function (data) {
+                // var selectedData = gridOptions.api.getSelectedRows();
+                gridOptions.api.updateRowData({
+                    remove: deleteArr
+                });
             });
-            });
-       
+
         });
         usersIcons.appendChild($.parseHTML(editIconHTML)[0]);
         usersIcons.appendChild(deleteIconHTML);
@@ -85,6 +85,22 @@ $(document).ready(function () {
         var setImage = window.Laravel.setImage;
         setImage = setImage.replace('setimage', 'storage/' + params.data.image);
         return "<span class='avatar'><img src=' " + setImage + "' height='32' width='32'></span>" + params.value
+    }
+
+    //  Rendering avatar in username column
+    var customRoleHTML = function (params) {
+
+        var roles = params.data.roles;
+        var rolesHtml ='';
+        if (roles) {
+           rolesHtml  = roles.map(function (role) {
+                return "<span class=' badge badge-danger badge-pill white'>" + role.name + "</span>";
+
+            });
+        } else {
+            rolesHtml = "<span class=' badge badge-danger badge-pill white'>user</span>";
+        }
+        return "<div>" + rolesHtml + "</div>";
     }
 
     // ag-grid
@@ -124,6 +140,7 @@ $(document).ready(function () {
             field: 'role',
             filter: true,
             width: 150,
+            cellRenderer: customRoleHTML,
         },
         {
             headerName: 'Status',
