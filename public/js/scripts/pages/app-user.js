@@ -17,16 +17,12 @@ $(document).ready(function () {
 
     //  Rendering badge in status column
     var customBadgeHTML = function (params) {
-        var color = "";
         if (params.value == "active") {
-            color = "success"
-            return "<div class='badge badge-pill badge-light-" + color + "' >" + params.value + "</div>"
+            return "<div class='badge badge-success badge-pill white'>" + params.value + "</div>"
         } else if (params.value == "blocked") {
-            color = "danger";
-            return "<div class='badge badge-pill badge-light-" + color + "' >" + params.value + "</div>"
+            return "<div class='badge badge-danger badge-pill white'>" + params.value + "</div>"
         } else if (params.value == "deactivated") {
-            color = "warning";
-            return "<div class='badge badge-pill badge-light-" + color + "' >" + params.value + "</div>"
+            return "<div class='badge badge-warning badge-pill white' >" + params.value + "</div>"
         }
     }
 
@@ -91,14 +87,17 @@ $(document).ready(function () {
     var customRoleHTML = function (params) {
 
         var roles = params.data.roles;
-        var rolesHtml ='';
-        if (roles) {
-           rolesHtml  = roles.map(function (role) {
-                return "<span class=' badge badge-danger badge-pill white'>" + role.name + "</span>";
-
+        var rolesHtml = '';
+        if (!(jQuery.isEmptyObject(roles))) {
+            rolesHtml = roles.map(function (role) {
+                if (role.name == 'Admin') {
+                    return "<span id='susers-list-role' class='badge badge-success  badge-pill white'>" + role.name + "</span>";
+                } else {
+                    return "<span id='susers-list-role' class='badge badge-dark  badge-pill white'>" + role.name + "</span>";
+                }
             });
         } else {
-            rolesHtml = "<span class=' badge badge-danger badge-pill white'>user</span>";
+            rolesHtml = "<span id='susers-list-role' class=' badge badge-danger badge-pill white'>user</span>";
         }
         return "<div>" + rolesHtml + "</div>";
     }
@@ -241,7 +240,7 @@ $(document).ready(function () {
         //  filter inside role
         $("#users-list-role").on("change", function () {
             var usersListRole = $("#users-list-role").val();
-            filterData("role", usersListRole)
+            filterData("role", usersListRole);
         });
         //  filter inside verified
         $("#users-list-verified").on("change", function () {

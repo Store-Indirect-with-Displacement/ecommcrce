@@ -107,7 +107,7 @@ $configData = Helper::applClasses();
                                                                                                        </a>
                                                                                                    </li>
                                                                                                    <li class="dashborad-analytics2">
-                                                                                                       <a href="" class="dropdown-item ">
+                                                                                                       <a href="<?=route('dashborad-analytics2')?>" class="dropdown-item ">
                                                                                                            <i class="feather icon-circle"></i>
                                                                                                            <span data-i18n="Vertical Menu Dashbord">Vertical Menu Dashbord</span>
                                                                                                        </a>

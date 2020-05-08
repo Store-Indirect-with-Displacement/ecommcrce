@@ -10,7 +10,6 @@ function ProductItem(Item) {
     var setImage = window.Laravel.setImage;
     window.console.log(setImage);
     setImage = setImage.replace('setimage', 'storage/' + Item.image);
-
     url = url.replace(':id', Item.model_id);
     var html = `
                                     <a id ="cart_item_h"class = "d-flex justify-content-between " href = "` + url + `">

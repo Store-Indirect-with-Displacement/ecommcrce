@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Blog;
 use App\Comment;
+use Auth;
 
 /**
  * App\User
@@ -50,7 +51,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'isAdmin','username','image','is_verified'
+        'name', 'email', 'password', 'isAdmin', 'username', 'image', 'is_verified', 'last_activity'
     ];
 
     /**
@@ -81,6 +82,17 @@ class User extends Authenticatable {
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function isOnline() {
+        $date_now = now()->timezone('egypt')->format('H:i:s');
+        $diff = date_diff(date_create($date_now), date_create($this->last_activity));
+        $minutes = $diff->format('%i');
+        if($minutes < 5){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

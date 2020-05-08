@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Category;
 use View;
+use App\User;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -27,7 +28,21 @@ class AppServiceProvider extends ServiceProvider {
     public function boot() {
         $categories = Category::latest()->paginate(5);
         $cats = Category::all();
-        View::share('categories', [$categories , $cats]);
+        View::share('categories', [$categories, $cats]);
+        $this->setUerStatus();
+    }
+
+    public function setUerStatus() {
+        $users = User::all();
+        foreach ($users as $user) {
+            if ($user->isOnline()) {
+                $user->status = 'active';
+                $user->update();
+            } else {
+                $user->status = 'deactivated';
+                $user->update();
+            }
+        }
     }
 
 }

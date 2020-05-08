@@ -26,7 +26,6 @@ Route::prefix(LaravelLocalization::setLocale())
 
 
 
-
             Route::group(['middleware' => ['auth']], function() {
                 //Dashborad
                 Route::group(['middleware' => ['admin']], function () {
@@ -66,7 +65,7 @@ Route::prefix(LaravelLocalization::setLocale())
                      * users Actions 
                      */
                     Route::get('users/getUserData', 'Users\UserController@getUserData')->name('getuserData');
-                    
+
                     Route::resource('users', 'Users\UserController');
                 });
             });

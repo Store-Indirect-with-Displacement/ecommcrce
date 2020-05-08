@@ -36,5 +36,6 @@ class Controller extends BaseController {
         $ar = json_decode($json_ar);
         return response()->json($ar);
     }
+    
 
 }

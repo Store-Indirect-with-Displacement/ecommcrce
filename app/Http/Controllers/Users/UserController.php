@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Spatie\Permission\Models\Role;
+use App\Status;
+use Cache;
 
 class UserController extends Controller {
 
@@ -18,7 +21,8 @@ class UserController extends Controller {
         $pageConfigs = [
             'mainLayoutType' => 'horizontal',
         ];
-        return view('Dashborad.pages.users.index', compact('pageConfigs'));
+        $roles = Role::all();
+        return view('Dashborad.pages.users.index', compact('pageConfigs', 'roles'));
     }
 
     /**
@@ -37,6 +41,7 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        
     }
 
     /**
@@ -93,5 +98,7 @@ class UserController extends Controller {
     public function destroy($id) {
         return User::where('id', $id)->delete();
     }
+
+    
 
 }

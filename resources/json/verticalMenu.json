@@ -114,7 +114,7 @@
             "icon": "feather icon-unlock",
             "submenu": [
                 {
-                    "url": "#",
+                    "url": "users.index",
                     "name": "List",
                     "icon": "feather icon-circle",
                     "i18n": "nav.app_user_list"
@@ -164,7 +164,7 @@
             ]
         },
         {
-            "url": "",
+            "url": "#",
             "name": "Cards",
             "icon": "feather icon-credit-card",
             "submenu": [

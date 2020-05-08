@@ -56,8 +56,9 @@
                                 <fieldset class="form-group">
                                     <select class="form-control" id="users-list-role">
                                         <option value="">All</option>
-                                        <option value="user">User</option>
-                                        <option value="staff">Staff</option>
+                                        <?php foreach ($roles as $role):?>
+                                         <option value="<?=$role->name?>"><?=$role->name?></option>
+                                        <?php endforeach;?>
                                     </select>
                                 </fieldset>
                             </div>
@@ -68,7 +69,7 @@
                                         <option value="">All</option>
                                         <option value="Active">Active</option>
                                         <option value="Blocked">Blocked</option>
-                                        <option value="deactivated">Deactivated</option>
+                                        <option value="Deactivated">Deactivated</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -77,22 +78,12 @@
                                 <fieldset class="form-group">
                                     <select class="form-control" id="users-list-verified">
                                         <option value="">All</option>
-                                        <option value="true">Yes</option>
-                                        <option value="false">No</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
                                     </select>
                                 </fieldset>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <label for="users-list-department">Department</label>
-                                <fieldset class="form-group">
-                                    <select class="form-control" id="users-list-department">
-                                        <option value="">All</option>
-                                        <option value="Sales">Sales</option>
-                                        <option value="Devlopment">Devlopment</option>
-                                        <option value="Management">Management</option>
-                                    </select>
-                                </fieldset>
-                            </div>
+                            
                         </div>
                     </form>
                 </div>

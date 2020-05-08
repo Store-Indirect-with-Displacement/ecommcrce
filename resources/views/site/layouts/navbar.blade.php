@@ -56,7 +56,7 @@
                 <li class="nav-item">
                     <a class="navbar-brand" href="<?= route('dashborad-analytics') ?>">
                         <div class="brand-logo"></div>
-                         <h2 class="brand-text mb-0 primary">{{__('main.E-Commerce')}}</h2>
+                        <h2 class="brand-text mb-0 primary">{{__('main.E-Commerce')}}</h2>
                     </a>
                 </li>
             </ul>
@@ -224,7 +224,21 @@
                             <li class = "dropdown dropdown-user nav-item">
                                 <a class = "dropdown-toggle nav-link dropdown-user-link" href = "#" data-toggle = "dropdown">
 
-                                    <div class = "user-nav d-sm-flex d-none"><span class = "user-name text-bold-600"><?= auth()->user()->name ?></span><span class = "user-status">Available</span></div><span><img class = "round" src = "{{asset('images/portrait/small/avatar-s-11.jpg') }}" alt = "avatar" height = "40" width = "40" /></span>
+                                    <div class = "user-nav d-sm-flex d-none">
+                                        <span class = "user-name text-bold-600"><?= auth()->user()->name ?></span>
+                                        <span class = "user-status">
+
+                                            <?php if (auth()->user()->status == 'active'): ?>
+                                                Online
+                                            <?php else: ?> 
+                                                Last active at 3.00 pm
+                                            <?php endif ?>
+                                        </span>
+                                    </div>
+                                    <span>
+                                        <img class = "round" src = "<?= asset('storage/' . auth()->user()->image) ?>" alt = "avatar" height = "40" width = "40" />
+                                    </span>
+
 
 
                                 </a>
