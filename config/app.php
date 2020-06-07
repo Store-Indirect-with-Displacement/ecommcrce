@@ -156,6 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\MenuServiceProvider::class,
+        App\Providers\SetupServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------
@@ -206,6 +207,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
-        'Cart'=> Heesapp\Productcart\Facades\Cart::class,
+        'Cart' => Heesapp\Productcart\Facades\Cart::class,
     ],
 ];

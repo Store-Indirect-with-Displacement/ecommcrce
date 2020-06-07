@@ -26,23 +26,7 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-        $categories = Category::latest()->paginate(5);
-        $cats = Category::all();
-        View::share('categories', [$categories, $cats]);
-        $this->setUerStatus();
-    }
-
-    public function setUerStatus() {
-        $users = User::all();
-        foreach ($users as $user) {
-            if ($user->isOnline()) {
-                $user->status = 'active';
-                $user->update();
-            } else {
-                $user->status = 'deactivated';
-                $user->update();
-            }
-        }
+        
     }
 
 }

@@ -385,7 +385,7 @@ class BlogController extends Controller {
         $blogunarchiveCount = $blogunarchive = Blog::where('is_archive', 0)->count();
         $blogarchive = Blog::where('is_archive', 1)->paginate(5);
         $blogunarchive = Blog::where('is_archive', 0)->paginate(5);
-        return view('site.ForntEnd.blogs.blog_show', compact('pageConfigs', 'breadcrumbs', 'blog', 'categires', 'blogPos', 'blogarchive', 'blogunarchive', 'blogarchiveCount', 'blogunarchiveCount'));
+        return view('site.ForntEnd.blogs.blog_show', compact('pageConfigs', 'breadcrumbs', 'blog', 'blogPos', 'blogarchive', 'blogunarchive', 'blogarchiveCount', 'blogunarchiveCount'));
     }
 
     //add Comment 

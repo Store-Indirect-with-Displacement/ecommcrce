@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run() {
+        $this->call(CountryTableSeeder::class);
         $this->call(PermissionTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
