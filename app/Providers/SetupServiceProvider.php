@@ -30,10 +30,7 @@ class SetupServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-        $categories = Category::latest()->paginate(5);
-        $cats = Category::all();
-        View::share('categories', [$categories, $cats]);
-        $this->setUerStatus();
+     
     }
 
     public function setUerStatus() {
