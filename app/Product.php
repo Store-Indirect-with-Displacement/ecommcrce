@@ -9,6 +9,7 @@ use App\SubCategory;
 use App\ProductImage;
 use App\ProductSize;
 use App\ProductColor;
+use App\OrderItem;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Heesapp\Productcart\Traits\Cartable;

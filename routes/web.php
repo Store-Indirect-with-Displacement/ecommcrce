@@ -94,4 +94,7 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('siteblogList', 'Ecommerce\BlogController@_index')->name('siteblogList');
             Route::get('siteblogshow\{id}', 'Ecommerce\BlogController@_show')->name('siteblogshow');
             Route::post('addComment', 'Ecommerce\BlogController@PostComment')->name('addComment');
+            
+            //order place 
+            Route::post('saveInformation','OrderController@CreateLocationAndOperator')->name('saveInfo');
         });

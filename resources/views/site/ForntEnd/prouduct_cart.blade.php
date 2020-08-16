@@ -39,25 +39,13 @@
     <link rel="stylesheet" href="{{ asset('css-rtl/plugins/extensions/toastr.css') }}">
 <?php endif; ?>
 
-<script>
-    window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
-
-</script>
-
-<script type="text/javascript">
-    window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
-    window.Laravel.incrementitem = '<?= route('incrementcart', ':id') ?>';
-    window.Laravel.decrementitem = '<?= route('decrementcart', ':id') ?>';
-    window.Laravel.moveTowishList = '<?= route('moveToWishList', ':id') ?>';
-    window.Laravel.moveToCart = '<?= route('moveToCart', ':id') ?>';
-    window.Laravel.removeFromWishList = '<?= route('removeFromWishList', ':id') ?>';
-</script>
 @endsection
 
 @section('content')
 <?php if (!$CartItems->isEmpty()): ?>
-    <form action="#" class="icons-tab-steps checkout-tab-steps wizard-circle">
+<form action="#" class="icons-tab-steps checkout-tab-steps wizard-circle">
         <!-- Checkout Place order starts -->
+    
         <h6>
             <i class="step-icon step feather icon-shopping-cart"></i>
             Cart
@@ -273,7 +261,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 offset-md-6">
-                                    <div class="btn btn-primary delivery-address float-right">
+                                    <div id="save_adderss"class="btn btn-primary delivery-address float-right">
                                         SAVE AND DELIVER HERE
                                     </div>
                                 </div>
@@ -437,7 +425,7 @@
                 </div>
             </section>
         </fieldset>
-
+        
         <!-- Checkout Payment Starts -->
     </form>
 <?php else: ?>

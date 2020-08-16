@@ -24,7 +24,16 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        
+    }
+    
+    public Function CreateLocationAndOperator(Request $request){
+        return $request;
+        $rules = [
+            'fname'=>'nullable|string|max:255',
+            'mnumber'=>'nullable|string|max:12',
+            ''
+            ];
     }
 
     /**

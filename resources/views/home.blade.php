@@ -4,20 +4,6 @@
 <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/slider.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/owl.carousel.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('userInterface/css/responsive.css')}}">
-<script>
-    window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
-
-</script>
-
-<script type="text/javascript">
-    window.Laravel.addTocart = '<?= route('addTocart', ':id') ?>';
-    window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
-    window.Laravel.getCartData = '<?= route('getcart') ?>';
-    window.Laravel.product_detials = '<?= route('product_details', ':id') ?>';
-    window.Laravel.addTowishList = '<?= route('addTowishList', ':id') ?>';
-    window.Laravel.getWishListData = '<?= route('getWishList') ?>';
-</script>
-
 @endsection
 @section('content')
 

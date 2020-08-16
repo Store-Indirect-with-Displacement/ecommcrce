@@ -3,16 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Project/laravel/E-commerce/database/seeds/CountryTableSeeder.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/ForntEnd/blogs/blog_show.blade.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/ForntEnd/blogs/blog_index.blade.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/app/Http/Controllers/Ecommerce/BlogController.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/ForntEnd/prouduct_cart.blade.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/app/Providers/SetupServiceProvider.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/layouts/navbar.blade.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/resources/views/site/ForntEnd/product_details.blade.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/database/migrations/2020_05_09_192914_create_orders_table.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/app/OrderItem.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/database/migrations/2020_04_03_231415_create_items_cart_table.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/database/migrations/2020_08_16_134507_create_order_items_table.php</file>
             <file>file:/E:/Project/laravel/E-commerce/app/Order.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/routes/web.php</file>
+            <file>file:/E:/Project/laravel/E-commerce/app/Product.php</file>
         </group>
     </open-files>
 </project-private>

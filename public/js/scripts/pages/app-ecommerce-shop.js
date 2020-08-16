@@ -158,6 +158,14 @@ $(document).ready(function () {
         $(".place-order, .delivery-address").on("click", function () {
             $(".checkout-tab-steps").steps("next", {});
         });
+        $(".delivery-address").on('click', function () {
+            var url = window.Laravel.saveAddress;
+            $.post('' + url, {
+                
+            }, function (data) {
+                window.console.log(data);
+            });
+        });
         // check if user has entered valid cvv
         $(".btn-cvv").on("click", function () {
             if ($(".input-cvv").val().length == 3) {
@@ -214,6 +222,7 @@ $(document).ready(function () {
             }
         }).on('touchspin.on.startupspin', function () {
             var url = window.Laravel.incrementitem;
+            window.console.log('url:'+url);
             var id = $(this).closest("#cart_item").find("#item_id").text();
             url = url.replace(':id', id);
             var $this = $(this);

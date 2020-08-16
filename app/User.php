@@ -9,7 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Blog;
 use App\Comment;
 use Auth;
-
+use App\Operator;
 /**
  * App\User
  *
@@ -93,6 +93,10 @@ class User extends Authenticatable {
         }else{
             return false;
         }
+    }
+    
+    public function operators() {
+        return $this->hasMany(Operator::class);
     }
 
 }

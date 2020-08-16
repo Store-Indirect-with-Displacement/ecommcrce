@@ -12,6 +12,14 @@
     window.Laravel.addTowishList = '<?= route('addTowishList', ':id') ?>';
     window.Laravel.getWishListData = '<?= route('getWishList') ?>';
     window.Laravel.setImage = '<?= url('setimage') ?>';
+    
+    //Cart operations
+    window.Laravel.incrementitem = '<?= route('incrementcart', ':id') ?>';
+    window.Laravel.decrementitem = '<?= route('decrementcart', ':id') ?>';
+    window.Laravel.moveTowishList = '<?= route('moveToWishList', ':id') ?>';
+    window.Laravel.moveToCart = '<?= route('moveToCart', ':id') ?>';
+    window.Laravel.saveAddress = '<?= route('saveInfo')?>';
+    
 </script>
 <style>
     .login_li{

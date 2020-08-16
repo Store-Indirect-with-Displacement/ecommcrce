@@ -19,19 +19,7 @@
 
 <?php endif; ?>
 
-<script>
-    window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
-</script>
-<script type="text/javascript">
-    window.Laravel.addTocart = '<?= route('addTocart', ':id') ?>';
-    window.Laravel.addTowishList = '<?= route('addTowishList', ':id') ?>';
-    window.Laravel.removeFromcart = '<?= route('removeCart', ':id') ?>';
-    window.Laravel.incrementitem = '<?= route('incrementcart', ':id') ?>';
-    window.Laravel.decrementitem = '<?= route('decrementcart', ':id') ?>';
-    window.Laravel.moveTowishList = '<?= route('moveToWishList', ':id') ?>';
-    window.Laravel.moveToCart = '<?= route('moveToCart', ':id') ?>';
-    window.Laravel.removeFromWishList = '<?= route('removeFromWishList', ':id') ?>';
-</script>
+
 @endsection
 @section('content')
 <?php if(!$wishListData['WitchListItems']->isEmpty()):?>
