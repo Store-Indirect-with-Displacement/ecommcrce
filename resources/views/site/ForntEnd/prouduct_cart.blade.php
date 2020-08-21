@@ -5,6 +5,7 @@
 <!-- Vendor css files -->
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/spinner/jquery.bootstrap-touchspin.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.css')) }}">
+ <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 @endsection
 @section('page-style')
 {{-- Page Css files --}}
@@ -43,9 +44,9 @@
 
 @section('content')
 <?php if (!$CartItems->isEmpty()): ?>
-<form action="#" class="icons-tab-steps checkout-tab-steps wizard-circle">
+    <form action="#" class="icons-tab-steps checkout-tab-steps wizard-circle">
         <!-- Checkout Place order starts -->
-    
+
         <h6>
             <i class="step-icon step feather icon-shopping-cart"></i>
             Cart
@@ -243,7 +244,7 @@
                                             <?php foreach (App\conutry::all() as $country): ?>
 
                                                 <option class="country"  value="<?= $country->id ?>">
-                                                    <?=$country->country_flage?>
+                                                    <?= $country->country_flage ?>
                                                     <?= $country->country_name ?>
                                                     +<?= $country->country_code ?>
                                                 </option>
@@ -286,7 +287,48 @@
                         </div>
                     </div>
                 </div>
+     
+
             </section>
+            <section id="gmaps-basic-maps" >
+                    <!-- Info Window -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Info Window</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <input style="margin-bottom: 10px; margin-top: 10px; " type="text" id="searchInput" class="form-control width-95-per map-input"  name="search" placeholder="Enter a Location">
+                           
+                                        <div id="info-window" class="height-400 width-95-per" ></div>
+                                        <div class="row width-95-per" style="margin-top: 10px; margin-bottom: 10px;">
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="checkout-city">Location</label>
+                                                <input type="hidden" value=""  id="checkout-Location" class="form-control required" name="city">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="checkout-pincode">Latitude </label>
+                                                <input type="hidden" value="0" id="checkout-Latitude" class="form-control required" name="pincode" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="checkout-pincode">Longitude</label>
+                                                <input  type="hidden" id="checkout-pincode" class="form-control required" name="pincode" value="0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
         </fieldset>
 
         <!-- Checkout Customer Address Ends -->
@@ -425,7 +467,7 @@
                 </div>
             </section>
         </fieldset>
-        
+
         <!-- Checkout Payment Starts -->
     </form>
 <?php else: ?>
@@ -458,8 +500,13 @@
 <script src="{{ asset(mix('vendors/js/extensions/jquery.steps.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
 <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+<script src="{{asset(mix('vendors/js/ui/jquery.sticky.js'))}}"></script>
+
+     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuDK8PB2oYuPJ8q_22dkFmDimTYejWppk&libraries=places"
+  type="text/javascript"></script>
 @endsection
 @section('page-script')
 <!-- Page js files -->
+<script src="{{ asset(mix('js/scripts/charts/gmaps/maps.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/pages/app-ecommerce-shop.js')) }}"></script>
 @endsection

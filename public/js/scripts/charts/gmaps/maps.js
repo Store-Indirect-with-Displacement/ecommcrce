@@ -1,108 +1,184 @@
 /*=========================================================================================
-    File Name: maps.js
-    Description: google maps
-    ----------------------------------------------------------------------------------------
-    Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
-    Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
+ File Name: maps.js
+ Description: google maps
+ ----------------------------------------------------------------------------------------
+ Item name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
+ Author: PIXINVENT
+ Author URL: http://www.themeforest.net/user/pixinvent
+ ==========================================================================================*/
 
 // Gmaps Maps
 // ------------------------------
 
-$(window).on("load", function(){
+$(window).on("load", function () {
 
-    // Basic Map
-    // ------------------------------
 
-    map = new GMaps({
-        div: '#basic-map',
-        lat: 9.0820,
-        lng: 8.6753,
-        zoom: 7
-    });
-    map.addMarker({
-        lat: 9.0765,
-        lng: 7.3986,
-        title: 'Marker1',
-        draggable: true,
-    });
+    var autocompletes = [];
+    var geoCoder = new google.maps.Geocoder();
+    const Locationsearch =  document.getElementsByClassName("map-input");
+    var Location = $("#gmaps-basic-maps").find("#checkout-Location");
+    var Latitude = $("#gmaps-basic-maps").find("#checkout-Latitude");
+    var Longitude = $("#gmaps-basic-maps").find("#checkout-Longitude");
+    var geocoder = new google.maps.Geocoder;
+    for (var i = 0; i < Locationsearch.length; i++) {
+        var input = Locationsearch[i];
+        var isEdit = Latitude != '' && Longitude != '';
+        var lat = parseFloat(Latitude.val()) || 30.033333;
+        var lng = parseFloat(Longitude.val()) || 31.233334;
+        var map = new google.maps.Map(document.getElementById('info-window'), {
+            center: {lat: lat, lng: lng},
+            zoom: 9,
 
-    // Info Window
-    // ------------------------------
+            mapTypeControl: true,
+            styles: [
+                {elementType: "geometry", stylers: [{color: "#242f3e"}]},
+                {elementType: "labels.text.stroke", stylers: [{color: "#242f3e"}]},
+                {elementType: "labels.text.fill", stylers: [{color: "#746855"}]},
+                {
+                    featureType: "administrative.locality",
+                    elementType: "labels.text.fill",
+                    stylers: [{color: "#d59563"}]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "labels.text.fill",
+                    stylers: [{color: "#d59563"}]
+                },
+                {
+                    featureType: "poi.park",
+                    elementType: "geometry",
+                    stylers: [{color: "#263c3f"}]
+                },
+                {
+                    featureType: "poi.park",
+                    elementType: "labels.text.fill",
+                    stylers: [{color: "#6b9a76"}]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [{color: "#38414e"}]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry.stroke",
+                    stylers: [{color: "#212a37"}]
+                },
+                {
+                    featureType: "road",
+                    elementType: "labels.text.fill",
+                    stylers: [{color: "#9ca5b3"}]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry",
+                    stylers: [{color: "#746855"}]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.stroke",
+                    stylers: [{color: "#1f2835"}]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "labels.text.fill",
+                    stylers: [{color: "#f3d19c"}]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "geometry",
+                    stylers: [{color: "#2f3948"}]
+                },
+                {
+                    featureType: "transit.station",
+                    elementType: "labels.text.fill",
+                    stylers: [{color: "#d59563"}]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry",
+                    stylers: [{color: "#17263c"}]
+                },
+                {
+                    featureType: "water",
+                    elementType: "labels.text.fill",
+                    stylers: [{color: "#515c6d"}]
+                },
+                {
+                    featureType: "water",
+                    elementType: "labels.text.stroke",
+                    stylers: [{color: "#17263c"}]
+                }
+            ],
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                mapTypeIds: ['roadmap', 'satellite']
 
-    map = new GMaps({
-        div: '#info-window',
-        lat: 47.4073,
-        lng: 7.7526,
-        zoom: 7
-    });
-    map.addMarker({
-        lat: 47.4073,
-        lng: 7.76,
-        title: 'Marker1',
-        infoWindow: {
-            content: '<p>Marker1</p>'
-        }
-    });
-    map.addMarker({
-        lat: 47.3769,
-        lng: 8.5417,
-        title: 'Marker2',
-        infoWindow: {
-            content: '<p>Marker2</p>'
-        }
-    });
-    map.addMarker({
-        lat: 46.9480,
-        lng: 7.4474,
-        title: 'Marker3',
-        infoWindow: {
-            content: '<p>Marker3</p>'
-        }
-    });
+            }
+        });
+        var marker = new google.maps.Marker({
+            map: map,
+            position: {lat: lat, lng: lng}
+        });
+        marker.setVisible(isEdit);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.key = 'checkout';
+        autocompletes.push(
+                {
+                    input: input,
+                    map: map,
+                    marker: marker,
+                    autocomplete: autocomplete
+                });
+    }
+    for (var i = 0; i < autocompletes.length; i++) {
+        var input = autocompletes[i].input;
+        var map = autocompletes[i].map;
+        var marker = autocompletes[i].marker;
+        var autocomplete = autocompletes[i].autocomplete;
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            geoCoder.geocode({'placeId': place.place_id}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var location = results[0].geometry.location;
+                    var lat = results[0].geometry.location.lat();
+                    var lng = results[0].geometry.location.lng();
+                    setLocationCoordinates(autocomplete.key, lat, lng,location);
 
-    // Street View Markers
-    // ------------------------------
+                }
+            });
+            if (!place.geometry) {
+                window.alert("No details available for input: '" + place.name + "'");
+                input.value = "";
+                return;
+            }
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
 
-    map = GMaps.createPanorama({
-      el: '#street-view',
-      lat : 52.201272,
-      lng: 0.118720,
-    });
+            }
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+        });
 
-    // Random Value for street heading
+    }
+    function setLocationCoordinates(key, lat, lng,location) {
+           Latitude.val(lat);
+           Longitude.val(lng);
+           Location.val(location);
+    }
 
-    $(".street-heading").on("click", function(){
-      map = GMaps.createPanorama({
-        el: '#street-view',
-        lat : 52.201272,
-        lng: 0.118720,
-        pov: { heading: Math.random() * 360, pitch: 5 }
-      });
-    });
 
-    // Random Value for street Pitch
 
-    $(".street-pitch").on("click", function(){
-      map = GMaps.createPanorama({
-        el: '#street-view',
-        lat : 52.201272,
-        lng: 0.118720,
-        pov: { heading: 20, pitch: Math.random() * 180 - 90 }
-      });
-    });
 
-    // Random Value for both street heading and street pitch
 
-    $(".street-both").on("click", function(){
-      map = GMaps.createPanorama({
-        el: '#street-view',
-        lat : 52.201272,
-        lng: 0.118720,
-        pov: { heading: Math.random() * 360, pitch: Math.random() * 180 - 90 }
-      });
-    });
+
+
 
 });
+
+
 

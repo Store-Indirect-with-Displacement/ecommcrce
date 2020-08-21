@@ -12,6 +12,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Category;
 use View;
 use App\User;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Description of SetupServiceProvider
@@ -30,10 +31,12 @@ class SetupServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-       $categories = Category::latest()->paginate(5);
-       $cats = Category::all();
-       View::share('categories', [$categories, $cats]);
-       $this->setUerStatus();
+        if (Schema::hasTable('categories')) {
+            $categories = Category::latest()->paginate(5);
+            $cats = Category::all();
+            View::share('categories', [$categories, $cats]);
+            $this->setUerStatus();
+        }
     }
 
     public function setUerStatus() {

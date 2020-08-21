@@ -155,17 +155,38 @@ $(document).ready(function () {
             },
         });
         // to move to next step on place order and save address click
-        $(".place-order, .delivery-address").on("click", function () {
+        $(".place-order").on("click", function () {
             $(".checkout-tab-steps").steps("next", {});
         });
         $(".delivery-address").on('click', function () {
+             $(".checkout-tab-steps").steps("next", {});
             var url = window.Laravel.saveAddress;
+            var fname = $("#checkout-address").find("#checkout-name").val();
+            var mnumber = $("#checkout-address").find("#checkout-number").val();
+            var apt_number = $("#checkout-address").find("#checkout-apt-number").val();
+            var landmark = $("#checkout-address").find("#checkout-landmark").val();
+            var city_id = $("#checkout-address").find("#checkout-city").val();
+            var Pincode = $("#checkout-address").find("#checkout-pincode").val();
+            var country_id = $("#checkout-address").find("#checkout-state").val();
+            var Type = $("#checkout-address").find("#add-type").val();
+                 $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
             $.post('' + url, {
-                
+                 fname:fname,
+                 mnumber:mnumber,
+                 apt_number:apt_number,
+                 landmark:landmark,
+                 city_id:city_id,
+                 Pincode:Pincode,
+                 country_id:country_id
             }, function (data) {
-                window.console.log(data);
+                window.console.log('address1:'+data);
             });
         });
+        
         // check if user has entered valid cvv
         $(".btn-cvv").on("click", function () {
             if ($(".input-cvv").val().length == 3) {
@@ -222,7 +243,7 @@ $(document).ready(function () {
             }
         }).on('touchspin.on.startupspin', function () {
             var url = window.Laravel.incrementitem;
-            window.console.log('url:'+url);
+            window.console.log('url:' + url);
             var id = $(this).closest("#cart_item").find("#item_id").text();
             url = url.replace(':id', id);
             var $this = $(this);
@@ -394,6 +415,9 @@ $(document).on('change', "input:checkbox[name=cat]:checked", function (event) {
     }).get();
     window.console.log(flags);
 });
+
+
+
 //colors
 
 
