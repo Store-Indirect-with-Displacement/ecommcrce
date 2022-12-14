@@ -121,8 +121,16 @@ $(document).ready(function () {
         $("#data-category, #data-status").prop("selectedIndex", 0)
     })
 
+
     // On Edit
-    $('.action-edit').on("click", function (e) {
+    $('#catEdit-id').on("click", function (e) {
+        e.stopPropagation();
+        $('#data-name').val('Altec Lansing - Bluetooth Speaker');
+        $('#data-price').val('$99');
+        $(".add-new-data").addClass("show");
+        $(".overlay-bg").addClass("show");
+    });
+        $('#productEdit-id').on("click", function (e) {
         e.stopPropagation();
         $('#data-name').val('Altec Lansing - Bluetooth Speaker');
         $('#data-price').val('$99');
@@ -130,12 +138,21 @@ $(document).ready(function () {
         $(".overlay-bg").addClass("show");
     });
     // On Delete
-    $('.action-delete').on("click", function (e) {
+    $('#catdelete-id').on("click", function (e) {
         e.stopPropagation();
         $(this).closest('td').parent('tr').fadeOut();
         var id = $(this).closest('td').parent('tr').find("#cat_id").text();
         deleteCategory(id);
+        
     });
+        $('#productdelete-id').on("click", function (e) {
+        e.stopPropagation();
+        $(this).closest('td').parent('tr').fadeOut();
+        var id = $(this).closest('td').parent('tr').find("#cat_id").text();
+        prouductDestory(id);
+        
+    });
+    
     // dropzone init
     Dropzone.options.dataListUpload = {
 
@@ -370,6 +387,22 @@ function deleteCategory(id) {
     });
     $.post('' + url, {
         id: id,
+        method: 'detete'
+    }, function (data) {
+        window.console.log(data);
+    });
+}
+
+function prouductDestory(id) {
+   var url = window.Laravel.destoryProduct.replace(':id', id);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.post('' + url, {
+        id: id,
+        method: 'detete'
     }, function (data) {
         window.console.log(data);
     });

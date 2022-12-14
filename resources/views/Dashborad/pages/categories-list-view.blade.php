@@ -161,8 +161,8 @@
                         </td>
 
                         <td class="product-action">
-                            <span class="action-edit"><i class="feather icon-edit"></i></span>
-                            <span class="action-delete"><i class="feather icon-trash"></i></span>
+                            <span class="action-edit" id ="catEdit-id"><i class="feather icon-edit"></i></span>
+                            <span class="action-delete " id ="catdelete-id"><i class="feather icon-trash"></i></span>
                         </td>
                     </tr>
                 <?php endforeach; ?>

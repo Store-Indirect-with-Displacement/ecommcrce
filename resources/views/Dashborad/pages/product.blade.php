@@ -19,6 +19,7 @@
         window.Laravel.getsubcategories = '<?= route('getsubcategories', ':id') ?>';
         window.Laravel.getsubsubcategories = '<?= route('getsubsubcategories', ':id') ?>';
         window.Laravel.removeImage = '<?= route('removeImage') ?>';
+        window.Laravel.destoryProduct = '<?= route('destoryProduct', ':id') ?>';
     </script>
 <?php endif; ?>
 
@@ -112,8 +113,8 @@
                         </td>
                         <td class="product-price"><?= $product->price ?></td>
                         <td class="product-action">
-                            <span class="action-edit"><i class="feather icon-edit"></i></span>
-                            <span class="action-delete"><i class="feather icon-trash"></i></span>
+                            <span class="action-edit" id="productEdit-id"><i class="feather icon-edit"></i></span>
+                            <span class="action-delete" id = "productdelete-id"><i class="feather icon-trash"></i></span>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -131,7 +132,7 @@
                 <div>
                     <h4 class="text-uppercase">Product View Data</h4>
                 </div>
-                 <div id="app">
+                <div id="app">
                     @include('layouts.session')
                 </div>
                 <div class="hide-data-sidebar">
@@ -210,8 +211,8 @@
                                     </fieldset>
                                 </div>
                             <?php endif; ?>
-                            
-                                <?php if (App::getLocale() == "ar"): ?>
+
+                            <?php if (App::getLocale() == "ar"): ?>
                                 <div class="col-sm-12 form-group data-field-co">
                                     <fieldset>
                                         <div class="input-group">

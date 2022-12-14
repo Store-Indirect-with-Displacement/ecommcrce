@@ -29,7 +29,7 @@ class BlogsTableSeeder extends Seeder {
             $blog->date = $this->setdate();
 //create deflaut image
             if ($i == 0) {
-                $defaultpath = public_path('images/pages/card-img-overlay.jpg');
+                $defaultpath = public_path('images/pages/');
                 $imagepath = 'images/pages/bloglist/blogmainImages';
                 if (!Storage::exists($defaultpath)) {
                     $path = Storage::disk('public')->putFileAs($imagepath, $defaultpath, 'card-img-overlay.jpg');

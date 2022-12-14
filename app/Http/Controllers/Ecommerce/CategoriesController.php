@@ -139,9 +139,12 @@ class CategoriesController extends Controller {
 
     public function deteteSubCategory($id) {
         $subCategory = SubCategory::where('id', $id)->first();
+        
         $subCategory->subsubCategories()->delete();
         $subCategory->delete();
         return response('sucess', 200);
     }
 
+    
+   
 }

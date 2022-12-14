@@ -26,7 +26,6 @@ class ProductController extends Controller {
         $pageConfigs = [
             'pageHeader' => false,
             'mainLayoutType' => 'horizontal',
-           
             'direction' => env('MIX_CONTENT_DIRECTION', LaravelLocalization::getCurrentLocaleDirection()),
         ];
         $breadcrumbs = [
@@ -79,7 +78,7 @@ class ProductController extends Controller {
             $product->is_Discount = 1;
         }
 
-        $imagepath = 'images/pages/productlist/productsmainImages';
+        $imagepath = '';
         $path = $request->file('Image')->storeAs($imagepath, $request->file('Image')->getClientOriginalName(), ['disk' => 'public']);
         $product->image = $path;
         $product->Category()->associate($category);
@@ -126,7 +125,7 @@ class ProductController extends Controller {
         $pageConfigs = [
             'bodyClass' => 'ecommerce-application',
             'mainLayoutType' => 'horizontal',
-             'isMain' => '0',
+            'isMain' => '0',
         ];
         $breadcrumbs = [
             ['link' => "dashboard-analytics", 'name' => "Home"], ['link' => "dashboard-analytics", 'name' => "eCommerce"], ['name' => "Checkout"]
@@ -145,7 +144,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-//
+        
     }
 
     /**
@@ -166,7 +165,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-//
+         return Product::where('id', $id)->delete();
     }
 
     public function getcategories() {

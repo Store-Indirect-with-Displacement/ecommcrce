@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Project/laravel/E-commerce/database/migrations/2014_10_12_000000_create_users_table.php</file>
-            <file>file:/E:/Project/laravel/E-commerce/app/Providers/SetupServiceProvider.php</file>
+            <file>file:/D:/software/e-commerce/resources/js/scripts/ui/data-list-view.js</file>
+            <file>file:/D:/software/e-commerce/app/Http/Controllers/Ecommerce/CategoriesController.php</file>
+            <file>file:/D:/software/e-commerce/resources/views/Dashborad/pages/product.blade.php</file>
+            <file>file:/D:/software/e-commerce/resources/views/Dashborad/pages/users/index.blade.php</file>
+            <file>file:/D:/software/e-commerce/resources/views/Dashborad/pages/categories-list-view.blade.php</file>
+            <file>file:/D:/software/e-commerce/app/Http/Controllers/Ecommerce/ProductController.php</file>
+            <file>file:/D:/software/e-commerce/resources/js/scripts/pages/app-user.js</file>
         </group>
     </open-files>
 </project-private>

@@ -49,7 +49,7 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::post('uploadproductimage', 'Ecommerce\ProductController@uploadImage')->name('uploadImage');
                     Route::post('removeprouctimage', 'Ecommerce\ProductController@removeImage')->name('removeImage');
                     Route::post('saveproduct', 'Ecommerce\ProductController@store')->name('storeproduct');
-
+                    Route::delete('destoryProduct/{id}', 'Ecommerce\ProductController@destroy')->name('destoryProduct');
                     //Blogs 
                     Route::get('blogList', 'Ecommerce\BlogController@index')->name('blogList');
                     Route::get('blogcreate', 'Ecommerce\BlogController@create')->name('blogcreate');
@@ -60,12 +60,11 @@ Route::prefix(LaravelLocalization::setLocale())
                     Route::get('showblog/{id}', 'Ecommerce\BlogController@show')->name('showblog');
                     Route::get('addtoArchive/{id}', 'Ecommerce\BlogController@addToArchive')->name('addtoArchive');
                     Route::get('removetoArchive/{id}', 'Ecommerce\BlogController@removetoArchive')->name('removetoArchive');
-
+                   
                     /**
                      * users Actions 
                      */
                     Route::get('users/getUserData', 'Users\UserController@getUserData')->name('getuserData');
-
                     Route::resource('users', 'Users\UserController');
                 });
             });
